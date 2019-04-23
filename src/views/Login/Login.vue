@@ -1,9 +1,9 @@
 <template>
   <transition name="slide">
     <div class="login">
-      <h1>登陆商城</h1>
+      <h1>登陆</h1>
       <van-cell-group class="login-from">
-        <van-field v-model="userName" clearable border label="邮箱" placeholder="请输入邮箱" :error-message="userNameErr" />
+        <van-field v-model="userName" clearable border label="手机" placeholder="请输入号码" :error-message="userNameErr" />
         <van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" />
         <van-cell>
           <van-row>
@@ -22,15 +22,16 @@
 
 <script>
 import MD5 from 'crypto-js/md5';
-import { emailCheck, pwdCheck } from '@/util/util';
+import { phoneNumCheck, pwdCheck } from '@/util/util';
 import { login } from '@/api/api';
 import { Toast } from 'vant';
-
+import { userLogin } from '@/api/api.js';
+import { authPost } from '@/util/http.js';
 export default {
   data() {
     return {
-      userName: 'test@qq.com',
-      password: 'pwx980101',
+      userName: '',
+      password: '',
       userNameErr: '',
       passwordErr: '',
       loading: false,
@@ -50,8 +51,8 @@ export default {
       this.userNameErr = '';
       this.passwordErr = '';
       this.loading = true;
-      if (!emailCheck(this.userName)) {
-        this.userNameErr = '邮箱格式不正确';
+      if (!phoneNumCheck(this.userName)) {
+        this.userNameErr = '号码格式不正确';
         this.loading = false;
         return;
       }
@@ -60,6 +61,20 @@ export default {
         this.loading = false;
         return;
       }
+			userLogin({userName:this.userName,userPwd:this.password})
+			.then(res => {
+			  if (res.status === 200) {
+			    this.loading = false;
+			    this.$router.push('/');
+			  } else {
+			    this.loading = false;
+			    Toast.fail(res.msg);
+			  }
+			})
+			.catch(error => {
+			  Toast.fail(error);
+			  this.loading = false;
+			});
       login({ userName: this.userName, password: MD5(this.password).toString() })
         .then(res => {
           if (res.status === 200) {

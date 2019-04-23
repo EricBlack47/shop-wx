@@ -1,7 +1,8 @@
 import { get, post } from '@/util/http';
 
-export const indexList=()=>get("content/list/0")
+export const indexList=()=>get("content/list/0");
 export const test = () => get('/');
+export const userLogin = ()=>authPost('member/login/');
 export const login = params => post('login', params);
 export const reg = params => post('reg', params);
 export const hotSale = () => post('hotsale');
@@ -16,3 +17,8 @@ export const getAddress = () => post('getAddress');
 export const getOrder = () => post('getOrder');
 export const createOrder = params => post('createOrder', params);
 export const getGoodById = params => post('getGoodById', params);
+export const getGoodsList = () =>get('goods/allGoods');
+export const getCartList = () =>authpost("member/cartList");
+export const MerchantBanner = () =>get("content/list/8");
+export const getAllGoods = params =>get('goods/allGoods',params);
+export const getGoodsCat = () =>get('goods/navList')

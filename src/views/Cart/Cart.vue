@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { getCartList } from '@/api/api';
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
 import { getCart, updateCartCount, delFromCart } from '@/api/api';

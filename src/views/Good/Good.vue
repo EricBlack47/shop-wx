@@ -6,11 +6,10 @@
         <van-icon name="arrow-left" />
       </div>
       <van-swipe class="swipe"
-        style="height:375px">
+        style="height:300px">
         <van-swipe-item v-for="item in [1,2,3]"
           :key="item">
-          <img src="@/images/swipe/swipe1-2.jpg"
-            alt="图片">
+          <img src="@/images/swipe/swipe1-2.jpg" alt="图片">
         </van-swipe-item>
       </van-swipe>
       <van-cell-group class="good-detail">

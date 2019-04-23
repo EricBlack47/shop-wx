@@ -43,7 +43,9 @@
 <script>
 export default {
   name: 'User',
-  methods: {}
+  methods: {
+		
+	}
 };
 </script>
 

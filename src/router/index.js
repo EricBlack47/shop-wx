@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+const GoodList = () => import('@/views/Good/GoodList');
+const Merchant = () => import('@/views/Merchant/Merchant');
 const Home = () => import(/* webpackChunkName: "Home" */ '@/views/Home/Home');
 const Cart = () => import(/* webpackChunkName: "Cart" */ '@/views/Cart/Cart');
 const User = () => import(/* webpackChunkName: "User" */ '@/views/User/User');
@@ -87,6 +89,16 @@ export default new Router({
         fullScreen: true
       }
     },
+		{
+			path: '/GoodList',
+			name: 'GoodList',
+			component: GoodList
+		},
+		{
+			path: '/Merchant',
+			name: 'Merchant',
+			component: Merchant
+		}, 
     {
       path: '*',
       name: 'Notfound',
