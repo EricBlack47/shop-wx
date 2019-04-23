@@ -5,14 +5,14 @@
 		</van-search>
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index" @click="goDetail(item)">
+				<van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index">
 					<img :src="item.picUrl">
 				</van-swipe-item>
 			</van-swipe>
 		</div>
 		<van-tabs @change="handleTabsChange">
 		  <van-tab v-for="(value,key) in goodsKind" :key="key" :title="value.name">
-		    <tabItem :data="AllGoods"  @click="goDetail(AllGoods.productId)"></tabItem>
+		    <tabItem :data="AllGoods"  @click="goGoodsDetail(AllGoods)"></tabItem>
 		  </van-tab>
 		</van-tabs>
 	</div>
@@ -23,9 +23,9 @@
 	import scrollX from '@/components/scroll/scrollX';
 	import tabItem from '@/components/tabItem/tabItem';
 	import goodItem from '@/components/goodItem/goodItem';
-	import {MerchantBanner,getAllGoods,getGoodsCat} from '@/api/api.js';
+	import {GoodsListBanner,getAllGoods,getGoodsCat} from '@/api/api.js';
 	export default {
-		name: 'Merchant',
+		name: 'GoodList',
 		data() {
 			return {
 				banners: [],
@@ -39,7 +39,7 @@
 			};
 		},
 		mounted() {
-			MerchantBanner().then(res => {
+			GoodsListBanner().then(res => {
 				this.banners = res.data;
 			});
 			getGoodsCat().then(res => {
@@ -77,10 +77,15 @@
 						this.AllGoods=res.result.data;
 				});
 			},
-			goDetail(item){
-				this.$router.push({path:'/Good',query:{productId:item.productId}});
-				console.log(This.item.productId)
-				},
+// 			goDetail(item){
+// 				this.$router.push({path:'/Good',query:{productId:item.productId}});
+// 				console.log(This.item.productId)
+// 				},
+			goGoodsDetail(AllGoods){
+			this.$router.push({path:'/Good',query:{productId:AllGoods.productId}});
+			console.log(This.AllGoods.productId)
+			},
+				
 			  onSearch() {
 			    
 			  },
@@ -91,8 +96,12 @@
 			    this.setGood(item);
 			    this.$router.push('/Good');
 			  }
+				
+			},
+		
 			}
-		}
+		
+		
 	
 	
 </script>

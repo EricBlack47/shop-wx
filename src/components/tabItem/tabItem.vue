@@ -27,7 +27,8 @@ export default {
   methods: {
     showGood(item) {
       this.setGood(item);
-      this.$router.push('/Good');
+      // this.$router.push('/Good');
+			this.$router.push({path:'/Good',query:{productId:item.productId}});
     },
     ...mapMutations({
       setGood: 'SET_GOOD_MUTATION'

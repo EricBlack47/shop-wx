@@ -19,6 +19,7 @@ export const createOrder = params => post('createOrder', params);
 export const getGoodById = params => post('getGoodById', params);
 export const getGoodsList = () =>get('goods/allGoods');
 export const getCartList = () =>authpost("member/cartList");
-export const MerchantBanner = () =>get("content/list/8");
-export const getAllGoods = params =>get('goods/allGoods',params);
-export const getGoodsCat = () =>get('goods/navList')
+export const GoodsListBanner = () =>get("content/list/8");//商品轮播
+export const getAllGoods = params =>get('goods/allGoods',params);//获取所有商品
+export const getGoodsCat = () =>get('goods/navList');//获取商品分类
+export const getGoodsDetById = params =>get('goods/productDet',params);//通过商品Id获取商品详情
