@@ -1,7 +1,8 @@
 <template>
   <transition name="slide">
+		 
     <div class="login">
-      <h1>登陆</h1>
+     <h1>医互链点</h1>
       <van-cell-group class="login-from">
         <van-field v-model="userName" clearable border label="手机" placeholder="请输入号码" :error-message="userNameErr" />
         <van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" />
@@ -11,7 +12,7 @@
               <van-button type="primary" size="small" @click="login" :loading="loading">登陆</van-button>
             </van-col>
             <van-col span="12" class="btn">
-              <van-button type="default" size="small" @click="reg">注册</van-button>
+              <van-button type="default" size="small" @click="reg">返回首页</van-button>
             </van-col>
           </van-row>
         </van-cell>
@@ -52,7 +53,7 @@ export default {
       this.passwordErr = '';
       this.loading = true;
       if (!phoneNumCheck(this.userName)) {
-        this.userNameErr = '号码格式不正确';
+        this.userNameErr = '手机号码格式不正确';
         this.loading = false;
         return;
       }
@@ -61,37 +62,27 @@ export default {
         this.loading = false;
         return;
       }
-			userLogin({userName:this.userName,userPwd:this.password})
+			userLogin({userName:this.userName,
+				userPwd:this.password,
+				"type": 1})
 			.then(res => {
-			  if (res.status === 200) {
+				console.log(res)
+			  if (	res.code === 200) {
 			    this.loading = false;
+						var userInfo = JSON.stringify(res.result); 
+					sessionStorage.setItem("userInfo",userInfo);
+						//取出  并用a1接收这个值
+				var a1 =JSON.parse( sessionStorage.getItem("userInfo"))
+				console.log(a1.id)
 			    this.$router.push('/');
 			  } else {
 			    this.loading = false;
 			    Toast.fail(res.msg);
 			  }
 			})
-			.catch(error => {
-			  Toast.fail(error);
-			  this.loading = false;
-			});
-      login({ userName: this.userName, password: MD5(this.password).toString() })
-        .then(res => {
-          if (res.status === 200) {
-            this.loading = false;
-            this.$router.push('/');
-          } else {
-            this.loading = false;
-            Toast.fail(res.msg);
-          }
-        })
-        .catch(error => {
-          Toast.fail(error);
-          this.loading = false;
-        });
     },
     reg() {
-      this.$router.push('/reg');
+      this.$router.push('/');
     }
   }
 };

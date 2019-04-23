@@ -2,95 +2,169 @@
 	<div class="home">
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index" @click="goDetail(item)">
-					<img :src="item.picUrl">
-				</van-swipe-item>
+				<van-swipe-item v-for="(item, index) in imgUrls" class="swipe-item" :key="index"><img :src="item" /></van-swipe-item>
 			</van-swipe>
 		</div>
-		<van-tabs @change="handleTabsChange">
-		  <van-tab v-for="(value,key) in goodsKind" :key="key" :title="value.name">
-		    <tabItem :data="AllGoods"></tabItem>
-		  </van-tab>
+		<van-tabs v-model="active">
+			<van-tab title="商品列表"><tabItemM :data="shop.tbItem" @click="goDetail(AllGoods.productId)"></tabItemM></van-tab>
+			<van-tab title="商家详情" >
+				<!-- 商家介绍 -->
+				<div style="background-color: #FFFFFF;">
+					<div class="bean-text">
+						<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
+						<span>商家介绍 :</span>
+						<div class="flex-item desImg"><image @click="follow" style="width: 60px;height:60px;float: right;" src="/static/guanzhu.png" mode=""></image></div>
+					</div>
+					<div class="descrption" v-html="shop.descript">
+					</div>
+					<!-- 商家信息 -->
+					<div class="bean-text">
+						<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
+						<span>商家信息</span>
+					</div>
+					<div>
+						<!-- 电话 -->
+						<div class="hospitalMessage" >
+							<image src="/static/img/phone.png" mode="" style="margin-right: 20px;"></image>
+							<span>热线 ：</span>
+							<span>{{shop.telPhone}}</span>
+						</div>
+						<!-- 地址 -->
+						<div class="hospitalMessage">
+							<image src="/static/img/address.png" mode=""></image>
+							<span>地址 ：</span>
+							<span>{{shop.address}}</span>
+						</div>
+					</div>
+				</div>
+				
+			</van-tab>
 		</van-tabs>
 	</div>
 </template>
 
-
 <script>
-	import scrollX from '@/components/scroll/scrollX';
-	import tabItem from '@/components/tabItem/tabItem';
-	import goodItem from '@/components/goodItem/goodItem';
-	import {MerchantBanner,getAllGoods,getGoodsCat} from '@/api/api.js';
-	export default {
-		name: 'Merchant',
-		data() {
+import scrollX from '@/components/scroll/scrollX';
+import tabItem from '@/components/tabItem/tabItem';
+import tabItemM from '@/components/tabItem/tabItemM';
+
+import goodItem from '@/components/goodItem/goodItem';
+import { MerchantBanner, getAllGoodsByMerchant, getMerchantCat } from '@/api/api.js';
+export default {
+	name: 'Merchant',
+	data() {
+		return {
+			banners: [],
+			searchValue: '',
+			indexPage: 1,
+			hotGoods: [],
+			saleGroupGoods: [],
+			discoverGoods: [],
+			merchantKind: [],
+			AllGoods: [],
+			active: 0,
+			shop: {
+				name: '',
+				descript: '',
+				phone: '',
+				tbItem: []
+			},
+			imgUrls: []
+		};
+	},
+	mounted() {
+		MerchantBanner().then(res => {
+			this.banners = res.data;
+		});
+	},
+	created() {
+		this.getMerchant(123);
+	},
+	components: {
+		goodItem,
+		scrollX,
+		tabItem,
+		tabItemM
+	},
+	computed: {
+		goodItems() {
 			return {
-				banners: [],
-				searchValue: '',
-				indexPage: 1,
-				hotGoods: [],
-				saleGroupGoods: [],
-				discoverGoods: [],
-				goodsKind: [],
-				AllGoods:[]
+				商品列表: this.hotGoods,
+				商家详情: this.saleGroupGoods
 			};
-		},
-		mounted() {
-			MerchantBanner().then(res => {
-				this.banners = res.data;
-			});
-			getGoodsCat().then(res => {
-				this.goodsKind = res.result;
-				this.getGoodByCid(this.goodsKind[0].id)
-			})
-		},
-		created() {
-			
-		},
-		components: {
-			goodItem,
-			scrollX,
-			tabItem
-		},
-		computed: {
-			goodItems() {
-			  return {
-			   
-			  };
-			} 
-		},
-		methods:{
-			handleTabsChange(index,title){
-				var cid=this.goodsKind[index].id;
-				this.getGoodByCid(cid)
-			},
-			getGoodByCid(cid){
-				var query={
-						page: 1,
-						size: 100,
-						cid: cid};
-				getAllGoods(query).then(res=>{
-					if(res.result!=null)
-						this.AllGoods=res.result.data;
-				});
-			},
-			goDetail(item){
-				this.$router.push({path:'/Good',query:{productId:item.productId}});
-				},
-			  onSearch() {
-			    
-			  },
-			  changeSwipe(index) {
-			    this.indexPage = index;
-			  },
-			  showGood(item) {
-			    this.setGood(item);
-			    this.$router.push('/Good');
-			  }
-			}
 		}
-	
-	
+	},
+	methods: {
+		/* 关注商家 */
+		follow() {
+			var _this = this;
+			var query = {
+				memberId:507,
+				goldId: this.shop.id
+			};
+			fllowMerchant(query).then(e => {
+				if (e.message == 'success') {
+					Dialog.alert({
+						message: '已关注'
+					}).then(() => {
+						
+					});
+				} else {
+					Dialog.alert({
+						message: e.message
+					}).then(() => {
+						
+					});
+				}
+			});
+		},
+		handleTabsChange(index, title) {
+			var cid = this.goodsKind[index].id;
+			this.getGoodByCid(cid);
+		},
+		/* 		getGoodByCid(cid) {
+			var query = {
+				page: 1,
+				size: 100,
+				cid: cid
+			};
+			getAllGoods(query).then(res => {
+				if (res.result != null) this.AllGoods = res.result.data;
+			});
+		}, */
+		getMerchant(cid) {
+			var query = {
+				page: 1,
+				size: 100,
+				id: cid
+			};
+			getAllGoodsByMerchant(query).then(data => {
+				if (data.result != null) {
+					this.shop = data.result;
+					this.shopName = this.shop.name;
+					this.shop.address = this.shop.address.replace(/\s*/g, '');
+					this.imgUrls = this.shop.image.split(',');
+
+					for (var i = 0; i < this.shop.tbItem.length; i++) {
+						this.shop.tbItem[i].image = this.shop.tbItem[i].image.split(',');
+					}
+				}
+			});
+		},
+
+		goDetail(item) {
+			this.$router.push({ path: '/Good', query: { productId: item.productId } });
+		},
+		onSearch() {},
+		changeSwipe(index) {
+			this.indexPage = index;
+		},
+		showGood(item) {
+			this.setGood(item);
+			this.$router.push('/Good');
+		}
+	}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -184,5 +258,16 @@
     height 1px
     margin 0 8px
     background-color #000
-</style>
 
+/* 医院联系方式 */
+	.hospitalMessage {
+		line-height: 60px;
+		margin-left: 20px;
+	}
+
+	.hospitalMessage image {
+		width: 60px;
+		height: 60px;
+		margin-left: 20px;
+	}
+</style>

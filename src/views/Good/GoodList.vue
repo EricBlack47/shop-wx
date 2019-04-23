@@ -23,7 +23,7 @@
 	import scrollX from '@/components/scroll/scrollX';
 	import tabItem from '@/components/tabItem/tabItem';
 	import goodItem from '@/components/goodItem/goodItem';
-	import {MerchantBanner,getAllGoods,getGoodsCat} from '@/api/api.js';
+	import {goodsBanner,getAllGoods,getGoodsCat} from '@/api/api.js';
 	export default {
 		name: 'Merchant',
 		data() {
@@ -39,7 +39,7 @@
 			};
 		},
 		mounted() {
-			MerchantBanner().then(res => {
+			goodsBanner().then(res => {
 				this.banners = res.data;
 			});
 			getGoodsCat().then(res => {

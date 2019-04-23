@@ -49,6 +49,14 @@ export default new Router({
         fullScreen: true
       }
     },
+		 {
+		  path: '/Merchant',
+		  name: 'Merchant',
+		  component: Merchant,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
     {
       path: '/Good',
       name: 'Good',
