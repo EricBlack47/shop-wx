@@ -69,7 +69,6 @@ export default {
   mounted() {
 		indexList().then(res=>{
 			this.banners=res.data;
-			console.log(res)
 		});
 		
 		
@@ -78,21 +77,21 @@ export default {
         this.hotGoods = result.data;
       })
       .catch(error => {
-        console.log(error);
+      
       });
     saleGroup()
       .then(result => {
         this.saleGroupGoods = result.data;
       })
       .catch(error => {
-        console.log(error);
+       
       });
     discover()
       .then(result => {
         this.discoverGoods = result.data;
       })
       .catch(error => {
-        console.log(error);
+        
       });
   },
   components: {
