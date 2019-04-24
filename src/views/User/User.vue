@@ -63,7 +63,6 @@
 			<van-cell title="余额" icon="gold-coin" value="内容" is-link />
 			<van-cell title="MMC" icon="gift" value="内容" is-link />
 			<van-cell title="积分" icon="gift" value="内容" is-link />
-			
 			<van-cell title="充值" icon="gift" is-link />
 			<van-cell title="提现" icon="gift" is-link />
 			<van-cell title="账单" icon="gift" is-link />

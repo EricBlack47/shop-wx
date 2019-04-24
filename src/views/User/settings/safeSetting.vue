@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div> <van-nav-bar title="用户信息"
+		<div> <van-nav-bar title="安全设置"
 		  left-text="返回"
 		  left-arrow
 		  @click-left="goBack"

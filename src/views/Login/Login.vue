@@ -71,6 +71,7 @@ export default {
 			    this.loading = false;
 						var userInfo = JSON.stringify(res.result); 
 					localStorage.setItem("userInfo",userInfo);
+					localStorage.setItem("token",res.result.token)
 						//取出  并用a1接收这个值
 				var a1 =JSON.parse( localStorage.getItem("userInfo"))
 				console.log(a1.id)
