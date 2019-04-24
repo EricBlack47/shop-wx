@@ -59,21 +59,22 @@
 				<van-col span="10">span: 8</van-col>
 				<van-col span="6">span: 8</van-col>
 			</van-row> -->
-			<van-cell title="我的资产" icon="exchange" :value="userInfo.name" is-link />
-			<van-cell title="余额" icon="gold-coin" value="内容" is-link />
-			<van-cell title="MMC" icon="gift" value="内容" is-link />
-			<van-cell title="积分" icon="gift" value="内容" is-link />
+			<van-cell title="我的资产" icon="exchange" :value="userInfo.name" is-link to="/myMoney"  />
+			<van-cell title="余额" icon="gold-coin" value="内容" is-link to="/lastMoney"  />
+			<van-cell title="MMC" icon="gift" value="内容" is-link to="/mmc"  />
+			<van-cell title="积分" icon="gift" value="内容" is-link to="/totalAssets"  />
 			
-			<van-cell title="充值" icon="gift" is-link />
-			<van-cell title="提现" icon="gift" is-link />
-			<van-cell title="账单" icon="gift" is-link />
+			<van-cell title="充值" icon="gift" is-link to="/recharge"  />
+			<van-cell title="提现" icon="gift" is-link to="/withdrawal"/>
+			<van-cell title="账单" icon="gift" is-link to="/bill" />
 		</van-cell-group>
 		<van-cell-group>
-			<van-cell title="我的销售" icon="gift" is-link to="/OrderList" />
-			<van-cell title="我的关注" icon="gift" is-link to="/OrderList" />
-			<van-cell title="关注我的" icon="gift" is-link to="/OrderList" />
-			<van-cell title="我的提问" icon="gift" is-link to="/OrderList" />
-			<van-cell title="投诉建议" icon="gift" is-link to="/OrderList" />
+			<van-cell title="我的销售" icon="gift" is-link to="/mySale" />
+			<van-cell title="我的关注" icon="gift" is-link to="/myFollow" />
+			<van-cell title="关注我的" icon="gift" is-link to="/fllowMe" />
+			<van-cell title="我的提问" icon="gift" is-link to="/myAnswered" />
+			<van-cell title="提问我的" icon="gift" is-link to="/docAnswered" />
+			<van-cell title="投诉建议" icon="gift" is-link to="/suggestion" />
 		</van-cell-group>
 	</div>
 </template>

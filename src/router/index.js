@@ -15,6 +15,22 @@ const EditAddress = () => import(/* webpackChunkName: "EditAddress" */ '@/views/
 const OrderList = () => import(/* webpackChunkName: "OrderList" */ '@/views/OrderList/OrderList');
 const settings = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/settings/settings');
 
+const bill = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/bill');
+const docAnswered = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/docAnswered');
+const fllowMe = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/fllowMe');
+const lastMoney = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/lastMoney');
+const mmc = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/mmc');
+const myAnswered = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/myAnswered');
+const myFollow = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/myFollow');
+const myMoney = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/myMoney');
+const mySale = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/mySale');
+const orderList = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/orderList');
+const recharge = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/recharge');
+const suggestion = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/suggestion');
+const totalAssets = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/totalAssets');
+const withdrawal = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/withdrawal');
+
+
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -105,13 +121,137 @@ export default new Router({
 		{
 			path: '/Merchant',
 			name: 'Merchant',
-			component: Merchant
+			component: Merchant,
+			 meta: {
+			  fullScreen: true
+			}
 		}, 
 			{
 			path: '/settings',
 			name: 'settings',
-			component: settings
+			component: settings,
+			 meta: {
+			  fullScreen: true
+			}
 		}, 
+		{
+			path: '/bill',
+			name: 'bill',
+			component: bill,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/docAnswered',
+			name: 'docAnswered',
+			component: docAnswered,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/fllowMe',
+			name: 'fllowMe',
+			component: fllowMe,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/lastMoney',
+			name: 'lastMoney',
+			component: lastMoney,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/mmc',
+			name: 'mmc',
+			component: mmc,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/myAnswered',
+			name: 'myAnswered',
+			component: myAnswered,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/myFollow',
+			name: 'myFollow',
+			component: myFollow,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/myMoney',
+			name: 'myMoney',
+			component: myMoney,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/mySale',
+			name: 'mySale',
+			component: mySale,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/orderList',
+			name: 'orderList',
+			component: orderList,
+			component: orderList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/recharge',
+			name: 'recharge',
+			component: recharge,
+			component: orderList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/suggestion',
+			name: 'suggestion',
+			component: suggestion,
+			component: orderList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/totalAssets',
+			name: 'totalAssets',
+			component: totalAssets,
+			component: orderList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/withdrawal',
+			name: 'withdrawal',
+			component: withdrawal,
+			component: orderList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		
 		
     {
       path: '*',

@@ -1,54 +1,92 @@
 <template>
-  <div class="home">
-    <van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch">
-      <div slot="action" @click="onSearch">搜索</div>
-    </van-search>
-    <div class="home-swipe">
-      <van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-        <van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index" @click="goDetail(item)">
-					<img :src="item.picUrl">
-					</van-swipe-item>
-      </van-swipe>
-    </div>
-    <good-item title="名医工作室" describe="名医问诊" moreRoute="/more/1">
-      <scrollX scrollDir='scrollX' class="scroll-hot" :data="hotGoods">
-      </scrollX>
-    </good-item>
-		<good-item title="会员医院" describe="预约挂号" moreRoute="/more/1">
-		  <scrollX scrollDir='scrollX' class="scroll-hot" :data="hotGoods">
-		  </scrollX>
+	<div class="home">
+		<van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search>
+		<div class="home-swipe">
+			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
+				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)"><img :src="item.picUrl" /></van-swipe-item>
+			</van-swipe>
+		</div>
+		<div style="background-color: #FFFFFF;">
+			<van-row type="flex" justify="space-around">
+				<van-col span="4">
+					<div class="nav-body-son-img">
+						<div class=" icon-img" style="background-image: url(../../images/navImg/h10.gif);">
+							<span class="icon iconfontt">&#xe655;</span>
+						</div>
+					</div>
+					<div class="nav-body-son-text">
+						<text>医院</text>
+					</div>
+				</van-col>
+				<van-col span="4">
+					<div style="height: 46px;width: 50px;">
+						<image src="../../images/navImg/h10.gif"/>
+					</div>
+					<span>医院</span>
+				</van-col>
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+			</van-row>
+			<van-row type="flex" justify="space-around">
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+				<van-col span="4">span: 6</van-col>
+			</van-row>
+		</div>
+		
+
+		<good-item title="名医工作室" describe="名医问诊" moreRoute="/more/1"><scrollX scrollDir="scrollX" class="scroll-hot" :data="hotGoods"></scrollX></good-item>
+		<good-item title="会员医院" describe="预约挂号" moreRoute="/more/1"><scrollX scrollDir="scrollX" class="scroll-hot" :data="hotGoods"></scrollX></good-item>
+		<good-item title="低价火拼" describe="一起拼最划算" moreRoute="/more/1">
+			<ul class="sale-ul">
+				<li class="sale-item" v-for="item in saleGroupGoods.slice(0, 3)" :key="item.Goodid" @click="showGood(item)">
+					<img :src="item.GoodImg" alt="" />
+					<div class="sale-title">
+						拼团价
+						<span class="sale-price">￥{{ item.GoodPriceaftersale }}</span>
+					</div>
+				</li>
+			</ul>
 		</good-item>
-    <good-item title="低价火拼" describe="一起拼最划算" moreRoute="/more/1">
-      <ul class="sale-ul">
-        <li class="sale-item" v-for="item in saleGroupGoods.slice(0,3)" :key="item.Goodid" @click="showGood(item)">
-          <img :src="item.GoodImg" alt="">
-          <div class="sale-title">拼团价
-            <span class="sale-price">￥{{item.GoodPriceaftersale}}</span>
-          </div>
-        </li>
-      </ul>
-    </good-item>
-    <good-item title="发现" describe="发现更多优质好货">
-      <ul class="discover-ul">
-        <background-img v-for="(item,index) in discoverGoods.slice(0,2)" :key="item.Goodid" :imgSrc="item.GoodImg" class="discover-li" :class="index===0?'discover-img':''" :topic="item.Goodname" :desc="item.Gooddescribe" @click.native="showGood(item)"></background-img>
-      </ul>
-      <ul class="discover-ul">
-        <background-img v-for="item in discoverGoods.slice(0,3)" :key="item.Goodid" :imgSrc="item.GoodImg" class="discover-li" :topic="item.Goodname" :desc="item.Gooddescribe" @click.native="showGood(item)"></background-img>
-      </ul>
-    </good-item>
-    <div class="recommend">
-      <div class="recommend-title">
-        <div class="border"></div>
-        <div class="title">朋友圈的好货推荐</div>
-        <div class="border"></div>
-      </div>
-      <van-tabs>
-        <van-tab v-for="(value,key) in goodItems" :key="key" :title="key">
-          <tabItem :data="value"></tabItem>
-        </van-tab>
-      </van-tabs>
-    </div>
-  </div>
+		<good-item title="发现" describe="发现更多优质好货">
+			<ul class="discover-ul">
+				<background-img
+					v-for="(item, index) in discoverGoods.slice(0, 2)"
+					:key="item.Goodid"
+					:imgSrc="item.GoodImg"
+					class="discover-li"
+					:class="index === 0 ? 'discover-img' : ''"
+					:topic="item.Goodname"
+					:desc="item.Gooddescribe"
+					@click.native="showGood(item)"
+				></background-img>
+			</ul>
+			<ul class="discover-ul">
+				<background-img
+					v-for="item in discoverGoods.slice(0, 3)"
+					:key="item.Goodid"
+					:imgSrc="item.GoodImg"
+					class="discover-li"
+					:topic="item.Goodname"
+					:desc="item.Gooddescribe"
+					@click.native="showGood(item)"
+				></background-img>
+			</ul>
+		</good-item>
+		<div class="recommend">
+			<div class="recommend-title">
+				<div class="border"></div>
+				<div class="title">朋友圈的好货推荐</div>
+				<div class="border"></div>
+			</div>
+			<van-tabs>
+				<van-tab v-for="(value, key) in goodItems" :key="key" :title="key"><tabItem :data="value"></tabItem></van-tab>
+			</van-tabs>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -56,84 +94,77 @@ import goodItem from '@/components/goodItem/goodItem';
 import scrollX from '@/components/scroll/scrollX';
 import backgroundImg from '@/components/backgroundImg/backgroundImg';
 import tabItem from '@/components/tabItem/tabItem';
-import { hotSale, saleGroup, discover,indexList } from '@/api/api'; 
+import { hotSale, saleGroup, discover, indexList } from '@/api/api';
 import { mapMutations } from 'vuex';
 export default {
-  name: 'Home',
-  data() {
-    return {
-			banners:[],
-      searchValue: '',
-      indexPage: 1,
-      hotGoods: [],
-      saleGroupGoods: [],
-      discoverGoods: []
-    };
-  },
-  mounted() {
-		indexList().then(res=>{
-			this.banners=res.data;
+	name: 'Home',
+	data() {
+		return {
+			banners: [],
+			searchValue: '',
+			indexPage: 1,
+			hotGoods: [],
+			saleGroupGoods: [],
+			discoverGoods: []
+		};
+	},
+	mounted() {
+		indexList().then(res => {
+			this.banners = res.data;
 		});
-		
-		
-    hotSale()
-      .then(result => {
-        this.hotGoods = result.data;
-      })
-      .catch(error => {
-      
-      });
-    saleGroup()
-      .then(result => {
-        this.saleGroupGoods = result.data;
-      })
-      .catch(error => {
-       
-      });
-    discover()
-      .then(result => {
-        this.discoverGoods = result.data;
-      })
-      .catch(error => {
-        
-      });
-  },
-  components: {
-    goodItem,
-    scrollX,
-    backgroundImg,
-    tabItem
-  },
-  computed: {
-    goodItems() {
-      return {
-        推荐: this.hotGoods,
-        拼团: this.saleGroupGoods,
-        低价: this.discoverGoods,
-        发现: this.hotGoods,
-        火爆: this.saleGroupGoods
-      };
-    }
-  },
-  methods: {
-		goDetail(item){
-			console.log(item)
-			this.$router.push({path:'/Good',query:{productId:item.productId}});
+
+		hotSale()
+			.then(result => {
+				this.hotGoods = result.data;
+			})
+			.catch(error => {});
+		saleGroup()
+			.then(result => {
+				this.saleGroupGoods = result.data;
+			})
+			.catch(error => {});
+		discover()
+			.then(result => {
+				this.discoverGoods = result.data;
+			})
+			.catch(error => {});
+	},
+	components: {
+		goodItem,
+		scrollX,
+		backgroundImg,
+		tabItem
+	},
+	computed: {
+		goodItems() {
+			return {
+				推荐: this.hotGoods,
+				拼团: this.saleGroupGoods,
+				低价: this.discoverGoods,
+				发现: this.hotGoods,
+				火爆: this.saleGroupGoods
+			};
+		}
+	},
+	methods: {
+		goDetail(item) {
+			console.log(item);
+			this.$router.push({ path: '/Good', query: { productId: item.productId } });
 		},
-    onSearch() {
-      console.log('onSearch');
-    },
-    changeSwipe(index) {
-      this.indexPage = index;
-    },
-    showGood(item) {
-      this.setGood(item);
-      this.$router.push('/Good');
-    },
-    ...mapMutations({
-      setGood: 'SET_GOOD_MUTATION'
-    })
-  }
+		onSearch() {
+			console.log('onSearch');
+		},
+		changeSwipe(index) {
+			this.indexPage = index;
+		},
+		showGood(item) {
+			this.setGood(item);
+			this.$router.push('/Good');
+		},
+		...mapMutations({
+			setGood: 'SET_GOOD_MUTATION'
+		})
+	}
 };
 </script>
 
