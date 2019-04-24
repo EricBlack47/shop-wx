@@ -13,9 +13,9 @@ const Order = () => import(/* webpackChunkName: "Order" */ '@/views/Order/Order'
 const AddressList = () => import(/* webpackChunkName: "AddressList" */ '@/views/AddressList/AddressList');
 const EditAddress = () => import(/* webpackChunkName: "EditAddress" */ '@/views/EditAddress/EditAddress');
 const OrderList = () => import(/* webpackChunkName: "OrderList" */ '@/views/OrderList/OrderList');
+const settings = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/settings/settings');
 
 Vue.use(Router);
-
 export default new Router({
   routes: [
     {
@@ -107,6 +107,12 @@ export default new Router({
 			name: 'Merchant',
 			component: Merchant
 		}, 
+			{
+			path: '/settings',
+			name: 'settings',
+			component: settings
+		}, 
+		
     {
       path: '*',
       name: 'Notfound',

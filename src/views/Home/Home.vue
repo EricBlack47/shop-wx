@@ -10,10 +10,14 @@
 					</van-swipe-item>
       </van-swipe>
     </div>
-    <good-item title="热销榜" describe="每日热销指南" moreRoute="/more/1">
+    <good-item title="名医工作室" describe="名医问诊" moreRoute="/more/1">
       <scrollX scrollDir='scrollX' class="scroll-hot" :data="hotGoods">
       </scrollX>
     </good-item>
+		<good-item title="会员医院" describe="预约挂号" moreRoute="/more/1">
+		  <scrollX scrollDir='scrollX' class="scroll-hot" :data="hotGoods">
+		  </scrollX>
+		</good-item>
     <good-item title="低价火拼" describe="一起拼最划算" moreRoute="/more/1">
       <ul class="sale-ul">
         <li class="sale-item" v-for="item in saleGroupGoods.slice(0,3)" :key="item.Goodid" @click="showGood(item)">

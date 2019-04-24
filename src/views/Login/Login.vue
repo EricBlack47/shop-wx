@@ -70,9 +70,9 @@ export default {
 			  if (	res.code === 200) {
 			    this.loading = false;
 						var userInfo = JSON.stringify(res.result); 
-					sessionStorage.setItem("userInfo",userInfo);
+					localStorage.setItem("userInfo",userInfo);
 						//取出  并用a1接收这个值
-				var a1 =JSON.parse( sessionStorage.getItem("userInfo"))
+				var a1 =JSON.parse( localStorage.getItem("userInfo"))
 				console.log(a1.id)
 			    this.$router.push('/');
 			  } else {
