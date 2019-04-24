@@ -9,7 +9,7 @@
 		<van-cell title="个人信息" icon="manager-o" value="" is-link to="/userInfo"/>
 		<van-cell title="实名认证" icon="manager-o" value="" is-link to="/realName"/>
 		<van-cell title="安全设置" icon="setting-o" value="" is-link to="/safeSetting"/>
-		<van-cell title="收获地址" icon="location-o" value="" is-link to="/addressList"/>
+		<van-cell title="收获地址" icon="location-o" value="" is-link to="/AddressList"/>
 		<van-cell title="会员管理" icon="manager-o" value="" is-link to="/memberManage"/>
 		<van-cell title="关于我们" icon="friends-o" value="" is-link to="/aboutUs"/>
 		<van-cell title="用户须知" icon="description" value="" is-link to="/userRead"/>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { Dialog } from 'vant';
 export default {
   data() {
     return {
@@ -39,14 +40,12 @@ export default {
 	methods: {
 		quit(){
 			localStorage.removeItem("userInfo"); 
-			
-			this.$router.go(-1);
 			Dialog.alert({
-  title: '标题',
-  message: '弹窗内容'
-}).then(() => {
-  // on close
-});
+			  title: '退出',
+			  message: '已退出登陆'
+			}).then(() => {
+			   this.$router.go(-1);
+			});
 			},
 		goBack() {
 			this.$router.go(-1);

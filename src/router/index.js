@@ -16,7 +16,6 @@ const OrderList = () => import(/* webpackChunkName: "OrderList" */ '@/views/Orde
 const settings = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/settings/settings');
 
 const aboutUs = () => import('@/views/User/settings/aboutUs');
-const addressList = () => import('@/views/User/settings/addressList');
 const memberManage = () => import('@/views/User/settings/memberManage');
 const realName = () => import('@/views/User/settings/realName');
 const safeSetting = () => import('@/views/User/settings/safeSetting');
@@ -131,15 +130,6 @@ export default new Router({
 			path: '/aboutUs',
 			name: 'aboutUs',
 			component: aboutUs,
-			 meta: {
-			  fullScreen: true
-			}
-		}, 
-		
-		{
-			path: '/addressList',
-			name: 'addressList',
-			component: addressList,
 			 meta: {
 			  fullScreen: true
 			}

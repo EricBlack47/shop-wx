@@ -23,12 +23,13 @@ import { getAddressList } from '@/api/api.js';
 export default {
   data() {
     return {
+			address:[],
       chosenAddressId: ''
     };
   },
   mounted() {
-    this.getDefaultId();
-    console.log(this.chosenAddressId);
+    // this.getDefaultId();
+    // console.log(this.chosenAddressId);
 		this.getAddressList()
   },
 
@@ -51,6 +52,7 @@ export default {
 		getAddressList(){
 			 getAddressList().then(data =>{
 				  console.log(data)
+					this.address = data.result;
 			 })
 				 
 			 },
@@ -82,10 +84,10 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    ...mapMutations({
-      setAddressId: 'SET_ADDRESSID_MUTATION',
-      setEditAddress: 'SET_EDITADDRESS_MUTATION'
-    })
+    // ...mapMutations({
+    //   setAddressId: 'SET_ADDRESSID_MUTATION',
+    //   setEditAddress: 'SET_EDITADDRESS_MUTATION'
+    // })
   }
 };
 </script>
