@@ -1,6 +1,9 @@
 <template>
 	<div class="home">
 		<div class="home-swipe">
+			<div class="back-btn" @click="goBack">
+				<van-icon name="arrow-left" />
+			</div>
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item, index) in imgUrls" class="swipe-item" :key="index"><img :src="item" /></van-swipe-item>
 			</van-swipe>
@@ -47,7 +50,6 @@
 import scrollX from '@/components/scroll/scrollX';
 import tabItem from '@/components/tabItem/tabItem';
 import tabItemM from '@/components/tabItem/tabItemM';
-
 import goodItem from '@/components/goodItem/goodItem';
 import { MerchantBanner, getAllGoodsByMerchant, getMerchantCat } from '@/api/api.js';
 export default {
@@ -73,12 +75,14 @@ export default {
 		};
 	},
 	mounted() {
+		var memberGoldId = this.$route.query.memberGoldId
+		this.getMerchant(memberGoldId);
 		MerchantBanner().then(res => {
 			this.banners = res.data;
 		});
 	},
 	created() {
-		this.getMerchant(123);
+		
 	},
 	components: {
 		goodItem,
@@ -162,7 +166,10 @@ export default {
 		showGood(item) {
 			this.setGood(item);
 			this.$router.push('/Good');
-		}
+		},
+			goBack() {
+			this.$router.go(-1);
+		},
 	}
 };
 </script>
@@ -270,4 +277,23 @@ export default {
 		height: 60px;
 		margin-left: 20px;
 	}
+	
+	 .back-btn
+	  position fixed
+	  z-index 999
+	  top 10px
+	  left 10px
+	  width 30px
+	  height 30px
+	  border-radius 50%
+	  color #fff
+	  line-height 32px
+	  text-align center
+	  background-color rgba(102, 102, 102, 0.4)
+	
+	  i
+	    font-weight 700
+	    margin-left -2px
+	    margin-top 4px
+	
 </style>

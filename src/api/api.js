@@ -1,3 +1,4 @@
+
 import { get, post, authPost} from '@/util/http';
 
 export const indexList=()=>get("content/list/0");
@@ -27,6 +28,6 @@ export const GoodsListBanner = () =>get("content/list/8");//商品轮播
 export const getAllGoods = params =>get('goods/allGoods',params);//获取所有商品
 export const getGoodsCat = () =>get('goods/navList');//获取商品分类
 export const getGoodsDetById = params =>get('goods/productDet',params);//通过商品Id获取商品详情
-
+export const addCart = params =>authPost('member/addCart',params);//添加购物车
+export const getAddressList = params => authPost('member/addressList',params);//添加收货地址
 export const getMerberInfo = () =>authpost('member/info');//获取会员信息
-

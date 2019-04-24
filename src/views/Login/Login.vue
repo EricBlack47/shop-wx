@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    login() {
+     login() {
       this.userNameErr = '';
       this.passwordErr = '';
       this.loading = true;

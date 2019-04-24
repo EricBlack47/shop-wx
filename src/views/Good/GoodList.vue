@@ -83,7 +83,6 @@
 // 				},
 			goGoodsDetail(AllGoods){
 			this.$router.push({path:'/Good',query:{productId:AllGoods.productId}});
-			console.log(This.AllGoods.productId)
 			},
 				
 			  onSearch() {

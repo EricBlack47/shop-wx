@@ -19,6 +19,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import { getAddressList } from '@/api/api.js';
 export default {
   data() {
     return {
@@ -28,7 +29,9 @@ export default {
   mounted() {
     this.getDefaultId();
     console.log(this.chosenAddressId);
+		this.getAddressList()
   },
+
   computed: {
     list() {
       var arr = [];
@@ -45,6 +48,12 @@ export default {
     ...mapGetters(['addressList'])
   },
   methods: {
+		getAddressList(){
+			 getAddressList().then(data =>{
+				  console.log(data)
+			 })
+				 
+			 },
     onAdd() {},
     onEdit(item) {
       let id = item.id;
