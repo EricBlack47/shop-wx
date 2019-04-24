@@ -29,8 +29,14 @@ const recharge = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/
 const suggestion = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/suggestion');
 const totalAssets = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/totalAssets');
 const withdrawal = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/withdrawal');
-
-
+const aboutUs = () => import('@/views/User/settings/aboutUs');
+const addressList = () => import('@/views/User/settings/addressList');
+const memberManage = () => import('@/views/User/settings/memberManage');
+const realName = () => import('@/views/User/settings/realName');
+const safeSetting = () => import('@/views/User/settings/safeSetting');
+const userInfo = () => import('@/views/User/settings/userInfo');
+const userRead = () => import('@/views/User/settings/userRead');
+const yihuliandian = () => import('@/views/User/settings/yihuliandian');
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -89,6 +95,8 @@ export default new Router({
         fullScreen: true
       }
     },
+		
+		
     {
       path: '/AddressList',
       name: 'AddressList',
@@ -252,6 +260,77 @@ export default new Router({
 			}
 		}, 
 		
+		{
+			path: '/aboutUs',
+			name: 'aboutUs',
+			component: aboutUs,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		
+		{
+			path: '/addressList',
+			name: 'addressList',
+			component: addressList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+			
+		{
+			path: '/memberManage',
+			name: 'memberManage',
+			component: memberManage,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		
+		{
+			path: '/realName',
+			name: 'realName',
+			component: realName,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		
+		{
+			path: '/safeSetting',
+			name: 'safeSetting',
+			component: safeSetting,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		
+		{
+			path: '/userInfo',
+			name: 'userInfo',
+			component: userInfo,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		
+		{
+			path: '/userRead',
+			name: 'userRead',
+			component: userRead,
+			meta: {
+			  fullScreen: true
+			}
+		},
+		 
+		{
+			path: '/yihuliandian',
+			name: 'yihuliandian',
+			component: yihuliandian,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
 		
     {
       path: '*',
