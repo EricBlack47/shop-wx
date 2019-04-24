@@ -49,7 +49,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+		this.userInfo = JSON.parse(LocalStorage.getItem('userInfo'));
 		if (!this.userInfo) {
 			Dialog.alert({
 				message: '未登录或登陆过期，请重新登陆'

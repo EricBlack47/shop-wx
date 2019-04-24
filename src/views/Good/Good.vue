@@ -1,25 +1,25 @@
 <template>
-  <transition name="slide">
-    <div class="good">
-      <div class="back-btn" @click="goBack">
-        <van-icon name="arrow-left"/>
-      </div>
-      <div class="home-swipe">
-      	<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-      		<van-swipe-item v-for="(item,index) in goods.productImageSmall" class="swipe-item" :key="index">
-      			<img :src="item">
-      		</van-swipe-item>
-      	</van-swipe>
-      </div>
-      <van-cell-group class="good-detail">
-        <van-cell>
-          <div class="good-title">
-            <span>{{goods.productName}}</span>
-            <span class="good-price">￥{{goods.salePrice}}</span>
-          </div>
-          <div class="good-desc">{{goods.subTitle}}</div>
-        </van-cell>
-       <!-- <van-cell class="goods-yunfei">
+	<transition name="slide">
+		<div class="good">
+			<div class="back-btn" @click="goBack">
+				<van-icon name="arrow-left" />
+			</div>
+			<div class="home-swipe">
+				<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
+					<van-swipe-item v-for="(item,index) in goods.productImageSmall" class="swipe-item" :key="index">
+						<img :src="item">
+					</van-swipe-item>
+				</van-swipe>
+			</div>
+			<van-cell-group class="good-detail">
+				<van-cell>
+					<div class="good-title">
+						<span>{{goods.productName}}</span>
+						<span class="good-price">￥{{goods.salePrice}}</span>
+					</div>
+					<div class="good-desc">{{goods.subTitle}}</div>
+				</van-cell>
+				<!-- <van-cell class="goods-yunfei">
           <van-row>
             <van-col span="12"
               class="goods-yun">运费：{{good.Gooddealprice===0?'免运费':good.Gooddealprice+'元'}}</van-col>
@@ -27,31 +27,26 @@
               class="goods-yun">剩余：{{good.Goodcount}}</van-col>
           </van-row>
         </van-cell> -->
-      </van-cell-group>
-      <van-cell-group class="goods-cell-group dianpu">
-        <van-cell value="商家店铺"
-          icon="shop"
-          is-link>
-          <template slot="title">
-            <span class="van-cell-text">进入店铺</span>
-          </template>
-        </van-cell>
-        <van-cell title="线下门店" icon="location" is-link />
-      </van-cell-group>
-     <div class="detail" ref="detail" v-html="descript.replace(/alt/g,'width=100%')">
-      </div>
-      <van-goods-action>
-        <van-goods-action-mini-btn icon="chat"
-          text="客服" />
-        <van-goods-action-mini-btn icon="cart"
-          text="购物车"
-          to="/Cart" />
-        <van-goods-action-mini-btn icon="shop"
-          text="店铺" />
-        <van-goods-action-big-btn text="加入购物车" @click="addCart()"/>
-        <van-goods-action-big-btn text="立即购买" primary @click="addOrder()"/>
-      </van-goods-action>
-     <!-- <van-sku v-model="showBase"
+			</van-cell-group>
+			<van-cell-group class="goods-cell-group dianpu">
+				<van-cell value="商家店铺" icon="shop" is-link @click="goMerchant">
+					<template slot="title">
+						<span class="van-cell-text">进入店铺</span>
+					</template>
+				</van-cell>
+				<van-cell title="线下门店" icon="location" is-link />
+			</van-cell-group>
+			<div class="detail" ref="detail" v-html="descript.replace(/alt/g,'width=100%')">
+			</div>
+			<van-goods-action>
+				<van-goods-action-mini-btn icon="chat" text="客服" />
+				<van-goods-action-mini-btn icon="cart" text="购物车" to="/Cart" />
+				<van-goods-action-mini-btn icon="shop" text="店铺" @click="goMerchant"/>
+				<van-goods-action-big-btn text="加入购物车" @click="addCart" />
+
+				<van-goods-action-big-btn text="立即购买" primary @click="goBuy" />
+			</van-goods-action>
+			<!-- <van-sku v-model="showBase"
         :sku="sku"
         :goods="goods"
         :goods-id="goodsId"
@@ -60,81 +55,113 @@
         @stepper-change="getCount" />
     </div> -->
 		</div>
-  </transition>
+	</transition>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import { addToCart,getGoodsDetById } from '@/api/api.js';
-export default {
-  data() {
-    return {
-      loading: true,
-      cartCount: '',
-      showBase: false,
-      sku:[],
-      goods: {},
-      goodsId: 1,
-      count: 1,
-			descript:''
-    };
-  },
-  mounted() {
-		var productId = this.$route.query.productId
-		this.getGoodsDetByid(productId);
-},
-  methods: {
-		getGoodsDetByid(productId){
-			var query={
-				productId: productId
-			} 
-				getGoodsDetById(query).then(res =>{
-				this.goods = res.result
-				this.descript = res.result.detail
-				this.descript.replace(/alt/g,"width='100%'")
-			})
-		},
+	import {
+		mapGetters,
+		mapMutations,
 		
-    onBuyClicked() {
-      var obj = Object.assign({ Cartcount: this.count }, this.goods);
-      this.setOrderGood([obj]);
-      this.$router.push('/Order');
-    },
-//     onAddCartClicked() {
-//       var params = {
-//         id: this.goods.productId,
-//         num: this.count
-//       };
-//       addToCart(params)
-//         .then(result => {
-//           console.log(result);
-//           this.showBase = false;
-//           this.$toast.success('添加成功');
-//         })
-//         .catch(error => {
-//           console.log(error);
-//         });
-//     },
-		 changeSwipe(index) {
-		  this.indexPage = index;
+	} from 'vuex';
+	import {
+		addToCart,
+		getGoodsDetById,
+		addCart
+	} from '@/api/api.js';
+	export default {
+		data() {
+			return {
+				loading: true,
+				cartCount: '',
+				showBase: false,
+				sku: [],
+				goods: {},
+				goodsId: 1,
+				count: 1,
+				descript: ''
+			};
 		},
-    getCount(value) {
-      this.count = value;
-    },
-//     showSkuModal() {
-//       this.showBase = true;
-//     },
-//     scrollToDetail() {
-//       this.$refs.detail.scrollIntoView();
-//     },
-    goBack() {
-      this.$router.go(-1);
-    },
-   
-  }
-};
+		mounted() {
+			var productId = this.$route.query.productId
+			this.getGoodsDetByid(productId);
+		},
+		methods: {
+			goMerchant(goods){
+				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
+			},
+			
+			addCart() {
+				authPost("member/addCart", {
+					productId: this.goods.productId,
+					productNum: 1,
+					memberGoldId: this.goods.memberGoldId
+				}, function(res) {
+					this.$router.push({
+						path: '/Cart',
+						query: {
+							productId: goods.productId
+						}
+					});
+					console.log(this.productId)
+					Toast({
+						message: '添加成功'
+					});
+				})
+			},
+			getGoodsDetByid(productId) {
+				var query = {
+					productId: productId
+				}
+				getGoodsDetById(query).then(res => {
+					this.goods = res.result
+					this.descript = res.result.detail
+					this.descript.replace(/alt/g, "width='100%'")
+				})
+			},
+
+			onBuyClicked() {
+				var obj = Object.assign({
+					Cartcount: this.count
+				}, this.goods);
+				this.setOrderGood([obj]);
+				this.$router.push('/Order');
+			},
+			//     onAddCartClicked() {
+			//       var params = {
+			//         id: this.goods.productId,
+			//         num: this.count
+			//       };
+			//       addToCart(params)
+			//         .then(result => {
+			//           console.log(result);
+			//           this.showBase = false;
+			//           this.$toast.success('添加成功');
+			//         })
+			//         .catch(error => {
+			//           console.log(error);
+			//         });
+			//     },
+			changeSwipe(index) {
+				this.indexPage = index;
+			},
+			getCount(value) {
+				this.count = value;
+			},
+			//     showSkuModal() {
+			//       this.showBase = true;
+			//     },
+			//     scrollToDetail() {
+			//       this.$refs.detail.scrollIntoView();
+			//     },
+			goBack() {
+				this.$router.go(-1);
+			},
+
+		}
+	};
 </script>
-<style lang="stylus" scoped>
+	<style lang="stylus" scoped>
 .good
   padding-bottom 50px
 
@@ -196,3 +223,4 @@ export default {
   opacity 0
   transform translate3d(100%, 0, 0)
 </style>
+

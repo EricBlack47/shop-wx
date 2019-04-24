@@ -2,7 +2,7 @@
 	<div>
 		<van-tabbar v-model="active" class="tab" style="z-index:999">
 			<van-tabbar-item icon="good" to="/GoodList">商品</van-tabbar-item>
-			<van-tabbar-item icon="good" to="/Merchant">商家</van-tabbar-item>
+			<!-- <van-tabbar-item icon="good" to="/Merchant">商家</van-tabbar-item> -->
 
 			<van-tabbar-item icon="home" to="/">首页</van-tabbar-item>
 			<van-tabbar-item icon="cart" to="/Cart">购物车</van-tabbar-item>
@@ -37,9 +37,9 @@ export default {
 				case '/GoodList':
 					this.active = 0;
 					break;
-				case '/Merchant':
-					this.active = 4;
-					break;
+				// case '/Merchant':
+				// 	this.active = 4;
+				// 	break;
 				default:
 					this.active = 1;
 			}
