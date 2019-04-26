@@ -9,7 +9,7 @@
         fixed />
       <van-address-list v-model="chosenAddressId"
         class="address-list"
-        :list="list"
+        :list="address"
         @add="onAdd"
         @edit="onEdit"
         @select="onSelect" />
@@ -18,50 +18,57 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+
 import { getAddressList } from '@/api/api.js';
 export default {
   data() {
     return {
-			address:[],
-      chosenAddressId: ''
+			address:[{
+				id:'',
+				name:'',
+				tel:'',
+				address:'',
+			}],
+      chosenAddressId: '',
+			AddressId:''
     };
   },
   mounted() {
-    // this.getDefaultId();
-    // console.log(this.chosenAddressId);
 		this.getAddressList()
   },
 
   computed: {
     list() {
       var arr = [];
-      this.addressList.forEach(item => {
+      this.getAddressList().forEach(item => {
+				console.log(item)
         var obj = {};
-        obj.id = item.Addressid;
-        obj.name = item.Name;
-        obj.tel = item.Phonenum;
-        obj.address = item.Address + item.AddressDetail;
+        obj.id = item.addressId;
+        obj.name = item.userName;
+        obj.tel = item.tel;
+        obj.address = item.streetName;
+				console.log(obj)
         arr.push(obj);
       });
       return arr;
     },
-    ...mapGetters(['addressList'])
   },
   methods: {
 		getAddressList(){
 			 getAddressList().then(data =>{
-				  console.log(data)
 					this.address = data.result;
 			 })
 				 
 			 },
-    onAdd() {},
+    onAdd() {
+			
+		},
     onEdit(item) {
-      let id = item.id;
-      for (let i = 0; i < this.addressList.length; i++) {
-        if (this.addressList[i].Addressid == id) {
-          var address = this.addressList[i];
+			console.log(item)
+      let id = item.addressId;
+      for (let i = 0; i < this.address.length; i++) {
+        if (this.address[i].addressId == id) {
+          var address = this.address[i];
           this.setEditAddress(address);
           this.$router.push('/EditAddress');
           break;
@@ -69,13 +76,17 @@ export default {
       }
     },
     onSelect() {
-      this.setAddressId(this.chosenAddressId);
+      this.setAddressId(this.chosenAddressId)
     },
+		setAddressId(id){
+			this.AddressId = id
+			console.log(".."+this.addressId)
+		},
     getDefaultId() {
       let id = '';
       for (let i = 0; i < this.addressList.length; i++) {
         if (this.addressList[i].Isdefault === 1) {
-          id = this.addressList[i].Addressid;
+          id = this.addressList[i].addressId;
           break;
         }
       }
@@ -84,10 +95,6 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    // ...mapMutations({
-    //   setAddressId: 'SET_ADDRESSID_MUTATION',
-    //   setEditAddress: 'SET_EDITADDRESS_MUTATION'
-    // })
   }
 };
 </script>

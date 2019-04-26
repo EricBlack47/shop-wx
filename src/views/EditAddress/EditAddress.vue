@@ -20,9 +20,6 @@ export default {
   mounted() {
     console.log(this.editAddress);
   },
-  computed: {
-    ...mapGetters(['editAddress'])
-  },
   methods: {
     goBack() {
       this.$router.go(-1);

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { Dialog } from 'vant';
 import MD5 from 'crypto-js/md5';
 import { phoneNumCheck, pwdCheck } from '@/util/util';
 import { login } from '@/api/api';

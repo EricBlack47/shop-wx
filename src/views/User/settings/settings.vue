@@ -39,12 +39,13 @@ export default {
 	}, 
 	methods: {
 		quit(){
+			localStorage.removeItem("token");
 			localStorage.removeItem("userInfo"); 
 			Dialog.alert({
 			  title: '退出',
 			  message: '已退出登陆'
 			}).then(() => {
-			   this.$router.go(-1);
+			   this.$router.push('/User');
 			});
 			},
 		goBack() {
