@@ -30,4 +30,10 @@ export const getGoodsCat = () =>get('goods/navList');//获取商品分类
 export const getGoodsDetById = params =>get('goods/productDet',params);//通过商品Id获取商品详情
 export const addCart = params =>authPost('member/addCart',params);//添加购物车
 export const getAddressList = params => authPost('member/addressList',params);//添加收货地址
-export const getMerberInfo = () =>authpost('member/info');//获取会员信息
+export const getMerberInfo = params =>authPost('member/info',params);//获取会员信息
+
+export const getflowDocList = params =>authPost('doctorFollow/getListByMemberId',params);//我的关注的医生
+export const getflowMecList = params =>authPost('member/followList',params);//我的关注的商家
+export const getflowList = params =>authPost('member/getListByDoctorMemberId',params);//关注我的
+export const getmyAsk = params =>authPost('comments/getListByMemberId',params);//我的提问
+export const getSuggestion = params =>authPost('comments/addContent',params);//投诉建议

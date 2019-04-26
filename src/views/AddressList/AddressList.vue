@@ -55,7 +55,7 @@ export default {
 					this.address = data.result;
 			 })
 				 
-			 },
+		},
     onAdd() {},
     onEdit(item) {
       let id = item.id;

@@ -1,7 +1,7 @@
 <template>
   <div >
     <div>
-      <van-nav-bar title="æçŽ°"
+      <van-nav-bar title="ÌáÏÖ"
         left-text="è¿”å›ž"
         left-arrow
         @click-left="goBack"
