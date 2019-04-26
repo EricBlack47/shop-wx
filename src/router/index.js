@@ -218,7 +218,6 @@ export default new Router({
 			path: '/orderList',
 			name: 'orderList',
 			component: orderList,
-			component: orderList,
 			 meta: {
 			  fullScreen: true
 			}
@@ -236,7 +235,6 @@ export default new Router({
 			path: '/suggestion',
 			name: 'suggestion',
 			component: suggestion,
-			component: orderList,
 			 meta: {
 			  fullScreen: true
 			}
@@ -245,7 +243,6 @@ export default new Router({
 			path: '/totalAssets',
 			name: 'totalAssets',
 			component: totalAssets,
-			component: orderList,
 			 meta: {
 			  fullScreen: true
 			}
@@ -254,7 +251,6 @@ export default new Router({
 			path: '/withdrawal',
 			name: 'withdrawal',
 			component: withdrawal,
-			component: orderList,
 			 meta: {
 			  fullScreen: true
 			}
