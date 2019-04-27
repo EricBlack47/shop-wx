@@ -1,98 +1,73 @@
 <template>
-  <transition name="slide">
-    <div class="orderlist">
-      <van-nav-bar title="全部订单"
-        left-text="返回"
-        left-arrow
-        @click-left="goBack"
-        :z-index="10"
-        fixed />
-      <div class="list-box">
-        <van-panel title="订单"
-          class="list"
-          v-for="item1 in orderList"
-          :key="item1.Orderid">
-          <van-card v-for="item2 in item1.goods"
-            class="list-item"
-            :key="item2.Goodid"
-            :title="item2.Goodname.substr(0,10)"
-            :desc="item2.Gooddescribe"
-            :num="item2.orderCount"
-            :price="item2.GoodPriceaftersale"
-            :thumb="item2.GoodImg">
-            <div slot="footer">
-              <van-button size="mini"
-                @click="goGood(item2)">查看商品</van-button>
-            </div>
-          </van-card>
-          <van-cell-group>
-            <van-cell title="合计"
-              style="color:#f44"
-              :value="'￥'+formatPrice(item1.totalMoney)" />
-          </van-cell-group>
-        </van-panel>
-      </div>
-      <div class="order-footer"
-        v-if="orderList.length>3">到底了~</div>
-    </div>
-  </transition>
+	<div>
+		<div><van-nav-bar title="订单" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
+		<div style="padding-top: 46px;">
+			<div class="order" v-for="(item, index) of orderList" :key="item.id" :data-index="index">
+				<div style="display: inline-block;" class="l">订单编号：{{ item.orderId }}</div>
+				<div style="display: inline-block;" class="r">{{ item.orderStatus == 0 ? '未付款' : item.orderStatus == 2 ? '待发货' : item.orderStatus == 3 ? '待收货' : '交易完成' }}</div>
+				<div class="goods" v-for="(iitem, iindex) of item.goodsList" :key="iitem.id" :data-index="iindex">
+					<van-card :num="iitem.productNum" tag="优惠" :price="iitem.salePrice" desc="" :title="iitem.productName" :thumb="iitem.productImg">
+					</van-card>
+				</div>
+				<div  class="l">实付：￥{{item.orderTotal}}</div>
+				<div style="display: inline-block;margin-left: 20px;" v-if="item.orderStatus==0&&item.memberGoldId!=userId"><van-button size="mini">取消订单</van-button></div>
+				<div style="display: inline-block;margin-left: 20px;" v-if="item.orderStatus==0&&item.memberGoldId!=userId"><van-button size="mini">去付款</van-button></div>
+				<div style="display: inline-block;margin-left: 20px;" v-if="item.orderStatus==2&&item.memberGoldId==userId" ><van-button size="mini">发货</van-button></div>
+				<div style="display: inline-block;margin-left: 20px;" v-if="item.orderStatus>2" ><van-button size="mini">查物流</van-button></div>
+				<div style="display: inline-block;margin-left: 20px;" v-if="item.orderStatus==3&&item.memberGoldId!=userId"><van-button size="mini">确认收货</van-button></div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
-import { getOrder, getGoodById } from '@/api/api';
+import { getOrderList,getOrder, getGoodById } from '@/api/api';
 export default {
-  data() {
-    return {
-      orderList: []
-    };
+	data() {
+		return {
+			orderList: [],
+			userInfo:undefined,
+			userId:undefined
+		};
+	},
+		created(){
+				this.orderList=[];
+		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		this.userId = this.userInfo.id
+	},
+	mounted() {
+		this.orderList=[];
+    var type = this.$route.query.type
+		console.log(type)
+		this.getOrder(type);
   },
-  mounted() {
-    getOrder()
-      .then(async result => {
-        for (let i = 0; i < result.data.length; i++) {
-          var idArr = result.data[i].Goodid.substring(1, result.data[i].Goodid.length - 1).split(',');
-          var countArr = result.data[i].Ordercount.substring(1, result.data[i].Ordercount.length - 1).split(',');
-          idArr = idArr.map(item => {
-            return parseInt(item);
-          });
-          countArr = countArr.map(item => {
-            return parseInt(item);
-          });
-          var mapped = {};
-          for (let j = 0; j < idArr.length; j++) {
-            mapped[idArr[j]] = countArr[j];
-          }
-          let { data } = await getGoodById({
-            goodId: idArr
-          });
-          for (let k = 0; k < data.length; k++) {
-            data[k].orderCount = mapped[data[k].Goodid];
-          }
-          result.data[i].goods = data;
-        }
-        this.orderList = result.data.reverse();
-        console.log(this.orderList);
-      })
-      .catch(error => {
-        console.log(err);
-      });
-  },
-  methods: {
-    goBack() {
-      this.$router.push('/User');
-    },
-    goGood(item) {
-      this.setGood(item);
-      this.$router.push('/Good');
-    },
-    formatPrice(price) {
-      return price.toFixed(2);
-    },
-    ...mapMutations({
-      setGood: 'SET_GOOD_MUTATION'
-    })
-  }
+	methods: {
+		getOrder(type) {
+			console.log(type)
+			var query = {
+				page: 1,
+				size: 10,
+				status:type
+			};
+			getOrderList(query).then(res => {
+				this.orderList = res.result.data; /* this.orderList.concat(res.result.data); */
+			});
+		},
+		goBack() {
+			this.$router.push('/User');
+		},
+		goGood(item) {
+			this.setGood(item);
+			this.$router.push('/Good');
+		},
+		formatPrice(price) {
+			return price.toFixed(2);
+		},
+		...mapMutations({
+			setGood: 'SET_GOOD_MUTATION'
+		})
+	}
 };
 </script>
 <style lang="stylus" scoped>

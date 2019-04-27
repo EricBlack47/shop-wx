@@ -7,33 +7,93 @@
 			</van-swipe>
 		</div>
 		<div style="background-color: #FFFFFF;">
-			<van-row type="flex" justify="space-around">
+				<van-row type="flex" justify="space-around">
 				<van-col span="4">
-					<div class="nav-body-son-img">
-						<div class=" icon-img" style="background-image: url(../../images/navImg/h10.gif);">
-							<span class="icon iconfontt">&#xe655;</span>
-						</div>
-					</div>
-					<div class="nav-body-son-text">
-						<text>医院</text>
-					</div>
+					<van-row>
+						
+					</van-row>	
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;"></div>
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
 				</van-col>
 				<van-col span="4">
-					<div style="height: 46px;width: 50px;">
-						<image src="../../images/navImg/h10.gif"/>
-					</div>
-					<span>医院</span>
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
 				</van-col>
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+		
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
 			</van-row>
 			<van-row type="flex" justify="space-around">
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
-				<van-col span="4">span: 6</van-col>
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+	
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+				<van-col span="4">
+					<van-row>
+						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
+				<van-col span="4">
+					<van-row>
+						<div style="width: 80upx;height: 80upx;"><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" /></div>
+						
+					</van-row>	
+					<van-row>
+						<span style="display: inline-block;">医院</span>
+					</van-row>
+				</van-col>
 			</van-row>
 		</div>
 		
@@ -90,6 +150,7 @@
 </template>
 
 <script>
+	import icons from '@vant/icons';
 import goodItem from '@/components/goodItem/goodItem';
 import scrollX from '@/components/scroll/scrollX';
 import backgroundImg from '@/components/backgroundImg/backgroundImg';
@@ -105,7 +166,14 @@ export default {
 			indexPage: 1,
 			hotGoods: [],
 			saleGroupGoods: [],
-			discoverGoods: []
+			discoverGoods: [],
+			icons:[
+				{icon:"fire-o"},
+				{},
+				{},
+				{},
+				{},
+			]
 		};
 	},
 	mounted() {
