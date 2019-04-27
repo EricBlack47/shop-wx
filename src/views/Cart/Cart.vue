@@ -16,26 +16,25 @@
       v-model="checkedGoods">
       <van-checkbox class="card-goods__item"
         v-for="item in cartList"
-        :key="item.list.Goodid"
-        :name="item.Goodid">
-        <van-card :title="item.Goodname"
-          :desc="item.Gooddescribe"
-          :num="item.Cartcount"
-          :price="formatPrice(item.GoodPriceaftersale)"
-          :thumb="item.GoodImg">
+        :key="item.list.productId"
+        :name="item.productId">
+        <van-card :title="item.productName"
+          :num="item.productNum"
+          :price="formatPrice(item.salePrice)"
+          :thumb="item.productImg">
           <div slot="footer"
             class="footer">
             <span class="add"
-              @click.stop="reduceCount(item,item.Cartcount)">
+              @click.stop="reduceCount(item,item.productNum)">
               <van-button class="btn"
                 size="mini">-</van-button>
             </span>
             <span class="input"
               @click.stop="showModal(item)">
-              <span class="input-edit">{{item.Cartcount}}</span>
+              <span class="input-edit">{{item.productNum}}</span>
             </span>
             <span class="reduce"
-              @click.stop="addCount(item,item.Cartcount)">
+              @click.stop="addCount(item,item.productNum)">
               <van-button class="btn"
                 size="mini">+</van-button>
             </span>
@@ -101,8 +100,7 @@ export default {
     this.init();
   },
   methods: {
-    init() {
-			
+    init() {		
       getCartList()
         .then(result => {
 					console.log(result)
@@ -132,7 +130,7 @@ export default {
         return;
       }
       count--;
-      item.Cartcount = count;
+      item.productNum = count;
       this.updateCartCountFun(item.Goodid, count);
     },
     addCount(item, count) {
@@ -151,7 +149,7 @@ export default {
         return;
       }
       count++;
-      item.Cartcount = count;
+      item.productNum = count;
       this.updateCartCountFun(item.Goodid, count);
     },
     reduceEditCount() {
@@ -191,7 +189,7 @@ export default {
     showModal(item) {
       this.modalShow = true;
       this.editGood = item;
-      let count = item.Cartcount;
+      let count = item.productNum;
       this.editNum = count;
     },
     goHome() {
@@ -223,7 +221,7 @@ export default {
           done(false);
           return;
         }
-        this.editGood.Cartcount = this.editNum;
+        this.editGood.productNum = this.editNum;
         this.updateCartCountFun(this.editGood.Goodid, this.editNum);
         done();
       } else {
@@ -307,7 +305,7 @@ export default {
     totalPrice() {
       let all = 0;
       this.cartList.forEach(item => {
-        all += this.checkedGoods.indexOf(item.Goodid) !== -1 ? item.GoodPrice * item.Cartcount : 0;
+        all += this.checkedGoods.indexOf(item.Goodid) !== -1 ? item.GoodPrice * item.productNum : 0;
       });
       return all * 100;
     },
