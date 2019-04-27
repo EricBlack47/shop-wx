@@ -19,7 +19,7 @@
 			return {
 				address: [],
 				chosenAddressId: '',
-				AddressId: null
+				AddressId:''
 			};
 		},
 		created() {
@@ -34,7 +34,13 @@
 						obj.id = item.addressId;
 						obj.name = item.userName;
 						obj.tel = item.tel;
-						obj.address = item.streetName;
+						var addr=JSON.parse(item.streetName)
+						obj.address =addr.province+addr.city+addr.county+addr.addressDetail;
+						obj.province=addr.province;
+						obj.city=addr.city;
+						obj.county=addr.county;
+						obj.addressDetail=addr.addressDetail
+						obj.areaCode=addr.areaCode
 						arr.push(obj)
 					})
 					this.address = arr
@@ -43,35 +49,24 @@
 			onAdd() {
 				this.$router.push('/Add');
 			},
-			onEdit(item) {
-				let id = item.addressId;
-				for (let i = 0; i < this.address.length; i++) {
-
-					if (this.item[i].addressId == id) {
-						var adres = this.item[i];
-						console.log("address=" + adres)
-						this.setEditAddress(adres);
-						this.$router.push({
-							path: '/EditAddress',
-							query: {
-								address: adres
-							}
-						});
-						break;
-					}
-				}
+			onEdit(item) {		
+				var adrr = item;	
+				this.$router.push({
+					path: '/EditAddress',
+					query: { address: JSON.stringify(adrr) }
+				});					
 			},
+		
 			onSelect() {
 				this.setAddressId(this.chosenAddressId)
 			},
-			setAddressId(id) {
-				this.AddressId = id
-				console.log(".." + this.addressId)
+			setAddressId() {
+				this.AddressId = this.address.addressId
 			},
 			getDefaultId() {
 				let id = '';
 				for (let i = 0; i < this.addressList.length; i++) {
-					if (this.addressList[i].Isdefault === 1) {
+					if (this.addressList[i].isDefault === 1) {
 						id = this.addressList[i].addressId;
 						break;
 					}
@@ -79,7 +74,7 @@
 				this.chosenAddressId = id;
 			},
 			goBack() {
-				this.$router.go(-1);
+				this.$router.push('/settings');
 			},
 		}
 	};

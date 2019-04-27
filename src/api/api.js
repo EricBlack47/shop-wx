@@ -42,3 +42,4 @@ export const getAggrement = params => post('agreement/getAgreement',params);//�
 
 export const addAddress = params => authPost('member/addAddress',params);//新增收货地址
 export const updateAddress = params => authPost('member/updateAddress',params)//更新收货地址
+export const delAddress = params => authPost('member/delAddress',params)//删除地址

@@ -13,7 +13,7 @@
 		<van-cell title="会员管理" icon="manager-o" value="" is-link to="/memberManage"/>
 		<van-cell title="关于我们" icon="friends-o" value="" is-link to="/aboutUs"/>
 		<van-cell title="用户须知" icon="description" value="" is-link to="/userRead"/>
-		<van-cell title="医互链点" icon="like-o" value="" is-link to="/yihuliandian"/>
+		<!-- <van-cell title="医互链点" icon="like-o" value="" is-link to="/yihuliandian"/> -->
 		<div @click="quit"><van-cell title="退出登陆" icon="exchange" value="" is-link /></div>
 	</div>
 </template>
@@ -49,7 +49,7 @@ export default {
 			});
 			},
 		goBack() {
-			this.$router.go(-1);
+			this.$router.push('/User');
 		},			
 	}
 }

@@ -1,73 +1,73 @@
 <template>
-  <transition name="slide">
-	  <div>
-		 <van-nav-bar title="地址列表"
-		    left-text="返回"
-		    left-arrow
-		    @click-left="goBack"
-		    :z-index="10"
-		    fixed />
-		<div style="padding-top: 48px;">
-		 <van-address-edit
-		 :area-list="areaList"
-		  show-postal
-		  show-set-default
-		  @change-detail="onChangeDetail"
-			@save="onSave"
-		  /> 
-		<!-- 		show-search-result
-			 :search-result="searchResult" -->
+	<transition name="slide">
+		<div>
+			<van-nav-bar title="地址列表" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
+			<div style="padding-top: 48px;">
+				<van-address-edit
+		        :area-list="areaList"
+		         show-set-default
+			     @save="onSave"
+		     />
+			</div>
 		</div>
-	  </div>
-  </transition>
+	</transition>
 </template>
 
 <script>
-import { AddressEdit } from 'vant';
-import { Area } from 'vant';
-import AreaList from "@/util/area"
-import { addAddress } from '@/api/api.js';
-export default {
-  data() {
-    return {
-			areaList:AreaList,
-      // searchResult: [],
-			form:{
-				userName:'',
-				tel:'',
-				streetName:''
+	import { Dialog } from 'vant';
+	import {
+		AddressEdit
+	} from 'vant';
+	import {
+		Area
+	} from 'vant';
+	import AreaList from "@/util/area"
+	import {
+		addAddress
+	} from '@/api/api.js';
+	export default {
+		data() {
+			return {
+				areaList: AreaList,
 			}
-    }
-  },
-
-  methods: {
-    onSave() {
-			var query ={
-				uesrName:this.form.userName,
-				tel:this.form.tel,
-				streetName:this.form.streetName
-			}
-			addAddress(query).then(res =>{
-				console.log(res)
-			})
-      
-    },
-
-    onChangeDetail(val) {
-      if (val) {
-        this.searchResult = [{
-          name: '',
-          address: ''
-        }];
-      } else {
-        this.searchResult = [];
-      }
-    },
-	goBack() {
-			this.$router.go(-1);
 		},
-  }
-}
+
+		methods: {
+			onSave(address) {
+				var addrInfo={
+					province:address.province,
+					city:address.city,
+					county:address.county,
+					addressDetail:address.addressDetail,
+					areaCode:address.areaCode
+				}
+				var query = {
+					userName: address.name,
+					tel: address.tel,
+					streetName: JSON.stringify(addrInfo),
+					isDefault:address.isDefault
+				}
+				addAddress(query).then(res => {
+					if(res.code==200){
+						Dialog.alert({
+						  title: '成功',
+						  message: '已新增地址！'
+						}).then(() => {
+						   this.$router.push('/AddressList');
+						});
+					}
+					Dialog.alert({
+					  title: '失败',
+					  message: '添加地址失败！'
+					})
+				})
+			},
+
+			goBack() {
+				this.$router.push('/AddressList');
+			},
+		}
+	}
 </script>
 
 <style lang="stylus" scoped>
@@ -83,5 +83,5 @@ export default {
 	bottom:0
 	position:absolute
 	width:92%
-	
+
 </style>
