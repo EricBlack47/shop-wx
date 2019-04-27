@@ -16,7 +16,7 @@
       v-model="checkedGoods">
       <van-checkbox class="card-goods__item"
         v-for="item in cartList"
-        :key="item.Goodid"
+        :key="item.list.Goodid"
         :name="item.Goodid">
         <van-card :title="item.Goodname"
           :desc="item.Gooddescribe"
@@ -79,10 +79,9 @@
 </template>
 
 <script>
-import { getCartList } from '@/api/api';
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
-import { getCart, updateCartCount, delFromCart } from '@/api/api';
+import { updateCartCount, delFromCart, getCartList} from '@/api/api';
 export default {
   name: 'Cart',
   data() {
@@ -103,9 +102,11 @@ export default {
   },
   methods: {
     init() {
-      getCart()
+			
+      getCartList()
         .then(result => {
-          this.cartList = result.data;
+					console.log(result)
+          this.cartList = result.result;
           this.checkedGoods = [];
         })
         .catch(error => {
@@ -230,7 +231,7 @@ export default {
       }
     },
     formatPrice(price) {
-      return price.toFixed(2);
+      return price
     },
     selectAll() {
       if (this.checkedAll) {

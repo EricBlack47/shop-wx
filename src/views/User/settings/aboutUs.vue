@@ -7,7 +7,7 @@
 		  :z-index="10"
 		  fixed /></div>
 		 <div style="padding-top: 46px;">
-			 <h1>菜</h1>
+			
 		 </div>
 	</div>
 	

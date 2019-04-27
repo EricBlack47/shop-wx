@@ -6,8 +6,9 @@
 		  @click-left="goBack"
 		  :z-index="10"
 		  fixed /></div>
-		 
-		<h1>菜</h1>
+		 <div style="padding-top: 46px;">
+			
+		 </div>
 	</div>
 </template>
 
@@ -16,6 +17,7 @@
 		methods:{
 			goBack() {
 				this.$router.go(-1);
+				
 			},
 			
 		}

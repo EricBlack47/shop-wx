@@ -36,6 +36,8 @@ const safeSetting = () => import('@/views/User/settings/safeSetting');
 const userInfo = () => import('@/views/User/settings/userInfo');
 const userRead = () => import('@/views/User/settings/userRead');
 const yihuliandian = () => import('@/views/User/settings/yihuliandian');
+const Add = () => import('@/views/AddressList/Add');
+const aggrement = () => import('@/views/User/settings/aggrement');
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -316,7 +318,22 @@ export default new Router({
 			  fullScreen: true
 			}
 		}, 
-		
+			{
+			path: '/Add',
+			name: 'Add',
+			component: Add,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/aggrement',
+			name: 'aggrement',
+			component: aggrement,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
     {
       path: '*',
       name: 'Notfound',
