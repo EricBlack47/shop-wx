@@ -40,6 +40,7 @@
 			},
 			check() {
 				modiPassword(this.opassword).then(res => {
+					
 						if (this.npassword == "" || this.rpassword == "") {
 							Dialog.alert({
 								title: "错误",
