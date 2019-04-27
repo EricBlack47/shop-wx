@@ -67,11 +67,11 @@
 	}
 </script>
 
-<style>
-	.van-button--large {
+<style lang="stylus" scoped>
+	.van-button--large 
 		bottom: 0px;
 		position: absolute;
 		background: orange;
 		color: white
-	}
+	
 </style>

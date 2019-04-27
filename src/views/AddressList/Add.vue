@@ -7,16 +7,17 @@
 		    @click-left="goBack"
 		    :z-index="10"
 		    fixed />
+		<div style="padding-top: 48px;">
 		 <van-address-edit
 		 :area-list="areaList"
 		  show-postal
 		  show-set-default
-		  show-search-result
-		  :search-result="searchResult"
-		  @save="onSave"
-		  @delete="onDelete"
 		  @change-detail="onChangeDetail"
+			@save="onSave"
 		  /> 
+		<!-- 		show-search-result
+			 :search-result="searchResult" -->
+		</div>
 	  </div>
   </transition>
 </template>
@@ -24,31 +25,47 @@
 <script>
 import { AddressEdit } from 'vant';
 import { Area } from 'vant';
+import AreaList from "@/util/area"
+import { addAddress } from '@/api/api.js';
 export default {
   data() {
     return {
-      areaList,
-      searchResult: []
+			areaList:AreaList,
+      // searchResult: [],
+			form:{
+				userName:'',
+				tel:'',
+				streetName:''
+			}
     }
   },
 
   methods: {
     onSave() {
-      Toast('save');
+			var query ={
+				uesrName:this.form.userName,
+				tel:this.form.tel,
+				streetName:this.form.streetName
+			}
+			addAddress(query).then(res =>{
+				console.log(res)
+			})
+      
     },
-    onDelete() {
-      Toast('delete');
-    },
+
     onChangeDetail(val) {
       if (val) {
         this.searchResult = [{
-          name: '黄龙万科中心	',
-          address: '杭州市西湖区'
+          name: '',
+          address: ''
         }];
       } else {
         this.searchResult = [];
       }
-    }
+    },
+	goBack() {
+			this.$router.go(-1);
+		},
   }
 }
 </script>
@@ -60,4 +77,11 @@ export default {
 .slide-enter, .slide-leave-to
   opacity 0
   transform translate3d(100%, 0, 0)
+	
+.van-address-edit__buttons .van-button
+  margin-bottom: 15px
+	bottom:0
+	position:absolute
+	width:92%
+	
 </style>
