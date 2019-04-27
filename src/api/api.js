@@ -37,3 +37,5 @@ export const getflowMecList = params =>authPost('member/followList',params);//�
 export const getflowList = params =>authPost('member/getListByDoctorMemberId',params);//关注我的
 export const getmyAsk = params =>authPost('comments/getListByMemberId',params);//我的提问
 export const getSuggestion = params =>authPost('comments/addContent',params);//投诉建议
+export const getBillList = params =>authPost('member/memberIncomeAndExpend',params);//账单
+export const getOrderList = params =>authPost('member/orderList',params);//订单

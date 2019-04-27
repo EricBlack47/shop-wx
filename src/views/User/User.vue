@@ -34,31 +34,40 @@
 				</van-row>
 			</van-col>
 		</van-row>
+		<van-cell-group class="user-group"><van-cell title="全部订单" icon="bookmark-o"  /></van-cell-group>
 		<van-row class="user-link">
-			<van-col span="6" is-link to="/OrderList">
-				<van-icon name="pending-payment"></van-icon>
-				待付款
-			</van-col>
-			<van-col span="6" is-link to="/OrderList">
-				<van-icon name="notes-o"></van-icon>
-				待接单
-			</van-col>
-			<van-col span="6" is-link to="/OrderList">
-				<van-icon name="logistics"></van-icon>
-				待发货
-			</van-col>
-			<van-col span="6" is-link to="/OrderList">
-				<van-icon name="gift-card-o"></van-icon>
-				待收货
-			</van-col>
+			<div @click="goList1()">
+				<van-col span="6">
+					<van-icon name="pending-payment"></van-icon>
+					待付款
+				</van-col>
+			</div>
+			<div @click="goList2()">
+				<van-col span="6">
+					<van-icon name="gift-card-o"></van-icon>
+					待收货
+				</van-col>
+			</div>
+			<div @click="goList3()">
+				<van-col span="6">
+					<van-icon name="logistics"></van-icon>
+					待发货
+				</van-col>
+			</div>
+			<div @click="goList4()">
+				<van-col span="6">
+					<van-icon name="bookmark-o"></van-icon>
+					全部订单
+				</van-col>
+			</div>
 		</van-row>
-		<van-cell-group class="user-group"><van-cell title="全部订单" icon="bookmark-o" is-link to="/OrderList" /></van-cell-group>
+		
 		<van-cell-group>
 			<van-cell title="我的资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney"  />
 			<van-cell title="余额     ----可提现" icon="gold-coin-o"  :value="userInfo.overMoney" is-link to="/lastMoney"  />
 			<van-cell title="MMC      ---可使用" icon="gem-o" :value="userInfo.overProfit" is-link to="/mmc"  />
 			<van-cell title="积分     ----不可使用" icon="stop-circle-o" :value="userInfo.points" is-link to="/totalAssets"  />
-			<van-cell title="充值" icon="bill-o" is-link to="/recharge"  />
+			<van-cell title="充值" icon="bill-o" is-link to="/recharge"/>
 			<van-cell title="提现" icon="refund-o" is-link to="/withdrawal"/>
 			<van-cell title="账单" icon="balance-list-o" is-link to="/bill" />
 		</van-cell-group>
@@ -95,10 +104,10 @@ export default {
 	},
 	created(){
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-		console.log(this.userInfo)
+	
 	},
 	mounted() {
-		console.log(this.userInfo)
+		
 		if (!this.userInfo) {
 			this.$router.push('/Login');
 			Dialog.alert({
@@ -111,6 +120,18 @@ export default {
 		this.getMerBerInfo();
 	},
 	methods: {
+		goList1(){
+			this.$router.push({path:'/OrderList',query:{type:0}});
+		},
+		goList2(){
+			this.$router.push({path:'/OrderList',query:{type:2}});
+		},
+		goList3(){
+			this.$router.push({path:'/OrderList',query:{type:3}});
+		},
+		goList4(){
+			this.$router.push({path:'/OrderList',query:{type:null}});
+		},
 		goPerson() {
 			this.$router.push('/settings');
 		},
@@ -129,9 +150,6 @@ export default {
 					return
 				}                        
 				_this.userInfo = e.result;
-				/* localStorage.setItem("userInfo",e.result);
-				localStorage.setItem("token",e.result.token) */
-				console.log(_this.userInfo)
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)
 				_this.userInfo.points = e.result.points.toFixed(4)

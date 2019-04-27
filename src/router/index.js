@@ -225,7 +225,6 @@ export default new Router({
 			path: '/recharge',
 			name: 'recharge',
 			component: recharge,
-			component: orderList,
 			 meta: {
 			  fullScreen: true
 			}
