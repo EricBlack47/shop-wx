@@ -49,7 +49,7 @@ export const updateAddress = params => authPost('member/updateAddress',params)//
 export const delAddress = params => authPost('member/delAddress',params)//删除地址
 export const getBillList = params =>authPost('member/memberIncomeAndExpend',params);//账单
 export const getOrderList = params =>authPost('member/orderList',params);//订单
-export const uploadImage = file =>upload('member/imgaeUpload1',file);
+export const uploadImage = file =>upload('member/imgaeUpload1',file);//上传图片
 export const cancelOrder = params =>authPost('member/cancelOrder',params);//取消订单
 export const confirm = params =>authPost('member/confirmOrder',params);//确认收货
 export const addCar = params =>authPost('member/addCart',params);//加入购物车
