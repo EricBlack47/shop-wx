@@ -19,13 +19,17 @@
 	import {
 		Field,
 		Uploader
-	} from 'vant'; 
-	import {uploadImage,goodsBanner} from '@/api/api';
+	} from 'vant';
+	import {
+		uploadImage,
+		goodsBanner
+	} from '@/api/api';
 	export default {
-		data(){
-			return{
-				username:'',
-				code:''
+		data() {
+			return {
+				username: '',
+				code: '',
+				images: []
 			}
 		},
 		methods: {
@@ -35,11 +39,10 @@
 			onRead(file) {
 				console.log(file)
 			},
-			afterRead(image) { 
+			afterRead(image) {
 				//console.log(file)
-				uploadImage(image).then(res=>{
-					console.log(res.result)
-					
+				uploadImage(image).then(res => {
+					this.images = res.result
 				})
 			},
 

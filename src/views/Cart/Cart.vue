@@ -185,27 +185,17 @@ export default {
         for (var i = 0; i < this.cartList.length; i++) {
 					var item=this.cartList[i].list;
 						for(var j=0;j<item.length;j++){
-								item[j].checked=true;
-							this.checkedGoods.push(item[j].productId)
+							item[j].checked=true;
+							this.totalPrice+=(item[j].salePrice*item[j].productNum)*100
+							this.checkedGoods.push(item[j].productId)         
 				    }
 				  }
         this.checkedAllMsg = '全不选';
       } else {
         this.checkedGoods = [];
+				this.totalPrice=0;
         this.checkedAllMsg = '全选';
       }
-    },
-    updateCartCountFun(id, count) {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        updateCartCount({ id: id, num: count })
-          .then(result => {
-            console.log(result);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }, 500);
     },
     onSubmit() {
       if (this.isEdit) {
@@ -242,7 +232,7 @@ export default {
           return;
         }
         var orderGood = this.cartList.filter(item => {
-          if (this.checkedGoods.indexOf(item.Goodid) !== -1) {
+          if (this.checkedGoods.indexOf(item.productId) !== -1) {
             return item;
           }
         });

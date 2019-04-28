@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
 import { getAddress, createOrder, delFromCart } from '@/api/api';
 export default {
   data() {
@@ -140,7 +139,7 @@ export default {
         goodId: idStr,
         cartCount: countStr,
         addressId: this.defaultAddress.Addressid,
-        totalMoney: this.totalMoney / 100
+        totalMoney: this.totalMoney
       };
       createOrder(obj)
         .then(result => {
@@ -174,9 +173,6 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    ...mapMutations({
-      setAddressList: 'SET_ADDRESSLIST_MUTATION'
-    })
   }
 };
 </script>
