@@ -48,18 +48,15 @@
 					isDefault:address.isDefault
 				}
 				addAddress(query).then(res => {
-					if(res.code==200){
+					
 						Dialog.alert({
 						  title: '成功',
 						  message: '已新增地址！'
 						}).then(() => {
 						   this.$router.push('/AddressList');
 						});
-					}
-					Dialog.alert({
-					  title: '失败',
-					  message: '添加地址失败！'
-					})
+					
+					
 				})
 			},
 
