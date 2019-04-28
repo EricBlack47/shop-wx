@@ -52,3 +52,4 @@ export const uploadImage = file =>upload('member/imgaeUpload1',file);
 export const cancelOrder = params =>authPost('member/cancelOrder',params);//取消订单
 export const confirm = params =>authPost('member/confirmOrder',params);//确认收货
 export const addCar = params =>authPost('member/addCart',params);//加入购物车
+export const getMecList = params =>authPost('member/memberIncome',params);//获取推荐人信息

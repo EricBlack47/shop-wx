@@ -10,12 +10,12 @@
 
     </div>
 	<div style="padding-top: 46px;">
-		<van-cell title="我的MMC" icon="exchange" :value="userInfo.overMoney" is-link to="/myMoney"  />
-		<van-cell title="总收入" icon="exchange" :value="userInfo.balance" is-link to="/myMoney"  />
-		<van-cell title="总消费" icon="exchange" :value="userInfo.consumeMoney" is-link to="/myMoney"  />
-		<van-cell title="今日返现" icon="exchange" :value="userInfo.balance" is-link to="/myMoney"  />
-		<van-cell title="手续费" icon="exchange" :value="userInfo.consumeMoney" is-link to="/myMoney"  />
-		<van-cell title="实际收益" icon="exchange" :value="userInfo.balance" is-link to="/myMoney"  />
+		<van-cell title="我的MMC" icon="exchange" :value="userInfo.overProfit" is-link to="/myMoney"  />
+		<van-cell title="总收入" icon="exchange" :value="userInfo.incomeMoney" is-link to="/myMoney"  />
+		<van-cell title="总消费" icon="exchange" :value="userInfo.consumeProfit" is-link to="/myMoney"  />
+		<van-cell title="今日返现" icon="exchange" :value="tadayMoney" is-link to="/myMoney"  />
+		<van-cell title="手续费" icon="exchange" :value="userInfo.serviceCharge" is-link to="/myMoney"  />
+		<van-cell title="实际收益" icon="exchange" :value="userInfo.mmcMoney" is-link to="/myMoney"  />
 	</div>
 	<van-tabs>
 		<van-tab title="全部信息">
@@ -52,7 +52,7 @@
 						</van-col>
 						<van-col span="6">{{list.kind}}</van-col>
 						<van-col span="6">
-							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+							<span style="text-align: center;">{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
 						<van-col span="6">{{list.created}}</van-col>
 					</van-row>
@@ -92,7 +92,7 @@
 						</van-col>
 						<van-col span="6">{{list.kind}}</van-col>
 						<van-col span="6">
-							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+							<span >{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
 						<van-col span="6">{{list.created}}</van-col>
 					</van-row>
@@ -131,7 +131,7 @@
 						</van-col>
 						<van-col span="6">{{list.kind}}</van-col>
 						<van-col span="6">
-							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+							<span style="text-align: center;">{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
 						<van-col span="6">{{list.created}}</van-col>
 					</van-row>
@@ -180,7 +180,16 @@ export default {
 	},
 	created(){
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		if (this.userInfo.serviceCharge == null) this.userInfo.serviceCharge = 0;
+		if (this.userInfo.mmcMoney == null) this.userInfo.mmcMoney = 0;
+		if (this.userInfo.incomeMoney == null) this.userInfo.incomeMoney = 0;
+		if (this.userInfo.consumeProfit == null) this.userInfo.consumeProfit = 0;
 		
+		this.userInfo.serviceCharge=this.userInfo.serviceCharge.toFixed(4)-0;
+		this.userInfo.mmcMoney=this.userInfo.mmcMoney.toFixed(4)-0;
+		this.userInfo.incomeMoney=this.userInfo.incomeMoney.toFixed(4)-0;
+		this.userInfo.consumeProfit=this.userInfo.consumeProfit.toFixed(4)-0;
+		this.tadayMoney=(this.userInfo.serviceCharge+this.userInfo.mmcMoney).toFixed(4)-0;
 	},
 	mounted() {
 	
