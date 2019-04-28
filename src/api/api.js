@@ -30,7 +30,8 @@ export const getGoodsCat = () =>get('goods/navList');//获取商品分类
 export const getGoodsDetById = params =>get('goods/productDet',params);//通过商品Id获取商品详情
 export const addCart = params =>authPost('member/addCart',params);//添加购物车
 export const getCarList = params => authPost('member/cartList',params)//获取购物车
-export const updateCart =params => authPost('member/cartEdit',params)
+export const updateCart =params => authPost('member/cartEdit',params);//更新购物车
+export const delCart = params => authPost('member/delCartChecked',params)//删除购物车商品
 export const getMerberInfo = params =>authPost('member/info',params);//获取会员信息
 export const getflowDocList = params =>authPost('doctorFollow/getListByMemberId',params);//我的关注的医生
 export const getflowMecList = params =>authPost('member/followList',params);//我的关注的商家
@@ -40,7 +41,7 @@ export const getSuggestion = params =>authPost('comments/addContent',params);//�
 export const modiPassword = params => authPost('member/checkPassword',params);//检查密码
 export const updataPassword = params => authPost('member/update',params);//更新密码
 export const getAggrement = params => post('agreement/getAgreement',params);//获取用户协议
-
+export const getAddressList = params => authPost('member/addressList',params);//获取收货地址
 export const addAddress = params => authPost('member/addAddress',params);//新增收货地址
 export const updateAddress = params => authPost('member/updateAddress',params)//更新收货地址
 export const delAddress = params => authPost('member/delAddress',params)//删除地址

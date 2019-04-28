@@ -66,7 +66,7 @@
 <script>
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
-import { updateCartCount, delFromCart, getCarList,updateCart} from '@/api/api';
+import { updateCartCount, delFromCart, getCarList,updateCart,delCart} from '@/api/api';
 export default {
   name: 'Cart',
   data() {
@@ -182,9 +182,13 @@ export default {
     },
     selectAll() {
       if (this.checkedAll) {
-        for (let i = 0; i < this.cartList.length; i++) {
-          this.checkedGoods.push(this.cartList[i].Goodid);
-        }
+        for (var i = 0; i < this.cartList.length; i++) {
+					var item=this.cartList[i].list;
+						for(var j=0;j<item.length;j++){
+								item[j].checked=true;
+							this.checkedGoods.push(item[j].productId)
+				    }
+				  }
         this.checkedAllMsg = '全不选';
       } else {
         this.checkedGoods = [];
@@ -219,7 +223,7 @@ export default {
           var params = {
             delId: this.checkedGoods
           };
-          delFromCart(params)
+          delCart(params)
             .then(result => {
               console.log(result);
               this.$toast.success('删除成功');
