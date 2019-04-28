@@ -1,6 +1,9 @@
 <template>
   <div class="cart">
     <van-nav-bar title="购物车"
+		  left-text="返回"
+		  left-arrow
+	  	@click-left="goBack"
       :right-text="rightText"
       @click-right="editCart"
       :z-index="10"
@@ -21,8 +24,7 @@
 				@click="checkedChange(item)"
         v-for="item in cart.list"
         :key="item.productId"
-        :name="item.productId">
-				
+        :name="item.productId">			
         <van-card :title="item.productName"
           :num="item.productNum"
           :price="formatPrice(item.salePrice)"
@@ -100,6 +102,9 @@ export default {
           console.log(error);
         });
     },
+		goBack() {
+			this.$router.go(-1);
+		},	
 		setCartTotal(){
 			this.checkedGoods = [];
 			this.totalPrice=0
@@ -237,7 +242,7 @@ export default {
           }
         });
         this.setOrderGood(orderGood);
-        this.$router.push('/Order');
+        this.$router.push('/confOrder');
       }
     }
   },

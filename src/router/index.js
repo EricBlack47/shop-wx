@@ -38,6 +38,7 @@ const userRead = () => import('@/views/User/settings/userRead');
 const yihuliandian = () => import('@/views/User/settings/yihuliandian');
 const Add = () => import('@/views/AddressList/Add');
 const aggrement = () => import('@/views/User/settings/aggrement');
+const confOrder = () => import('@/views/Order/confOrder')
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -96,7 +97,14 @@ export default new Router({
         fullScreen: true
       }
     },
-		
+		{
+		  path: '/confOrder',
+		  name: 'confOrder',
+		  component: confOrder,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
 		
     {
       path: '/AddressList',

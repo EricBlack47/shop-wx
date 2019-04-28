@@ -58,3 +58,4 @@ export const getCartProduct = params =>authPost('member/getCartProduct',params);
 export const getCheckedCartList = params =>authPost('member/checkedCartList',params);//获取选中的购物车数据
 export const addOrder =params =>authPost('member/addOrder',params);//添加订单
 export const getMecList = params =>authPost('member/memberIncome',params);//获取推荐人信息
+export const buyNow = params =>authPost('member/buyNowIntr',params);//商品详情页-立即购买

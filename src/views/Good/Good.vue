@@ -68,7 +68,8 @@
 	import {
 		addToCart,
 		getGoodsDetById,
-		addCar
+		addCar,
+		buyNow
 	} from '@/api/api.js';
 	export default {
 		data() {
@@ -88,8 +89,12 @@
 			this.getGoodsDetByid(productId);
 		},
 		methods: {
-			goBuy(){
-				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
+			goBuy(goods){
+				var query ={memberGoldId:this.goods.memberGoldId};
+				buyNow(query).then(res => {
+     			this.$router.push({path:'/confOrder', query:{productId:this.goods.productId}});
+					console.log(this.goods.productId)
+				})				
 			},
 			goMerchant(goods){
 				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});

@@ -71,10 +71,12 @@ import { getAddress, createOrder, delFromCart } from '@/api/api';
 export default {
   data() {
     return {
-      checked: true,
-      addressList: [],
-      hasDefaultAddress: false,
-      defaultAddress: {}
+     orderGoodList:[],
+     totalMoney:0,
+     checked: true,
+     addressList: [],
+     hasDefaultAddress: false,
+     defaultAddress: {}
     };
   },
   mounted() {
