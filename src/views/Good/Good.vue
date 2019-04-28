@@ -64,10 +64,11 @@
 		mapMutations,
 		
 	} from 'vuex';
+	import { Dialog } from 'vant';
 	import {
 		addToCart,
 		getGoodsDetById,
-		addCart
+		addCar
 	} from '@/api/api.js';
 	export default {
 		data() {
@@ -87,25 +88,30 @@
 			this.getGoodsDetByid(productId);
 		},
 		methods: {
+			goBuy(){
+				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
+			},
 			goMerchant(goods){
 				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
 			},
 			
 			addCart() {
-				authPost("member/addCart", {
+				var query = {
 					productId: this.goods.productId,
 					productNum: 1,
 					memberGoldId: this.goods.memberGoldId
-				}, function(res) {
-					this.$router.push({
-						path: '/Cart',
-						query: {
-							productId: goods.productId
-						}
-					});
-					console.log(this.productId)
-					Toast({
-						message: '添加成功'
+				}
+				addCar(query).then(res => {
+					
+					Dialog.alert({
+					  message: '已加入购物车'
+					}).then(() => {
+					  this.$router.push({
+					  	path: '/Cart',
+					  	query: {
+					  		productId: this.goods.productId
+					  	}
+					  });
 					});
 				})
 			},

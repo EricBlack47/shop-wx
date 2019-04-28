@@ -29,7 +29,7 @@ export const getAllGoods = params =>get('goods/allGoods',params);//获取所有�
 export const getGoodsCat = () =>get('goods/navList');//获取商品分类
 export const getGoodsDetById = params =>get('goods/productDet',params);//通过商品Id获取商品详情
 export const addCart = params =>authPost('member/addCart',params);//添加购物车
-
+export const getCartList = params =>authPost('member/cartList',params);//添加购物车
 export const getMerberInfo = params =>authPost('member/info',params);//获取会员信息
 export const getflowDocList = params =>authPost('doctorFollow/getListByMemberId',params);//我的关注的医生
 export const getflowMecList = params =>authPost('member/followList',params);//我的关注的商家
@@ -45,3 +45,6 @@ export const updateAddress = params => authPost('member/updateAddress',params)//
 export const delAddress = params => authPost('member/delAddress',params)//删除地址
 export const getBillList = params =>authPost('member/memberIncomeAndExpend',params);//账单
 export const getOrderList = params =>authPost('member/orderList',params);//订单
+export const cancelOrder = params =>authPost('member/cancelOrder',params);//取消订单
+export const confirm = params =>authPost('member/confirmOrder',params);//确认收货
+export const addCar = params =>authPost('member/addCart',params);//加入购物车
