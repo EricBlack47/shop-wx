@@ -12,30 +12,34 @@
         class="btn"
         @click="goHome">去首页</van-button>
     </div>
+		<div style="padding-top: 48px;">
+		<van-panel v-for="(cart,index) in cartList" :title="cart.memberGoldname" :key="index">
     <van-checkbox-group class="card-goods"
       v-model="checkedGoods">
       <van-checkbox class="card-goods__item"
-        v-for="item in cartList"
-        :key="item.list.Goodid"
-        :name="item.Goodid">
-        <van-card :title="item.Goodname"
-          :desc="item.Gooddescribe"
-          :num="item.Cartcount"
-          :price="formatPrice(item.GoodPriceaftersale)"
-          :thumb="item.GoodImg">
+			  v-model="item.checked"
+				@click="checkedChange(item)"
+        v-for="item in cart.list"
+        :key="item.productId"
+        :name="item.productId">
+				
+        <van-card :title="item.productName"
+          :num="item.productNum"
+          :price="formatPrice(item.salePrice)"
+          :thumb="item.productImg">
           <div slot="footer"
             class="footer">
             <span class="add"
-              @click.stop="reduceCount(item,item.Cartcount)">
+              @click.stop="reduceCount(item,item.productNum)">
               <van-button class="btn"
                 size="mini">-</van-button>
             </span>
             <span class="input"
               @click.stop="showModal(item)">
-              <span class="input-edit">{{item.Cartcount}}</span>
+              <span class="input-edit">{{item.productNum}}</span>
             </span>
             <span class="reduce"
-              @click.stop="addCount(item,item.Cartcount)">
+              @click.stop="addCount(item,item.productNum)">
               <van-button class="btn"
                 size="mini">+</van-button>
             </span>
@@ -43,31 +47,12 @@
         </van-card>
       </van-checkbox>
     </van-checkbox-group>
-    <van-dialog v-model="modalShow"
-      show-cancel-button
-      :before-close="beforeClose"
-      title="数量修改">
-      <div class="modal-box">
-        <span class="add"
-          @click.stop="reduceEditCount">
-          <van-button class="btn"
-            size="mini">-</van-button>
-        </span>
-        <span class="input">
-          <input type="number"
-            v-model.number="editNum" />
-        </span>
-        <span class="reduce"
-          @click.stop="addEditCount">
-          <van-button class="btn"
-            size="mini">+</van-button>
-        </span>
-      </div>
-    </van-dialog>
+		</van-panel>
+		</div>
     <van-submit-bar class="cart-bar"
       v-if="this.cartList.length"
-      :price="isEdit?undefined:totalPrice"
-      :label="isEdit?'':'合计'"
+      :price="totalPrice"
+      label="合计"
       :button-text="isEdit?'删除':'提交订单'"
       @submit="onSubmit">
       <span @click="selectAll"
@@ -81,12 +66,17 @@
 <script>
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
-import { updateCartCount, delFromCart, getCartList} from '@/api/api';
+import { updateCartCount, delFromCart, getCarList,updateCart} from '@/api/api';
 export default {
   name: 'Cart',
   data() {
     return {
-      cartList: [],
+      cartList: [
+				{
+					list:[]
+				}
+			],
+			totalPrice:0,
       checkedGoods: [],
       checkedAll: false,
       checkedAllMsg: '全选',
@@ -101,18 +91,48 @@ export default {
     this.init();
   },
   methods: {
-    init() {
-			
-      getCartList()
-        .then(result => {
-					console.log(result)
+    init() {		
+      getCarList().then(result => {
           this.cartList = result.result;
-          this.checkedGoods = [];
+          this.setCartTotal()
         })
         .catch(error => {
           console.log(error);
         });
     },
+		setCartTotal(){
+			this.checkedGoods = [];
+			this.totalPrice=0
+			for(var i=0;i<this.cartList.length;i++){
+				var item=this.cartList[i].list;
+				for(var j=0;j<item.length;j++){
+					if(item[j].checked=='1'){
+						item[j].checked=true;
+						this.totalPrice+=item[j].salePrice*item[j].productNum
+						this.checkedGoods.push(item[j].productId)
+					}
+					else{
+						item[j].checked=false;
+					}
+				}
+			}
+			this.totalPrice=this.totalPrice*100;
+		},
+		update(productId, productNum, checked){
+			var cartp = {
+				productId: productId,
+				productNum: productNum,
+				checked: checked==true?"1":"0"
+			}
+			updateCart(cartp).then(res=>{
+				this.setCartTotal()
+			})
+			
+		},
+		checkedChange(item){
+			item.checked=item.checked==true?false:true;
+			this.update(item.productId,item.productNum,item.checked)
+		},
     editCart() {
       this.isEdit = !this.isEdit;
     },
@@ -132,8 +152,8 @@ export default {
         return;
       }
       count--;
-      item.Cartcount = count;
-      this.updateCartCountFun(item.Goodid, count);
+      item.productNum = count;
+      this.update(item.productId,item.productNum,item.checked)
     },
     addCount(item, count) {
       if (!count && count !== 0) {
@@ -151,84 +171,11 @@ export default {
         return;
       }
       count++;
-      item.Cartcount = count;
-      this.updateCartCountFun(item.Goodid, count);
-    },
-    reduceEditCount() {
-      if (!this.editNum && this.editNum !== 0) {
-        Toast({
-          position: 'bottom',
-          message: '数值不正确~'
-        });
-        return;
-      }
-      if (this.editNum <= 1) {
-        Toast({
-          position: 'bottom',
-          message: '不能再少了~'
-        });
-        return;
-      }
-      this.editNum--;
-    },
-    addEditCount() {
-      if (!this.editNum && this.editNum !== 0) {
-        Toast({
-          position: 'bottom',
-          message: '数值不正确~'
-        });
-        return;
-      }
-      if (this.editNum >= this.editGood.Goodcount) {
-        Toast({
-          position: 'bottom',
-          message: '只有这么多了~'
-        });
-        return;
-      }
-      this.editNum++;
-    },
-    showModal(item) {
-      this.modalShow = true;
-      this.editGood = item;
-      let count = item.Cartcount;
-      this.editNum = count;
+      item.productNum = count;
+      this.update(item.productId,item.productNum,item.checked)
     },
     goHome() {
       this.$router.push('/');
-    },
-    beforeClose(action, done) {
-      if (action === 'confirm') {
-        if (!this.editNum) {
-          Toast({
-            position: 'bottom',
-            message: '数值不正确~'
-          });
-          done(false);
-          return;
-        }
-        if (this.editNum > this.editGood.Goodcount) {
-          Toast({
-            position: 'bottom',
-            message: '库存不够了~'
-          });
-          done(false);
-          return;
-        }
-        if (this.editNum < 1) {
-          Toast({
-            position: 'bottom',
-            message: '数量太少了~'
-          });
-          done(false);
-          return;
-        }
-        this.editGood.Cartcount = this.editNum;
-        this.updateCartCountFun(this.editGood.Goodid, this.editNum);
-        done();
-      } else {
-        done();
-      }
     },
     formatPrice(price) {
       return price
@@ -298,19 +245,9 @@ export default {
         this.setOrderGood(orderGood);
         this.$router.push('/Order');
       }
-    },
-    ...mapMutations({
-      setOrderGood: 'SET_ORDERGOOD_MUTATION'
-    })
+    }
   },
   computed: {
-    totalPrice() {
-      let all = 0;
-      this.cartList.forEach(item => {
-        all += this.checkedGoods.indexOf(item.Goodid) !== -1 ? item.GoodPrice * item.Cartcount : 0;
-      });
-      return all * 100;
-    },
     rightText() {
       if (this.cartList.length) {
         return this.isEdit ? '完成' : '编辑';
@@ -339,7 +276,7 @@ export default {
   margin-bottom 120px
 
 .card-goods
-  padding-top 46px
+  padding-top 5px
   padding-bottom 0
   background-color #fff
 

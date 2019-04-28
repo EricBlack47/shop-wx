@@ -100,3 +100,27 @@ export function authPost(url,params){
 	    });
 	});
 }
+
+
+export function upload(url,file){
+	console.log(url)
+	console.log(file)
+	let param = new FormData(); //创建form对象
+  param.append('images',file.file,file.file.name);//通过append向form对象添加数据
+  param.append('chunk','0');//添加form表单中其他数据
+	return new Promise((resolve, reject) => {
+	  axios
+	    .post(url, param,{
+				headers:{
+					'token': token,
+					'Content-Type':'multipart/form-data'
+				}
+			})
+	    .then(res => {
+	      resolve(res.data);
+	    })
+	    .catch(err => {
+	      reject(err.data);
+	    });
+	});
+}

@@ -8,7 +8,7 @@
 				<van-field v-model="username" required clearable label="姓名" placeholder="请输入真实姓名" autosize />
 				<van-field v-model="code" required clearable label="身份证信息" placeholder="请输入真实姓名" autosize />
 			</van-cell-group>
-			<van-uploader :max-size="102400" @oversize="logContent('oversize')" :before-read="beforeRead(1)">
+			<van-uploader :max-size="102400" @oversize="logContent('oversize')" :after-read="afterRead">
 				<van-icon name="photograph" />
 			</van-uploader>
 		</div>
@@ -19,8 +19,15 @@
 	import {
 		Field,
 		Uploader
-	} from 'vant';
+	} from 'vant'; 
+	import {uploadImage,goodsBanner} from '@/api/api';
 	export default {
+		data(){
+			return{
+				username:'',
+				code:''
+			}
+		},
 		methods: {
 			goBack() {
 				this.$router.go(-1);
@@ -28,10 +35,12 @@
 			onRead(file) {
 				console.log(file)
 			},
-			beforeRead(index) {
-				return file => {
-					console.log(index, file);
-				};
+			afterRead(image) { 
+				//console.log(file)
+				uploadImage(image).then(res=>{
+					console.log(res.result)
+					
+				})
 			},
 
 		}
