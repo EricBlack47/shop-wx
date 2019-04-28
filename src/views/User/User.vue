@@ -138,7 +138,7 @@ export default {
 		getMerBerInfo() {
 			var _this=this;
 			getMerberInfo().then(e => {
-				if (e.code == 500||e.code == 401) {
+				/* if (e.code == 500||e.code == 401) {
 					if (!this.userInfo) {
 						this.$router.push('/Login');
 						Dialog.alert({
@@ -148,7 +148,7 @@ export default {
 						});
 					}
 					return
-				}                        
+				}           */             
 				_this.userInfo = e.result;
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)

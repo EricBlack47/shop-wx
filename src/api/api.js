@@ -1,4 +1,5 @@
 
+
 import { get, post, authPost,upload} from '@/util/http';
 
 export const indexList=()=>get("content/list/0");
@@ -38,6 +39,7 @@ export const getflowMecList = params =>authPost('member/followList',params);//�
 export const getflowList = params =>authPost('member/getListByDoctorMemberId',params);//关注我的
 export const getmyAsk = params =>authPost('comments/getListByMemberId',params);//我的提问
 export const getSuggestion = params =>authPost('comments/addContent',params);//投诉建议
+
 export const modiPassword = params => authPost('member/checkPassword',params);//检查密码
 export const updataPassword = params => authPost('member/update',params);//更新密码
 export const getAggrement = params => post('agreement/getAgreement',params);//获取用户协议
@@ -48,3 +50,6 @@ export const delAddress = params => authPost('member/delAddress',params)//删除
 export const getBillList = params =>authPost('member/memberIncomeAndExpend',params);//账单
 export const getOrderList = params =>authPost('member/orderList',params);//订单
 export const uploadImage = file =>upload('member/imgaeUpload1',file);
+export const cancelOrder = params =>authPost('member/cancelOrder',params);//取消订单
+export const confirm = params =>authPost('member/confirmOrder',params);//确认收货
+export const addCar = params =>authPost('member/addCart',params);//加入购物车
