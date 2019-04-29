@@ -51,9 +51,11 @@
 				defaultAddress: {}
 			};
 		},
+		created() {
+			var id = this.$router.query.productId;
+			console.log(id)
+		},
 		mounted() {
-			var productId = this.$router.query.productId
-			console.log(productId)
 			if (!this.orderGood.length) {
 				this.$router.push('/');
 			} else {
@@ -143,7 +145,6 @@
 				return price.toFixed(2);
 			},
 			goAddressList() {
-				this.setAddressList(this.addressList);
 				this.$router.push('/AddressList');
 			},
 			goBack() {
