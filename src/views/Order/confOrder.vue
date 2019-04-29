@@ -54,7 +54,8 @@
 			};
 		},
 		created() {
-			var productId = JSON.stringify(this.$route.query.productId)
+			var productId = this.$route.query.productId
+		  
 			console.log(productId)
 			this.orderDetail(productId)
 		},
@@ -91,7 +92,10 @@
 		methods: {
 			//获取订单列表
 			orderDetail(productId){
-				orderDetail(productId).then(res =>{
+				var id ={
+					productId:productId
+				}
+				orderDetail(id).then(res =>{
 				console.log(res)			
 			})
 			},

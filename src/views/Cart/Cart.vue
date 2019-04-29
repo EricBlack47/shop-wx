@@ -241,7 +241,9 @@ export default {
             return item;
           }
         });
-				
+				addOrder(query).then(res =>{
+					this.$router.push('/confOrder');
+				})
        
       }
     }
