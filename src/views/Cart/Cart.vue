@@ -68,7 +68,7 @@
 <script>
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
-import { updateCartCount, delFromCart, getCarList,updateCart,delCart} from '@/api/api';
+import { updateCartCount, delFromCart, getCarList,updateCart,delCart,addOrder} from '@/api/api';
 export default {
   name: 'Cart',
   data() {
@@ -241,8 +241,8 @@ export default {
             return item;
           }
         });
-        this.setOrderGood(orderGood);
-        this.$router.push('/confOrder');
+				
+       
       }
     }
   },

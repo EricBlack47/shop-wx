@@ -17,12 +17,12 @@
 					</div>
 				</div>
 			</div>
-			<van-panel title="商品" v-for="item in orderGoodList" :key="item.Goodid" class="allGood">
+			<van-panel title="商品" v-for="(order,oinderx) in orders" :key="oinderx" class="allGood">
 				<div class="allGood-item">
-					<van-card :title="item.Goodname" :desc="item.Gooddescribe" :num="item.Cartcount" :price="item.GoodPriceaftersale"
-					 :thumb="item.GoodImg" />
+					<van-card :title="order.productName" :desc="order.descript" :num="order.productNum" :price="order.salePrice"
+					 :thumb="order.productImg" />
 					<van-cell-group>
-						<van-cell title="合计" style="color:#f44" :value="'￥'+formatPrice(item.GoodPriceaftersale*item.Cartcount+item.Gooddealprice)" />
+						<van-cell title="合计" style="color:#f44" :value="'￥'+formatPrice(order.salePrice*order.productNum)" />
 					</van-cell-group>
 				</div>
 			</van-panel>
@@ -38,11 +38,13 @@
 		delFromCart,
 		buyNow,
 		getCartProduct,
-		getCheckedCartList
+		getCheckedCartList,
+	  orderDetail,
 	} from '@/api/api';
 	export default {
 		data() {
 			return {
+				orders:[],
 				orderGoodList: [],
 				totalMoney: 0,
 				checked: true,
@@ -52,8 +54,9 @@
 			};
 		},
 		created() {
-			var id = this.$router.query.productId;
-			console.log(id)
+			var productId = JSON.stringify(this.$route.query.productId)
+			console.log(productId)
+			this.orderDetail(productId)
 		},
 		mounted() {
 			if (!this.orderGood.length) {
@@ -85,23 +88,13 @@
 					});
 			}
 		},
-		computed: {
-			// orderGoodList() {
-			//   this.orderGood.forEach(item => {
-			//     item.message = '';
-			//   });
-			//   return this.orderGood;
-			// },
-			// totalMoney() {
-			//   var total = 0;
-			//   this.orderGoodList.forEach(item => {
-			//     total += item.GoodPriceaftersale * item.Cartcount + item.Gooddealprice;
-			//   });
-			//   return total * 100;
-			// },
-			// ...mapGetters(['orderGood', 'addressId'])
-		},
 		methods: {
+			//获取订单列表
+			orderDetail(productId){
+				orderDetail(productId).then(res =>{
+				console.log(res)			
+			})
+			},
 			onSubmit() {
 				var idStr = '';
 				var countStr = '';
