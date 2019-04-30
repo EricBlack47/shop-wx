@@ -74,7 +74,7 @@
 				this.chosenAddressId = id;
 			},
 			goBack() {
-				this.$router.push('/settings');
+				this.$router.go(-1);
 			},
 		}
 	};

@@ -17,7 +17,8 @@
 <script>
 	import {
 		hospitalBanner,
-		hospitalList
+		hospitalList,
+		hospitalDet
 	} from '@/api/api';
 	export default {
 		data() {
