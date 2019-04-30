@@ -99,18 +99,11 @@
 					productNum: 1,
 					memberGoldId: this.goods.memberGoldId
 				}
-				addCar(query).then(res => {
-					
+				addCar(query).then(res => {					
 					Dialog.alert({
 					  message: '已加入购物车'
-					}).then(() => {
-					  this.$router.push({
-					  	path: '/Cart',
-					  	query: {
-					  		productId: this.goods.productId
-					  	}
-					  });
-					});
+                        })
+				
 				})
 			},
 			getGoodsDetByid(productId) {

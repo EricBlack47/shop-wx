@@ -63,6 +63,8 @@ export const buyNow = params =>authPost('member/buyNowIntr',params);//商品详�
 export const orderDetail = params =>authPost('member/orderDetail',params);//获取订单详情
 
 export const hospitalBanner=()=>get("content/list/1");//医院轮播
+export const beautyBanner = () =>get('content/list/2');//美容医院轮播
+export const mouthBanner = () =>get('content/list/3');//口腔医院轮播
 export const hospitalList = params =>post('hospital/list',params)//医院列表
 export const sectionBanner=()=>get("content/list/4");//医生轮播
 export const sectionList = params => post('sectionCat/search',params)//科室列表

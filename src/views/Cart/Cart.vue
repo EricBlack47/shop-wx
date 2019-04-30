@@ -185,22 +185,25 @@ export default {
     formatPrice(price) {
       return price
     },
-    selectAll() {
+    selectAll() {	
       if (this.checkedAll) {
-        for (var i = 0; i < this.cartList.length; i++) {
-					var item=this.cartList[i].list;
-						for(var j=0;j<item.length;j++){
-							item[j].checked=true;
-							this.totalPrice+=(item[j].salePrice*item[j].productNum)*100
-							this.checkedGoods.push(item[j].productId)         
+				this.checkedGoods = [];
+			  this.totalPrice=0;
+				 for (var i = 0; i < this.cartList.length; i++) {
+				  	var item=this.cartList[i].list;
+				  		for(var j=0;j<item.length;j++){
+				  			item[j].checked=true;
+				  			this.totalPrice+=(item[j].salePrice*item[j].productNum)*100
+				  			this.checkedGoods.push(item[j].productId)         
+				      }
 				    }
-				  }
-        this.checkedAllMsg = '全不选';
-      } else {
-        this.checkedGoods = [];
-				this.totalPrice=0;
-        this.checkedAllMsg = '全选';
-      }
+				  this.checkedAllMsg = '全不选';
+				}
+				 else {			  
+				  this.checkedGoods = [];
+				  this.totalPrice=0;
+					this.checkedAllMsg = '全选';
+      }      
     },
     onSubmit() {
       if (this.isEdit) {
