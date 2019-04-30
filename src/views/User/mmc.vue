@@ -10,8 +10,8 @@
 
     </div>
 	<div style="padding-top: 46px;">
-		<van-cell title="我的MMC" icon="exchange" :value="userInfo.overProfit" is-link to="/myMoney"  />
-		<van-cell title="总收入" icon="exchange" :value="userInfo.incomeMoney" is-link to="/myMoney"  />
+		<van-cell title="我的MMC" icon="gem-o" :value="userInfo.overProfit" is-link to="/myMoney"  />
+		<van-cell title="总收入" icon="balance-o" :value="userInfo.incomeMoney" is-link to="/myMoney"  />
 		<van-cell title="总消费" icon="exchange" :value="userInfo.consumeProfit" is-link to="/myMoney"  />
 		<van-cell title="今日返现" icon="exchange" :value="tadayMoney" is-link to="/myMoney"  />
 		<van-cell title="手续费" icon="exchange" :value="userInfo.serviceCharge" is-link to="/myMoney"  />

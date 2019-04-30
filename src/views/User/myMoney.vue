@@ -3,12 +3,12 @@
 		<div><van-nav-bar title="我的资产" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
 		<div  style="padding-top: 46px;">
 			<van-cell-group>
-				<van-cell title="总资产" icon="exchange" :value="userInfo.total" is-link to="/myMoney"  />
-				<van-cell title="余额     ----可提现" icon="gold-coin"  :value="userInfo.overMoney" is-link to="/lastMoney"  />
-				<van-cell title="MMC      ---可使用" icon="gift" :value="userInfo.overProfit" is-link to="/mmc"  />
-				<van-cell title="积分     ----不可使用" icon="gift" :value="userInfo.points" is-link to="/totalAssets"  />
-				<van-cell title="充值" icon="gift" is-link to="/recharge"  />
-				<van-cell title="提现" icon="gift" is-link to="/withdrawal"/>
+				<van-cell title="总资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney"  />
+				<van-cell title="余额     ----可提现" icon="gold-coin-o"  :value="userInfo.overMoney" is-link to="/lastMoney"  />
+				<van-cell title="MMC      ---可使用" icon="gem-o" :value="userInfo.overProfit" is-link to="/mmc"  />
+				<van-cell title="积分     ----不可使用" icon="stop-circle-o" :value="userInfo.points" is-link to="/totalAssets"  />
+				<van-cell title="充值" icon="bill-o" is-link to="/recharge"  />
+				<van-cell title="提现" icon="refund-o" is-link to="/withdrawal"/>
 			</van-cell-group>
 		</div>
 	</div>
