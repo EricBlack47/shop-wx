@@ -1,6 +1,9 @@
 <template>
   <div class="cart">
     <van-nav-bar title="购物车"
+		  left-text="返回"
+		  left-arrow
+	  	@click-left="goBack"
       :right-text="rightText"
       @click-right="editCart"
       :z-index="10"
@@ -21,8 +24,7 @@
 				@click="checkedChange(item)"
         v-for="item in cart.list"
         :key="item.productId"
-        :name="item.productId">
-				
+        :name="item.productId">			
         <van-card :title="item.productName"
           :num="item.productNum"
           :price="formatPrice(item.salePrice)"
@@ -66,7 +68,7 @@
 <script>
 import { Toast, Dialog } from 'vant';
 import { mapGetters, mapMutations } from 'vuex';
-import { updateCartCount, delFromCart, getCarList,updateCart,delCart} from '@/api/api';
+import { updateCartCount, delFromCart, getCarList,updateCart,delCart,addOrder} from '@/api/api';
 export default {
   name: 'Cart',
   data() {
@@ -100,6 +102,9 @@ export default {
           console.log(error);
         });
     },
+		goBack() {
+			this.$router.go(-1);
+		},	
 		setCartTotal(){
 			this.checkedGoods = [];
 			this.totalPrice=0
@@ -236,8 +241,8 @@ export default {
             return item;
           }
         });
-        this.setOrderGood(orderGood);
-        this.$router.push('/Order');
+				
+       
       }
     }
   },

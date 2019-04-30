@@ -19,14 +19,6 @@
 					</div>
 					<div class="good-desc">{{goods.subTitle}}</div>
 				</van-cell>
-				<!-- <van-cell class="goods-yunfei">
-          <van-row>
-            <van-col span="12"
-              class="goods-yun">运费：{{good.Gooddealprice===0?'免运费':good.Gooddealprice+'元'}}</van-col>
-            <van-col span="12"
-              class="goods-yun">剩余：{{good.Goodcount}}</van-col>
-          </van-row>
-        </van-cell> -->
 			</van-cell-group>
 			<van-cell-group class="goods-cell-group dianpu">
 				<van-cell value="商家店铺" icon="shop" is-link @click="goMerchant">
@@ -68,7 +60,8 @@
 	import {
 		addToCart,
 		getGoodsDetById,
-		addCar
+		addCar,
+		buyNow
 	} from '@/api/api.js';
 	export default {
 		data() {
@@ -85,11 +78,16 @@
 		},
 		mounted() {
 			var productId = this.$route.query.productId
+			console.log(productId)
 			this.getGoodsDetByid(productId);
 		},
 		methods: {
-			goBuy(){
-				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
+			goBuy(goods){
+				var query = {memberGoldId:this.goods.memberGoldId};
+				buyNow(query).then(res => {
+     			this.$router.push({path:'/confOrder', query:{productId:this.goods.productId}});
+					console.log(this.goods.productId)
+				})				
 			},
 			goMerchant(goods){
 				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
@@ -125,41 +123,12 @@
 					this.descript.replace(/alt/g, "width='100%'")
 				})
 			},
-
-			onBuyClicked() {
-				var obj = Object.assign({
-					Cartcount: this.count
-				}, this.goods);
-				this.setOrderGood([obj]);
-				this.$router.push('/Order');
-			},
-			//     onAddCartClicked() {
-			//       var params = {
-			//         id: this.goods.productId,
-			//         num: this.count
-			//       };
-			//       addToCart(params)
-			//         .then(result => {
-			//           console.log(result);
-			//           this.showBase = false;
-			//           this.$toast.success('添加成功');
-			//         })
-			//         .catch(error => {
-			//           console.log(error);
-			//         });
-			//     },
 			changeSwipe(index) {
 				this.indexPage = index;
 			},
 			getCount(value) {
 				this.count = value;
 			},
-			//     showSkuModal() {
-			//       this.showBase = true;
-			//     },
-			//     scrollToDetail() {
-			//       this.$refs.detail.scrollIntoView();
-			//     },
 			goBack() {
 				this.$router.go(-1);
 			},
