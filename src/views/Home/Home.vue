@@ -6,97 +6,73 @@
 				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)"><img :src="item.picUrl" /></van-swipe-item>
 			</van-swipe>
 		</div>
-		<div style="background-color: #FFFFFF;">
-				<van-row type="flex" justify="space-around">
-				<van-col span="4">
-					<van-row>
-						
-					</van-row>	
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;"></div>
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+		<div style="background-color: #FFFFFF;  margin-bottom :6px">
+			<van-row type="flex" justify="space-around">
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">医院</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">口腔</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">美容</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">科室</span></van-row>
 				</van-col>
-		
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">药店</span></van-row>
 				</van-col>
 			</van-row>
+			<div style="height: 2px;width: 100%;color: #aaaaaa;border-bottom: #aaaaaa solid 1px;"></div>
 			<van-row type="flex" justify="space-around">
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">找医生</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">农产品</span></van-row>
 				</van-col>
-	
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">美妆个护</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">精品酒水</span></van-row>
 				</van-col>
-				<van-col span="4">
-					<van-row>
-						<div style="width: 80upx;height: 80upx;"><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" /></div>
-						
-					</van-row>	
-					<van-row>
-						<span style="display: inline-block;">医院</span>
-					</van-row>
+				<van-col span="5">
+					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
+						<img @click="goPerson" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="http://assets.mtlyn.com/yhldFX.jpg" alt="用户" />
+					</div>
+					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">珠宝配饰</span></van-row>
 				</van-col>
 			</van-row>
 		</div>
-		
 
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/more/1"><scrollX scrollDir="scrollX" class="scroll-hot" :data="hotGoods"></scrollX></good-item>
 		<good-item title="会员医院" describe="预约挂号" moreRoute="/more/1"><scrollX scrollDir="scrollX" class="scroll-hot" :data="hotGoods"></scrollX></good-item>
@@ -150,7 +126,7 @@
 </template>
 
 <script>
-	import icons from '@vant/icons';
+import icons from '@vant/icons';
 import goodItem from '@/components/goodItem/goodItem';
 import scrollX from '@/components/scroll/scrollX';
 import backgroundImg from '@/components/backgroundImg/backgroundImg';
@@ -167,13 +143,7 @@ export default {
 			hotGoods: [],
 			saleGroupGoods: [],
 			discoverGoods: [],
-			icons:[
-				{icon:"fire-o"},
-				{},
-				{},
-				{},
-				{},
-			]
+			icons: [{ icon: 'fire-o' }, {}, {}, {}, {}]
 		};
 	},
 	mounted() {
@@ -215,6 +185,9 @@ export default {
 		}
 	},
 	methods: {
+		goPerson() {
+			this.$router.push({ path: '/Good', query: { productId: 12321122 } });
+		},
 		goDetail(item) {
 			console.log(item);
 			this.$router.push({ path: '/Good', query: { productId: item.productId } });

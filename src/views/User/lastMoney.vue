@@ -10,8 +10,8 @@
 
     </div>
 	<div style="padding-top: 46px;">
-		<van-cell title="我的余额" icon="exchange" :value="userInfo.overMoney" is-link to="/myMoney"  />
-		<van-cell title="总收入" icon="exchange" :value="userInfo.balance" is-link to="/myMoney"  />
+		<van-cell title="我的余额" icon="gold-coin-o" :value="userInfo.overMoney" is-link to="/myMoney"  />
+		<van-cell title="总收入" icon="balance-o" :value="userInfo.balance" is-link to="/myMoney"  />
 		<van-cell title="总消费" icon="exchange" :value="userInfo.consumeMoney" is-link to="/myMoney"  />
 	</div>
 	<van-tabs>

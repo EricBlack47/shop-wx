@@ -10,7 +10,6 @@
 			<div class="content" >
 				<img  style="width: 250px;margin: auto auto;" v-for="img in imageList" v-lazy="img" >
 				<div class="qrcode" >
-					
 					<span class="tip">扫码体验医互链点</span>
 				</div>
 				<div class="desc">
