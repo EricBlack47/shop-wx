@@ -136,6 +136,8 @@
 		}
 	};
 </script>
+
+
 	<style lang="stylus" scoped>
 .good
   padding-bottom 50px

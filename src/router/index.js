@@ -216,7 +216,7 @@ export default new Router({
       name: 'Cart',
       component: Cart,
 			 meta: {
-			 
+
 			}
     },
     {
