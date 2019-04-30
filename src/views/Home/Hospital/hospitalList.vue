@@ -47,7 +47,13 @@
 				}
 				hospitalList(query).then(res =>{
 					this.items = res.result.list
-					console.log(res)
+					for (var i = 0; i < this.items.length; i++) {
+						this.items[i].image = this.items[i].image.split(',')[0];
+						this.items[i].descript = this.items[i].descript
+							.replace(/<[^>]+>|&[^>]+;/g, '')
+							.trim()
+							.substring(0, 60);
+					}	
 				})
 			},
 			goDet(item){
