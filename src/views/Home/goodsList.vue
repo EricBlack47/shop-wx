@@ -22,7 +22,8 @@
 			};
 		},
 		mounted() {
-			this.getGoodByCid(1211)
+			var cid = this.$route.query.cid
+			this.getGoodByCid(cid)
 		},
 		methods: {
 			getGoodByCid(cid) {
