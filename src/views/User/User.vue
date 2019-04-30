@@ -34,6 +34,11 @@
 				</van-row>
 			</van-col>
 		</van-row>
+		<van-swipe :autoplay="3000" indicator-color="white">
+			<div v-for="(newss,key) in userInfo.news" :key="key">
+				<van-swipe-item>{{newss.title}}</van-swipe-item>
+			</div>
+		</van-swipe>
 		<van-cell-group class="user-group"><van-cell title="全部订单" icon="bookmark-o"  /></van-cell-group>
 		<van-row class="user-link">
 			<div @click="goList1()">

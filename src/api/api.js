@@ -67,3 +67,6 @@ export const hospitalList = params =>post('hospital/list',params)//医院列表
 export const sectionBanner=()=>get("content/list/4");//医生轮播
 export const sectionList = params => post('sectionCat/search',params)//科室列表
 export const sectionAndDoctor = params => post('section/searchSectionAndDoctor',params)//医生和科室名
+export const getDoctorList = params => post('doctor/search',params)//名医工作室
+export const getHospitalList = params => post('hospital/list',params)//会员医院
+export const getAllList = params => post('content/panelItem',params)//获取所有专题
