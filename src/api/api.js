@@ -61,3 +61,9 @@ export const getMecList = params =>authPost('member/memberIncome',params);//获�
 export const realName = params =>authPost('member/updateMine',params);//实名认证
 export const buyNow = params =>authPost('member/buyNowIntr',params);//商品详情页-立即购买
 export const orderDetail = params =>authPost('member/orderDetail',params);//获取订单详情
+
+export const hospitalBanner=()=>get("content/list/1");//医院轮播
+export const hospitalList = params =>post('hospital/list',params)//医院列表
+export const sectionBanner=()=>get("content/list/4");//医生轮播
+export const sectionList = params => post('sectionCat/search',params)//科室列表
+export const sectionAndDoctor = params => post('section/searchSectionAndDoctor',params)//医生和科室名

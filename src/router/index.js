@@ -216,7 +216,7 @@ export default new Router({
       name: 'Cart',
       component: Cart,
 			 meta: {
-			  fullScreen: true
+
 			}
     },
     {
@@ -224,7 +224,7 @@ export default new Router({
       name: 'User',
       component: User,
 			 meta: {
-			  fullScreen: true
+			 
 			}
     },
     {
