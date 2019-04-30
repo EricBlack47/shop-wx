@@ -38,24 +38,194 @@ const userRead = () => import('@/views/User/settings/userRead');
 const yihuliandian = () => import('@/views/User/settings/yihuliandian');
 const Add = () => import('@/views/AddressList/Add');
 const aggrement = () => import('@/views/User/settings/aggrement');
-const confOrder = () => import('@/views/Order/confOrder')
+const confOrder = () => import('@/views/Order/confOrder');
+const doctorDet = () => import('@/views/Home/Doctor/doctorDet');//医生详情
+const doctorList = () => import('@/views/Home/Doctor/doctorList');//医生列表
+const drogStore = () => import('@/views/Home/Drogstore/drogStore');//药店
+const famousDoctor = () => import('@/views/Home/FamousDoctor/famousDoctor');//名医工作室
+const goodsStore = () => import('@/views/Home/GoodsStore/goodsStore');//海外好货
+const healthyDet = () => import('@/views/Home/Healthy/healthyDet');//养生专题详情
+const healthyList = () => import('@/views/Home/Healthy/healthyList');//养生专题
+const beauty = () => import('@/views/Home/Hospital/beauty');//美容医院
+const hospitalDet = () => import('@/views/Home/Hospital/hospitalDet');//医院详情
+const hospitalList = () => import('@/views/Home/Hospital/hospitalList');//医院列表
+const mouth = () => import('@/views/Home/Hospital/mouth');//口腔医院
+const memberHospital = () => import('@/views/Home/MemberHospital/memberHospital');//会员医院
+const newsDet = () => import('@/views/Home/News/newsDet');//公告详情
+const newsList = () => import('@/views/Home/News/newsList');//公告列表
+const sectionDet = () => import('@/views/Home/Sections/sectionDet');//科室详情
+const sectionList = () => import('@/views/Home/Sections/sectionList');//科室列表
+const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//发现好店
+const goodsList = () => import('@/views/Home/goodsList');//商品列表
+
 Vue.use(Router);
 export default new Router({
   routes: [
+		{
+		  path: '/',
+		  name: 'Home',
+		  component: Home
+		},
     {
-      path: '/',
-      name: 'Home',
-      component: Home
+      path: '/doctorDet',
+      name: 'doctorDet',
+      component: doctorDet,
+			 meta: {
+			  fullScreen: true
+			}
     },
+		{
+		  path: '/doctorList',
+		  name: 'doctorList',
+		  component: doctorList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/drogStore',
+		  name: 'drogStore',
+		  component: drogStore,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/famousDoctor',
+		  name: 'famousDoctor',
+		  component: famousDoctor,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/goodsStore',
+		  name: 'goodsStore',
+		  component: goodsStore,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/healthyDet',
+		  name: 'healthyDet',
+		  component: healthyDet,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/healthyList',
+		  name: 'healthyList',
+		  component: healthyList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		
+		{
+		  path: '/beauty',
+		  name: 'beauty',
+		  component: beauty,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/hospitalDet',
+		  name: 'hospitalDet',
+		  component: hospitalDet,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/hospitalList',
+		  name: 'hospitalList',
+		  component: hospitalList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/mouth',
+		  name: 'mouth',
+		  component: mouth,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/memberHospital',
+		  name: 'memberHospital',
+		  component: memberHospital,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/newsDet',
+		  name: 'newsDet',
+		  component: newsDet,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/newsList',
+		  name: 'newsList',
+		  component: newsList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/sectionDet',
+		  name: 'sectionDet',
+		  component: sectionDet,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/sectionList',
+		  name: 'sectionList',
+		  component: sectionList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/titleGoods',
+		  name: 'titleGoods',
+		  component: titleGoods,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/goodsList',
+		  name: 'goodsList',
+		  component: goodsList,
+			 meta: {
+			  fullScreen: true
+			}
+		},
     {
       path: '/Cart',
       name: 'Cart',
-      component: Cart
+      component: Cart,
+			 meta: {
+			  fullScreen: true
+			}
     },
     {
       path: '/User',
       name: 'User',
-      component: User
+      component: User,
+			 meta: {
+			  fullScreen: true
+			}
     },
     {
       path: '/Login',
