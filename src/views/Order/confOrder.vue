@@ -17,12 +17,12 @@
 					</div>
 				</div>
 			</div>
-			<van-panel title="商品" v-for="(order,oinderx) in orders" :key="oinderx" class="allGood">
+			<van-panel title="商品" v-for="(item,index) in orderGoodList" :key="index" class="allGood">
 				<div class="allGood-item">
-					<van-card :title="order.productName" :desc="order.descript" :num="order.productNum" :price="order.salePrice"
-					 :thumb="order.productImg" />
+					<van-card :title="item.productName" :num="item.productNum" :price="item.salePrice"
+					 :thumb="item.productImg" />
 					<van-cell-group>
-						<van-cell title="合计" style="color:#f44" :value="'￥'+formatPrice(order.salePrice*order.productNum)" />
+						<van-cell title="合计" style="color:#f44" :value="'￥'+formatPrice(item.salePrice*item.productNum)" />
 					</van-cell-group>
 				</div>
 			</van-panel>
@@ -33,13 +33,14 @@
 
 <script>
 	import {
-		getAddress,
+		getAddressList,
 		createOrder,
 		delFromCart,
 		buyNow,
 		getCartProduct,
 		getCheckedCartList,
-	  orderDetail,
+		addOrder,
+	    orderDetail,
 	} from '@/api/api';
 	export default {
 		data() {
@@ -50,32 +51,31 @@
 				checked: true,
 				addressList: [],
 				hasDefaultAddress: false,
-				defaultAddress: {}
+				defaultAddress: {},
+				addressId:''
 			};
 		},
 		created() {
-			var productId = this.$route.query.productId
-		  
-			console.log(productId)
-			this.orderDetail(productId)
+			var productId = this.$route.query.productId		  
+			this.getOrderDetail(productId)
 		},
 		mounted() {
 			if (!this.orderGood.length) {
 				this.$router.push('/');
 			} else {
-				getAddress()
+				getAddressList()
 					.then(result => {
-						this.addressList = result.data;
+						this.addressList = result.result;
 						if (this.addressId) {
 							result.data.forEach(item => {
-								if (item.Addressid === this.addressId) {
+								if (item.addressId === this.addressId) {
 									this.defaultAddress = item;
 									this.hasDefaultAddress = true;
 									return;
 								}
 							});
 						} else {
-							result.data.forEach(item => {
+							result.result.forEach(item => {
 								if (item.Isdefault === 1) {
 									this.defaultAddress = item;
 									this.hasDefaultAddress = true;
@@ -91,13 +91,20 @@
 		},
 		methods: {
 			//获取订单列表
-			orderDetail(productId){
-				var id ={
-					productId:productId
+			getOrderDetail(productId=null){
+				if (productId) {
+					//从立即购买提交订单
+					getCartProduct({
+						productId: productId
+					}).then(res=>{
+						this.orderGoodList.push(res.result)
+					})
+				} else {
+					//从购物车提交订单
+					getCheckedCartList().then(res=>{
+						this.orderGoodList=res.result
+					})
 				}
-				orderDetail(id).then(res =>{
-				console.log(res)			
-			})
 			},
 			onSubmit() {
 				var idStr = '';
@@ -105,8 +112,8 @@
 				var idArr = [];
 				var countArr = [];
 				for (let i = 0; i < this.orderGood.length; i++) {
-					idArr.push(this.orderGood[i].Goodid);
-					countArr.push(this.orderGood[0].Cartcount);
+					idArr.push(this.orderGood[i].productId);
+					countArr.push(this.orderGood[0].productNum);
 				}
 				idStr = '(' + idArr.toString() + ')';
 				countStr = '(' + countArr.toString() + ')';
@@ -116,7 +123,7 @@
 					addressId: this.defaultAddress.Addressid,
 					totalMoney: this.totalMoney
 				};
-				createOrder(obj)
+				addOrder(obj)
 					.then(result => {
 						console.log(result);
 						this.$toast.success('付款成功~');

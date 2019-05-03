@@ -78,7 +78,6 @@
 		},
 		mounted() {
 			var productId = this.$route.query.productId
-			console.log(productId)
 			this.getGoodsDetByid(productId);
 		},
 		methods: {
