@@ -86,11 +86,11 @@
 		</good-item>
 		<good-item title="会员医院" describe="名医问诊" moreRoute="/memberHospital">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(doctor, index) in HosList" class="swipe-item" :key="index" @click="goDetail(item)">
-					<van-swipe-item v-for="(item, index) in doctor" class="swipe-item" :key="index" @click="goDetail(item)">
+				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goDetail(item)">
+					<div v-for="(item, index) in doctor" class="swipe-item" :key="index" @click="goDetail(item)">
 						<div><img :src="item.image" style="width: 175px;height: 120px;margin-right: 5px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.hospitalName }}</span>
-					</van-swipe-item>
+					</div>
 				</van-swipe-item>
 			</van-swipe>
 		</good-item>
@@ -122,14 +122,14 @@
 			</van-row>
 		</div>
 		<div v-if="contentArticle.length > 0">
-			<good-item :title="contentArticle[0].name" describe="养生" moreRoute="/more/1">
+			<good-item :title="contentArticle[0].name" describe="养生" moreRoute="/healthyList">
 				<div><img style="width: 375px;height: 140px;" :src="contentArticle[0].items[0].picUrl" /></div>
 				<span style="display: inline-block;">{{ articleTitle }}</span>
 			</good-item>
 		</div>
 		<div  style="margin-bottom: 6px;" v-for="(item, i) in contentNow" :key="i" v-if="contentNow.length > 0">
-			<good-item :title="item.name" moreRoute="/more/1">
-				<div style="width: 118px; overflow: hidden;float: left;" v-for="(product, index) in item.items" :key="index" @click="showGood(item)">
+			<good-item :title="item.name" >
+				<div style="width: 118px; overflow: hidden;float: left;" v-for="(product, index) in item.items" :key="index" @click="goGoodsDetail(product.productId)">
 					<div><img :src="product.picUrl" style="width: 118px;height: 120px;margin-right: 2px;" /></div>
 					<div style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;height: 40px;overflow: hidden;">
 						<span style="display: inline-block;text-align: center;margin: 0 auto;overflow: hidden;">
@@ -137,11 +137,11 @@
 						</span>
 					</div>
 					<div>
-						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ product.salePrice }}</span>
+						<span style="display: inline-block;text-align: center;margin: 0 auto;">售价:${{ product.salePrice }}</span>
 					</div>
-					<div>
+					<!-- <div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ product.salePrice + 20 }}</span>
-					</div>
+					</div> -->
 				</div>
 			</good-item>
 		</div>
@@ -188,7 +188,8 @@ export default {
 			contentList: [], //列表专题
 			contentNow: [], //直接显示专题
 			contentArticle: [], //商品文章专题
-			HosList: [], //会员医院
+			hosList: [], //会员医院
+			ss:[],
 			GoodStore: [],
 			GoodStoreImg: undefined,
 			//首页导航滑动
@@ -202,6 +203,9 @@ export default {
 	},
 	created() {
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		this.getDoctorList();
+		this.getHospitalList();
+		this.getAllList();
 	},
 	mounted() {
 		indexList().then(res => {
@@ -223,9 +227,7 @@ export default {
 				this.discoverGoods = result.data;
 			})
 			.catch(error => {});
-		this.getDoctorList();
-		this.getHospitalList();
-		this.getAllList();
+		
 	},
 	components: {
 		goodItem,
@@ -245,6 +247,9 @@ export default {
 		}
 	},
 	methods: {
+		goGoodsDetail(e){
+				this.$router.push({path:'/Good',query:{productId:e}});
+		},
 		/* 获取所有列表 */
 		getAllList() {
 			var _this = this;
@@ -264,6 +269,8 @@ export default {
 		/* 获取名医列表 */
 		getHospitalList() {
 			var _this = this;
+			var lia=[];
+			 
 			var query = {
 				page: 1,
 				size: 100,
@@ -280,10 +287,15 @@ export default {
 						for (var j = 0; j < temp.length; j++) {
 							temp[j].image = temp[j].image.split(',')[0];
 						}
-						this.HosList.push(temp);
+						
+						this.ss.push(temp);
+						// lia.push(temp)
 					}
 				}
 			});
+			// console.log("=++++=>",this.HosList) 
+			// console.log(lia)
+			// this.ss.push(123);
 		},
 		/* 获取名医列表 */
 		getDoctorList() {
@@ -300,10 +312,14 @@ export default {
 					if (sec == null) sec = [];
 					var len = sec.length;
 					var lineNum = len % 3 === 0 ? len / 3 : Math.floor(len / 3 + 1);
+					console.log("======================")
 					for (var i = 0; i < lineNum; i++) {
 						var temp = sec.slice(i * 3, i * 3 + 3);
-						_this.docList.push(temp);
+						console.log("==>",_this.docList,lineNum,i)
+						// _this.docList.push(temp);
+						console.log("*****",lineNum)
 					}
+					console.log("---===-----"+	_this.docList)
 				}
 			});
 		},
