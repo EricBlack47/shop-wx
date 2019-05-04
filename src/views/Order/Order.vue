@@ -18,11 +18,9 @@
           <div address="address-top">
             <van-icon name="location" />
             <span class="user-info">{{hasDefaultAddress?defaultAddress.Name:'添加收货地址'}}</span>
-            <span class="phonenum"
-              v-if="hasDefaultAddress">{{defaultAddress.Phonenum}}</span>
+            <span class="phonenum" v-if="hasDefaultAddress">{{defaultAddress.Phonenum}}</span>
           </div>
-          <div class="address-bottom"
-            v-if="hasDefaultAddress">
+          <div class="address-bottom" v-if="hasDefaultAddress">
             <div class="address-info">{{defaultAddress.Address}}{{defaultAddress.AddressDetail}}</div>
           </div>
         </div>

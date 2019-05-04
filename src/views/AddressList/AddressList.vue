@@ -19,10 +19,13 @@
 			return {
 				address: [],
 				chosenAddressId: '',
-				AddressId:''
+				AddressId:'',
+				checked:0,
 			};
 		},
 		created() {
+			var num = this.$route.query.checked
+			this.checked = num
 			this.getAddressList()
 		},
 		methods: {
@@ -57,8 +60,14 @@
 				});					
 			},
 		
-			onSelect() {
+			onSelect(item) {
 				this.setAddressId(this.chosenAddressId)
+				var adrr = item;
+				if(this.checked==1){
+					localStorage.setItem("address",JSON.stringify(adrr))
+					this.$router.go(-1);
+					return;
+				}	
 			},
 			setAddressId() {
 				this.AddressId = this.address.addressId

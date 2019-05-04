@@ -38,7 +38,8 @@ const userRead = () => import('@/views/User/settings/userRead');
 const yihuliandian = () => import('@/views/User/settings/yihuliandian');
 const Add = () => import('@/views/AddressList/Add');
 const aggrement = () => import('@/views/User/settings/aggrement');
-const confOrder = () => import('@/views/Order/confOrder');
+const confOrder = () => import('@/views/Order/confOrder');//提交订单
+const payMoney = () => import('@/views/Order/payMoney');//支付页面
 const doctorDet = () => import('@/views/Home/Doctor/doctorDet');//医生详情
 const doctorList = () => import('@/views/Home/Doctor/doctorList');//医生列表
 const drogStore = () => import('@/views/Home/Drogstore/drogStore');//药店
@@ -57,6 +58,8 @@ const sectionDet = () => import('@/views/Home/Sections/sectionDet');//科室详�
 const sectionList = () => import('@/views/Home/Sections/sectionList');//科室列表
 const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//发现好店
 const goodsList = () => import('@/views/Home/goodsList');//商品列表
+const payResult = () => import('@/views/Order/payResult')//支付结果
+
 
 Vue.use(Router);
 export default new Router({
@@ -275,7 +278,22 @@ export default new Router({
 		    fullScreen: true
 		  }
 		},
-		
+			{
+		  path: '/payMoney',
+		  name: 'payMoney',
+		  component: payMoney,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
+		{
+		  path: '/payResult',
+		  name: 'payResult',
+		  component: payResult,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
     {
       path: '/AddressList',
       name: 'AddressList',

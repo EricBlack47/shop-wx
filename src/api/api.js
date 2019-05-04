@@ -61,6 +61,7 @@ export const getMecList = params =>authPost('member/memberIncome',params);//获�
 export const realName = params =>authPost('member/updateMine',params);//实名认证
 export const buyNow = params =>authPost('member/buyNowIntr',params);//商品详情页-立即购买
 export const orderDetail = params =>authPost('member/orderDetail',params);//获取订单详情
+export const payMoney = params => authPost('memberPay/pay',params)//购买
 
 export const hospitalBanner=()=>get("content/list/1");//医院轮播
 export const beautyBanner = () =>get('content/list/2');//美容医院轮播
