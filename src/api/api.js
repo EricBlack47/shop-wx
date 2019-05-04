@@ -74,4 +74,4 @@ export const getHospitalList = params => post('hospital/list',params)//会员医
 export const getAllList = params => post('content/panelItem',params)//获取所有专题
 export const getHealthy = params => post('content/list',params)//养生专题列表
 export const hospitalDet = params => authPost('hospital/selectByIdAndDoctor',params);//获取医院详情
-export const getDocDetail = params => post('content/panelItem',params)//获取医生详情
+
