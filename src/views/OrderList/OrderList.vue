@@ -68,7 +68,6 @@ export default {
 		},
 		//取消订单
 		cancelOrderList(orderId) {
-			console.log(orderId)
 			var query = {
 				orderId: orderId
 			};

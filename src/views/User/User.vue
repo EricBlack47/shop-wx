@@ -118,7 +118,6 @@ export default {
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
 	},
 	mounted() {
-		
 		if (!this.userInfo) {
 			this.$router.push('/Login');
 			Dialog.alert({
