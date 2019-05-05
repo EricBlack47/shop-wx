@@ -36,7 +36,7 @@
 		</van-row>
 		<van-swipe :autoplay="3000" indicator-color="white">
 			<div v-for="(newss,key) in userInfo.news" :key="key">
-				<van-swipe-item>{{newss.title}}</van-swipe-item>
+				<div @click="goNews"><van-swipe-item>{{newss.title}}</van-swipe-item></div>
 			</div>
 		</van-swipe>
 		<van-cell-group class="user-group"><van-cell title="全部订单" icon="bookmark-o"  /></van-cell-group>
@@ -124,6 +124,9 @@ export default {
 		this.getMerBerInfo();
 	},
 	methods: {
+		goNews(id){
+			this.$router.push({path:'/newsList',query:{type:0}});
+		},
 		goList1(){
 			this.$router.push({path:'/OrderList',query:{type:0}});
 		},

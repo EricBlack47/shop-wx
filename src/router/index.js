@@ -61,6 +61,7 @@ const goodsList = () => import('@/views/Home/goodsList');//商品列表
 const payResult = () => import('@/views/Order/payResult')//支付结果
 
 
+
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -526,6 +527,22 @@ export default new Router({
 			path: '/aggrement',
 			name: 'aggrement',
 			component: aggrement,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/newsList',
+			name: 'newsList',
+			component: newsList,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/newsDet',
+			name: 'newsDet',
+			component: newsDet,
 			 meta: {
 			  fullScreen: true
 			}
