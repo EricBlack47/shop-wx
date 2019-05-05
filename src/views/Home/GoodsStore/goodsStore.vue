@@ -1,7 +1,8 @@
 <template>
+
 	<div>
 		<div>
-			<van-nav-bar left-text="è¿”å›ž" left-arrow @click-left="goBack" :z-index="10" fixed />
+			<van-nav-bar left-text="·µ»Ø" left-arrow @click-left="goBack" :z-index="10" fixed />
 		</div>
 		<div style="padding-top: 48px;">
 			 <div class="tab-item">

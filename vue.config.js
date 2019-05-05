@@ -10,7 +10,8 @@ module.exports = {
 		},
     proxy: {
         '/api': {
-            target: 'http://mtlyn.cn',
+             target: 'http://mtlyn.cn',
+						// target:'http://192.168.101.5:9528',
             changeOrigin: true,
             ws: false,
             pathRewrite: {

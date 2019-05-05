@@ -89,7 +89,8 @@ export function authPost(url,params){
 	  axios
 	    .post(url, params,{
 				headers:{
-					'token': token
+					'token': token,
+					'Content-Type':"application/json"
 				}
 			})
 	    .then(res => {

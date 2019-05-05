@@ -75,6 +75,7 @@
 		</div>
 
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
+	
 			<van-swipe  class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
 					<div v-for="(item, index) in doctor" style="display: inline-block;" class="swipe-item" :key="index" @click="goDocDet(item)">
@@ -96,6 +97,7 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<good-item title="医互头条" describe="">
+
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goDetail(item)">
 					<span style="height: 100px;text-align: center;">{{ item.title }}</span>
@@ -203,9 +205,9 @@ export default {
 		};
 	},
 	created() {
+
 		this.userInfo =JSON.parse(localStorage.getItem('userInfo'));
 		this.news=JSON.parse(localStorage.getItem('news'));
-		console.log(this.news,"hah",this.userInfo);
 		this.getDoctorList();
 		this.getHospitalList();
 		this.getAllList();

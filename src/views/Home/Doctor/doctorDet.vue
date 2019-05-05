@@ -1,61 +1,63 @@
 <template>
+	
 	<div>
-		<div><van-nav-bar left-text="杩斿洖" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
+		<div><van-nav-bar left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
 		<div style="padding-top: 48px;">
 			<van-row>
 				<van-col span="8">
-					<div><img style="margin-left: 15px; height: 80px;width: 60px;border-radius: 50%;" :src="DoctorDetail.image" alt="鐢ㄦ埛" /></div>
+					<div><img style="margin-left: 15px; height: 80px;width: 60px;border-radius: 50%;" :src="DoctorDetail.image" alt="用户" /></div>
 				</van-col>
 				<van-col span="16">
-					<van-row>濮撳悕锛歿{DoctorDetail.name}}</van-row>
-					<van-row>绉戝锛歿{DoctorDetail.sectionName}}</van-row>
-					<van-row>鑱屽姟锛歿{DoctorDetail.position}}</van-row>
-					<van-row>鍖婚櫌:{{DoctorDetail.hospitalName}}</van-row>
+					<van-row>姓名：{{DoctorDetail.name}}</van-row>
+					<van-row>科室：{{DoctorDetail.sectionName}}</van-row>
+					<van-row>职务：{{DoctorDetail.position}}</van-row>
+					<van-row>医院:{{DoctorDetail.hospitalName}}</van-row>
 				</van-col>
 			</van-row>
 			<!-- <van-row>
 				<van-col span="8">
 					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img  style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="鐢ㄦ埛" />
+						<img  style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="用户" />
 					</div>
 					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">jianm</span></van-row>
 				</van-col>
 				<van-col span="8">
 					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="鐢ㄦ埛" />
+						<img style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="用户" />
 					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">鍖婚櫌</span></van-row>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">医院</span></van-row>
 				</van-col>
 				<van-col span="8">
 					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="鐢ㄦ埛" />
+						<img style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../../public/bars.svg" alt="用户" />
 					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">鍖婚櫌</span></van-row>
+					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">医院</span></van-row>
 				</van-col>
 			</van-row> -->
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
-				<span>鎿呴暱</span>
+				<span>擅长</span>
 			</div>
 			<div class="descrption" v-html="DoctorDetail.major"></div>
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
-				<span>鑳屾櫙浠嬬粛</span>
+				<span>背景介绍</span>
 			</div>
 			<div class="descrption" v-html="DoctorDetail.descript"></div>
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
-				<span>鍖荤敓鍥炲</span>
+				<span>医生回复</span>
 			</div>
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
-				<span>鐢ㄦ埛鎻愰棶</span>
+				<span>用户提问</span>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+
 import { Row, Col } from 'vant';
 import { getDocDetail } from '@/api/api.js';
 export default {
@@ -68,7 +70,7 @@ export default {
 			DoctorID:undefined,
 			askList:[],
 			num:2,
-			showDec:"灞曞紑",
+			showDec:"展开",
 			idHb: '',
 			isShow: false,
 			hongbaoDetail:{id:null},
