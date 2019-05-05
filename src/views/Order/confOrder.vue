@@ -9,7 +9,7 @@
 				<div class="address-item">
 					<div address="address-top">
 						<van-icon name="location" />
-						<span class="user-info">{{hasDefaultAddress?defaultAddress.name:'添加收货地址'}}</span>
+						<span class="user-info">{{hasDefaultAddress?defaultAddress.userName:'添加收货地址'}}</span>
 						<span class="phonenum" v-if="hasDefaultAddress">{{defaultAddress.tel}}</span>
 					</div>
 					<div class="address-bottom" v-if="hasDefaultAddress">
@@ -50,7 +50,11 @@
 				checked: true,
 				addressList: [],
 				hasDefaultAddress: false,
-				defaultAddress: {},
+				defaultAddress: {
+					userName:null,
+					tel:null,
+					address:null
+				},
 				addressId: ''
 			};
 		},
@@ -63,20 +67,21 @@
 			getAddressList()
 				.then(result => {
 					this.addressList = result.result;
-					if (this.addressId=='') {
-						var address = localStorage.getItem("address")
-						this.defaultAddress = JSON.parse(address);
-                 		this.hasDefaultAddress = true;
-						return;
-					} else {
 						result.result.forEach(item => {
 							if (item.Isdefault === 1) {
 								this.defaultAddress = item;
 								this.hasDefaultAddress = true;
+								var addr=JSON.parse(item.streetName)
+								this.hasDefaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
 								return;
 							}
 						});
-					}
+						if(this.defaultAddress.address==null&&this.addressList.length>0){
+							this.defaultAddress=this.addressList[0];
+							this.hasDefaultAddress = true;
+							var addr=JSON.parse(this.defaultAddress.streetName)
+							this.defaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
+						}
 				})
 				.catch(error => {
 					console.log(error);
