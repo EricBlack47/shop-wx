@@ -136,9 +136,7 @@
       .pageNum
         font-size 12px
         color #8f8f8f
-.van-swipe{
-	height:230px
-}
+				
   .swipe
     img
       width 100%

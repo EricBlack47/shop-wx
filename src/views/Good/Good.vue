@@ -152,6 +152,9 @@
       margin-left -2px
       margin-top 4px
 
+.van-swipe{
+	height:100%
+}
 .swipe img
   width 100%
   height auto

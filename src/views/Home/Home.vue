@@ -6,19 +6,17 @@
 				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)"><img :src="item.picUrl" /></van-swipe-item>
 			</van-swipe>
 		</div>
-		<div style="background-color: #FFFFFF;  margin-bottom :6px">
-			<van-row type="flex" justify="space-around">
+		<div class="grid-nav">
+			<van-row type="flex" justify="space-around" class="nav-row">
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goHospital" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h1.png" alt="用户" />
+					<img @click="goHospital" style="" src="../../../public/img/h1.png" alt="用户" />
+					<div class="text">
+						医院
 					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">医院</span></van-row>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goMouth" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h2.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">口腔</span></van-row>
+					<img @click="goMouth" src="../../../public/img/h2.png" alt="用户" />
+					<div class="text">口腔</div>
 				</van-col>
 				<van-col span="5">
 					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
@@ -39,8 +37,7 @@
 					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">药店</span></van-row>
 				</van-col>
 			</van-row>
-			<div style="height: 2px;width: 100%;color: #aaaaaa;border-bottom: #dddddd solid 1px;"></div>
-			<van-row type="flex" justify="space-around">
+			<van-row type="flex" justify="space-around" class="nav-row">
 				<van-col span="5">
 					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
 						<img @click="goDoc" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h6.png" alt="用户" />
@@ -216,22 +213,6 @@ export default {
 		indexList().then(res => {
 			this.banners = res.data;
 		});
-
-		hotSale()
-			.then(result => {
-				this.hotGoods = result.data;
-			})
-			.catch(error => {});
-		saleGroup()
-			.then(result => {
-				this.saleGroupGoods = result.data;
-			})
-			.catch(error => {});
-		discover()
-			.then(result => {
-				this.discoverGoods = result.data;
-			})
-			.catch(error => {});
 		
 	},
 	components: {
@@ -382,11 +363,27 @@ export default {
   background-color #eee
   margin-bottom 50px
 
+.grid-nav
+  background-color #FFFFFF
+  margin-bottom 6px
+  
+  .nav-row
+    padding 10px
+	img
+	  display block
+	  margin 0px auto
+	  height 40px
+	  width 40px
+	  border-radius 50%
+	.text
+	  text-align center
+	  margin-top 5px
+	  
+
 .home-swipe
   box-sizing border-box
   padding 4px 6px
   background-color #fff
-  border-bottom 1px solid #dedede
 
   .home-swipe-head
     padding 4px 0
