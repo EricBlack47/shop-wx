@@ -3,7 +3,7 @@
 		<van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search>
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)"><img :src="item.picUrl" /></van-swipe-item>
+				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goMainDet(item)"><img :src="item.picUrl" /></van-swipe-item>
 			</van-swipe>
 		</div>
 		<div class="grid-nav">
@@ -220,6 +220,9 @@ export default {
 		},
 		goHosDet(item){
 		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.id}});
+		},
+		goMainDet(item){
+		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.productId}});
 		},
 		goDocDet(doctors){
 			 this.$router.push({path:'/doctorDet',query:{doctorId:doctors.id}});
