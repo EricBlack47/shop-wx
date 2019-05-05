@@ -112,7 +112,7 @@
 		<!-- 更多好店 -->
 		<div v-if="contentList.length > 0" style="margin-bottom: 0.375rem;background-color: #FFFFFF;">
 			<van-row>
-				<div v-for="(item, index) in contentList" :key="index">
+				<div @click ="goContentList(item.items[0].panelId,item.name)" v-for="(item, index) in contentList" :key="index">
 					<van-col span="12">
 						<span>{{ item.name }}</span>
 						<van-row>
@@ -252,13 +252,14 @@ export default {
 		}
 	},
 	methods: {
+		goContentList(panelId, title) {
+			 this.$router.push({path:'/goodsStore',query:{panelId:panelId,title:title}});
+		},
 		goHosDet(item){
 		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.id}});
-		 console.log(item.id)
 		},
 		goDocDet(doctors){
 			 this.$router.push({path:'/doctorDet',query:{doctorId:doctors.id}});
-			 console.log(doctors.id)
 		},
 		goGoodsDetail(e){
 				this.$router.push({path:'/Good',query:{productId:e}});
@@ -275,7 +276,6 @@ export default {
 					this.contentArticle = res.result.filter(item => item.remark == 'article');
 					this.articleTitle = this.contentArticle[0].items[0].articleTitle.split('~')[0];
 					this.contentNow = res.result.filter(item => item.remark != 'article' && item.remark != 'list' && item.type != 0);
-					console.log(this.contentNow);
 				}
 			});
 		},
@@ -300,15 +300,10 @@ export default {
 						for (var j = 0; j < temp.length; j++) {
 							temp[j].image = temp[j].image.split(',')[0];
 						}
-						
 						this.ss.push(temp);
-						// lia.push(temp)
 					}
 				}
 			});
-			// console.log("=++++=>",this.HosList) 
-			// console.log(lia)
-			// this.ss.push(123);
 		},
 		/* 获取名医列表 */
 		getDoctorList() {
@@ -319,7 +314,6 @@ export default {
 				state: 1
 			};
 			getDoctorList(query).then(res => {
-				console.log(res);
 				if (res.result != null) {
 					var sec = res.result.list;
 					if (sec == null) sec = [];
@@ -327,7 +321,6 @@ export default {
 					var lineNum = len % 3 === 0 ? len / 3 : Math.floor(len / 3 + 1);
 					for (var i = 0; i < lineNum; i++) {
 						var temp = sec.slice(i * 3, i * 3 + 3);
-						console.log("==>",_this.docList,lineNum,i)
 						 _this.docList.push(temp);
 					}
 					
@@ -365,7 +358,6 @@ export default {
 			this.$router.push({ path: '/goodsList', query: { cid: 1209 } });
 		},
 		goDetail(item) {
-			console.log(item);
 			this.$router.push({ path: '/Good', query: { productId: item.productId } });
 		},
 		onSearch() {

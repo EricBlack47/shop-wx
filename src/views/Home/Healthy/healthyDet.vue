@@ -1,16 +1,7 @@
 <template>
 	<div>
-		<div>
-			<van-nav-bar title="医院详情" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
-			<div class="home-swipe">
-				<van-swipe :autoplay="3000" class="swipe">
-					<van-swipe-item v-for="(item, index) in items" class="swipe-item" :key="index"><img :src="item.picUrl" /></van-swipe-item>
-				</van-swipe>
-			</div>
-			<div class="items" v-for="(item, index) in items"  :key="index" @click="goDet(item)">
-				<van-card :desc="item.introduction" :title="item.hospitalName" :thumb="item.image" />
-			</div>
-		</div>
+		<van-nav-bar title="医院详情" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
+		<div class="descrption" v-html="hospitalDescrption"></div>
 	</div>
 </template>
 
