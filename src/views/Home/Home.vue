@@ -3,76 +3,59 @@
 		<van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search>
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)"><img :src="item.picUrl" /></van-swipe-item>
+				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goMainDet(item)"><img :src="item.picUrl" /></van-swipe-item>
 			</van-swipe>
 		</div>
 		<div class="grid-nav">
 			<van-row type="flex" justify="space-around" class="nav-row">
 				<van-col span="5">
-					<img @click="goHospital" style="" src="../../../public/img/h1.png" alt="用户" />
+					<img @click="goHospital" class="nav-row-img" src="../../../public/img/h1.png" alt="用户" />
 					<div class="text">
 						医院
 					</div>
 				</van-col>
 				<van-col span="5">
-					<img @click="goMouth" src="../../../public/img/h2.png" alt="用户" />
+					<img @click="goMouth" class="nav-row-img" src="../../../public/img/h2.png" alt="用户" />
 					<div class="text">口腔</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goBeauty" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h3.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">美容</span></van-row>
+					<img @click="goBeauty" class="nav-row-img" src="../../../public/img/h3.png" alt="用户" />
+					<div class="text">美容</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goSectionList" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h4.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">科室</span></van-row>
+					<img @click="goSectionList" class="nav-row-img" src="../../../public/img/h4.png" alt="用户" />
+					<div class="text">科室</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goDrogStore" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h5.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">药店</span></van-row>
+					<img @click="goDrogStore" class="nav-row-img" src="../../../public/img/h5.png" alt="用户" />
+					<div class="text">药店</div>
 				</van-col>
 			</van-row>
 			<van-row type="flex" justify="space-around" class="nav-row">
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goDoc" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h6.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">找医生</span></van-row>
+					<img @click="goDoc" class="nav-row-img" src="../../../public/img/h6.png" alt="用户" />
+					<div class="text">找医生</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goGoodsList1" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h7.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 15px; text-align: center; display: inline-block;margin-top: 10px;">农产品</span></van-row>
+					<img @click="goGoodsList1" class="nav-row-img" src="../../../public/img/h7.png" alt="用户" />
+					<div class="text">找医生</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goGoodsList2" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h8.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">美妆个护</span></van-row>
+					<img @click="goGoodsList2" class="nav-row-img" src="../../../public/img/h8.png" alt="用户" />
+					<div class="text">美妆个护</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goGoodsList3" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h9.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">精品酒水</span></van-row>
+					<img @click="goGoodsList3" class="nav-row-img" src="../../../public/img/h9.png" alt="用户" />
+					<div class="text">精品酒水</div>
 				</van-col>
 				<van-col span="5">
-					<div style="background-image: url(../../images/bgc/bgc.jpg);height: 30px;width: 30px;">
-						<img @click="goGoodsList4" style="margin-left: 15px; height: 40px;width: 40px;border-radius: 50%;" src="../../../public/img/h10.png" alt="用户" />
-					</div>
-					<van-row><span style="margin-left: 10px; text-align: center; display: inline-block;margin-top: 10px;">珠宝配饰</span></van-row>
+					<img @click="goGoodsList4" class="nav-row-img" src="../../../public/img/h10.png" alt="用户" />
+					<div class="text">珠宝配饰</div>
 				</van-col>
+			
 			</van-row>
 		</div>
-
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
-	
 			<van-swipe  class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
 					<div v-for="(item, index) in doctor" style="display: inline-block;" class="swipe-item" :key="index" @click="goDocDet(item)">
@@ -94,7 +77,6 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<good-item title="医互头条" describe="">
-
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goDetail(item)">
 					<span style="height: 100px;text-align: center;">{{ item.title }}</span>
@@ -239,6 +221,9 @@ export default {
 		goHosDet(item){
 		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.id}});
 		},
+		goMainDet(item){
+		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.productId}});
+		},
 		goDocDet(doctors){
 			 this.$router.push({path:'/doctorDet',query:{doctorId:doctors.id}});
 		},
@@ -369,7 +354,8 @@ export default {
   
   .nav-row
     padding 10px
-	img
+	
+	.nav-row-img
 	  display block
 	  margin 0px auto
 	  height 40px
