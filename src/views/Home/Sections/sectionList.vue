@@ -51,7 +51,7 @@
 				})
 			},
 			goDet(item){
-			 this.$router.push({path:'/sectionDet',query:{sectionsId:item.id}});
+			 this.$router.push({path:'/sectionDet',query:{sectionsId:item.name}});
 			 console.log(item.id)
 			}
 		}

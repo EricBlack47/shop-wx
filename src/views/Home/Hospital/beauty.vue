@@ -16,8 +16,9 @@
 
 <script>
 	import {
-		beautyBanner,
-		hospitalList
+		hospitalBanner,
+		hospitalList,
+		hospitalDet
 	} from '@/api/api';
 	export default {
 		data() {
@@ -27,7 +28,7 @@
 			};
 		},
 		mounted() {
-			beautyBanner().then(res => {
+			hospitalBanner().then(res => {
 				this.banners = res.data;
 			});
 		},

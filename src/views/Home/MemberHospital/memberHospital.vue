@@ -16,7 +16,7 @@
 
 <script>
 import { List } from 'vant';
-import { getMerberInfo,getHospitalList } from '@/api/api.js';
+import { getMerberInfo,getHospitalList,getDoctorList } from '@/api/api.js';
 export default {
 	data() {
 		return {

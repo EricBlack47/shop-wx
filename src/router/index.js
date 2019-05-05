@@ -43,7 +43,7 @@ const doctorDet = () => import('@/views/Home/Doctor/doctorDet');//医生详情
 const doctorList = () => import('@/views/Home/Doctor/doctorList');//医生列表
 const drogStore = () => import('@/views/Home/Drogstore/drogStore');//药店
 const famousDoctor = () => import('@/views/Home/FamousDoctor/famousDoctor');//名医工作室
-const goodsStore = () => import('@/views/Home/GoodsStore/goodsStore');//海外好货
+const goodsStore = () => import('@/views/Home/GoodsStore/goodsStore');//发现好店
 const healthyDet = () => import('@/views/Home/Healthy/healthyDet');//养生专题详情
 const healthyList = () => import('@/views/Home/Healthy/healthyList');//养生专题
 const beauty = () => import('@/views/Home/Hospital/beauty');//美容医院
@@ -55,7 +55,7 @@ const newsDet = () => import('@/views/Home/News/newsDet');//公告详情
 const newsList = () => import('@/views/Home/News/newsList');//公告列表
 const sectionDet = () => import('@/views/Home/Sections/sectionDet');//科室详情
 const sectionList = () => import('@/views/Home/Sections/sectionList');//科室列表
-const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//发现好店
+const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//海外好货
 const goodsList = () => import('@/views/Home/goodsList');//商品列表
 
 Vue.use(Router);

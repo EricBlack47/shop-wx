@@ -75,20 +75,20 @@
 		</div>
 
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
-			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index" @click="goDetail(item)">
-					<van-swipe-item v-for="(item, index) in doctor" class="swipe-item" :key="index" @click="goDetail(item)">
+			<van-swipe  class="swipe" @change="changeSwipe">
+				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
+					<div v-for="(item, index) in doctor" style="display: inline-block;" class="swipe-item" :key="index" @click="goDocDet(item)">
 						<div><img :src="item.image" style="width: 118px;height: 120px;margin-right: 2px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.name }}工作室</span>
-					</van-swipe-item>
+					</div>
 				</van-swipe-item>
 			</van-swipe>
 		</good-item>
 		<good-item title="会员医院" describe="名医问诊" moreRoute="/memberHospital">
-			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goDetail(item)">
-					<div v-for="(item, index) in doctor" class="swipe-item" :key="index" @click="goDetail(item)">
-						<div><img :src="item.image" style="width: 175px;height: 120px;margin-right: 5px;" /></div>
+			<van-swipe  class="swipe" @change="changeSwipe">
+				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goHosDet(item)">
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 175px;margin-right: 4px;margin-left: 2px;" class="swipe-item" :key="index" @click="goHosDet(item)">
+						<div><img :src="item.image" style="width: 170px;height: 120px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.hospitalName }}</span>
 					</div>
 				</van-swipe-item>
@@ -96,14 +96,14 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<good-item title="医互头条" describe="">
-			<van-swipe :autoplay="3000" indicator-color="white">
-				<div v-for="(newss, key) in userInfo.news" :key="key">
-					<van-swipe-item>{{ newss.title }}</van-swipe-item>
-				</div>
+			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
+				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goDetail(item)">
+					<span style="height: 100px;text-align: center;">{{ item.title }}</span>
+				</van-swipe-item>
 			</van-swipe>
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goDetail(item)">
-					<img style="width: 375px;height: 200px;" :src="item.picUrl" />
+				<van-swipe-item v-for="(item, index) in imgUrls2" class="swipe-item" :key="index" @click="goDetail(item)">
+					<img style="width: 375px;height: 100px;" :src="item.picUrl" />
 				</van-swipe-item>
 			</van-swipe>
 		</good-item>
@@ -198,11 +198,14 @@ export default {
 				scrollTop: 0
 			},
 			titleList: [],
-			articleTitle: ''
+			articleTitle: '',
+			news:undefined
 		};
 	},
 	created() {
-		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+		this.userInfo =JSON.parse(localStorage.getItem('userInfo'));
+		this.news=JSON.parse(localStorage.getItem('news'));
+		console.log(this.news,"hah",this.userInfo);
 		this.getDoctorList();
 		this.getHospitalList();
 		this.getAllList();
@@ -247,6 +250,14 @@ export default {
 		}
 	},
 	methods: {
+		goHosDet(item){
+		 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.id}});
+		 console.log(item.id)
+		},
+		goDocDet(doctors){
+			 this.$router.push({path:'/doctorDet',query:{doctorId:doctors.id}});
+			 console.log(doctors.id)
+		},
 		goGoodsDetail(e){
 				this.$router.push({path:'/Good',query:{productId:e}});
 		},
@@ -312,14 +323,12 @@ export default {
 					if (sec == null) sec = [];
 					var len = sec.length;
 					var lineNum = len % 3 === 0 ? len / 3 : Math.floor(len / 3 + 1);
-					console.log("======================")
 					for (var i = 0; i < lineNum; i++) {
 						var temp = sec.slice(i * 3, i * 3 + 3);
 						console.log("==>",_this.docList,lineNum,i)
-						// _this.docList.push(temp);
-						console.log("*****",lineNum)
+						 _this.docList.push(temp);
 					}
-					console.log("---===-----"+	_this.docList)
+					
 				}
 			});
 		},

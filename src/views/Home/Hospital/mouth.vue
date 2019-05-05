@@ -16,8 +16,9 @@
 
 <script>
 	import {
-		mouthBanner,
-		hospitalList
+		hospitalBanner,
+		hospitalList,
+		hospitalDet
 	} from '@/api/api';
 	export default {
 		data() {
@@ -27,7 +28,7 @@
 			};
 		},
 		mounted() {
-			mouthBanner().then(res => {
+			hospitalBanner().then(res => {
 				this.banners = res.data;
 			});
 		},
@@ -43,7 +44,7 @@
 			},
 			getHospitalList(){
 				var query ={
-					page: 1, size: 10,catId:3
+					page: 1, size: 10,catId:22
 				}
 				hospitalList(query).then(res =>{
 					this.items = res.result.list

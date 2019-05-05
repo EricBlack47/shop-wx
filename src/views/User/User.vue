@@ -109,7 +109,6 @@ export default {
 	},
 	created(){
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-	
 	},
 	mounted() {
 		
@@ -170,6 +169,7 @@ export default {
 				if (!_this.userInfo.image)
 					_this.userInfo.image = "/static/user.png"
 				_this.userInfo.image = _this.userInfo.image.split(",")[0]
+				localStorage.setItem("news",JSON.stringify(_this.userInfo.news))
 			});
 		}
 	}

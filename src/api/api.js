@@ -74,4 +74,11 @@ export const getHospitalList = params => post('hospital/list',params)//会员医
 export const getAllList = params => post('content/panelItem',params)//获取所有专题
 export const getHealthy = params => post('content/list',params)//养生专题列表
 export const hospitalDet = params => authPost('hospital/selectByIdAndDoctor',params);//获取医院详情
-export const getDocDetail = params => post('content/panelItem',params)//获取医生详情
+export const getDocDetail = params => post('doctor/getOneById',params)//获取医生详情
+export const sectionDet = params => authPost('doctor/getListBySectionName',params);//获取科室详情
+export const getdrugStorelist = params => post('drugStore/search',params)//获取药店列表
+export const drugStoreDet = params => authPost('drugStore/getOne',params);//获取药店详情
+export const drugStoreNews = params => authPost('news/DrugStoreNews',params);//获取药店广告
+export const drugStoreBanner = () =>get("content/list/5");//获取药店轮播
+export const gettitleGoods = () =>get("content/list/5");//获取海外好货
+   

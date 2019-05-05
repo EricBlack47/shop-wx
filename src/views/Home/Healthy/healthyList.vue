@@ -3,7 +3,10 @@
 		<div>
 			<van-nav-bar title="养生专题" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
 			<div class="home-swipe" style="padding-top: 48px;" >
-				
+				<div v-for="(value,key) in list" :key="key" @click="goDetail(value.id)">
+					<div><img style="width: 375px;height: 140px;" :src="contentArticle[0].items[0].picUrl" /></div>
+					<span style="display: inline-block;">{{ articleTitle }}</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -16,7 +19,7 @@
 	export default {
 		data() {
 			return {
-				items:[],
+				list:[],
 			};
 		},
 		
@@ -35,7 +38,12 @@
 				}
 				getHealthy(query).then(res =>{
 					console.log(res)
-					this.items = res.result
+					if (res.result !== null && res.result != "") {
+						this.list=res.result.list;
+						for(var i = 0;i<this.list.length;i++){
+							this.list[i].articleTitle=this.list[i].articleTitle.split("~");
+						}
+					}
 				})
 			},
 			goDet(item){

@@ -10,10 +10,7 @@
 			      <img v-lazy="item.productImageBig" alt="">
 			      <div class="desc">{{item.productName}}</div>
 			      <div class="price">
-			        <span class="new-price">￥{{item.salePrice}}</span>
-			        <span class="old-price">
-			          <del>￥{{item.salePrice*1.25}}</del>
-			        </span>
+			        <span class="new-price">{{item.salePrice}}</span>
 			      </div>
 			    </div>
 			  </div>
