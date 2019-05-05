@@ -6,8 +6,8 @@
 				<div class="address-item">
 					<div address="address-top">
 						<van-icon name="location" />
-						<span class="user-info">{{defaultAddress.name}}</span>
-						<span class="phonenum">{{defaultAddress.tel}}</span>
+						<span class="user-info">{{hasDefaultAddress?defaultAddress.userName:'添加收货地址'}}</span>
+						<span class="phonenum">{{hasDefaultAddress?defaultAddress.tel:''}}</span>
 					</div>
 					<div class="address-bottom">
 						<div class="address-info">{{defaultAddress.address}}</div>
@@ -48,6 +48,8 @@
 		getCheckedCartList,
 		addOrder,
 		orderDetail,
+		getMerberInfo,
+		payMoney
 	} from '@/api/api';
 	import { Dialog } from 'vant';
 	export default {
@@ -58,7 +60,11 @@
 				checked: true,
 				addressList: [],
 				hasDefaultAddress: false,
-				defaultAddress: {},
+				defaultAddress: {
+					userName:null,
+					tel:null,
+					address:null
+				},
 				addressId: '',
 				money:0,
 				mmc:0,
@@ -80,19 +86,20 @@
 			getAddressList()
 				.then(result => {
 					this.addressList = result.result;
-					if (this.addressId=='') {
-						var address = localStorage.getItem("address")
-						this.defaultAddress = JSON.parse(address);
-                 		this.hasDefaultAddress = true;
-						return;
-					} else {
-						result.result.forEach(item => {
-							if (item.Isdefault === 1) {
+					result.result.forEach(item => {
+						if (item.Isdefault === 1) {
 							this.defaultAddress = item;
 							this.hasDefaultAddress = true;
+							var addr=JSON.parse(item.streetName)
+							this.hasDefaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
 							return;
-							}
-						});	
+						}
+					});
+					if(this.defaultAddress.address==null&&this.addressList.length>0){
+						this.defaultAddress=this.addressList[0];
+						this.hasDefaultAddress = true;
+						var addr=JSON.parse(this.defaultAddress.streetName)
+						this.defaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
 					}
 				})
 				.catch(error => {
@@ -108,6 +115,7 @@
 			//获取订单列表
 			getOrderDetail(ids){
 				for (var i = 0; i <ids.length; i++) {
+					this.orderIds.push(ids[i]+"")
 					orderDetail(ids[i]).then(res =>{
 						this.orderGoodList = res.result.goodsList
 						this.actualPrice += res.result.orderTotal
@@ -124,25 +132,26 @@
 			},
 
 			onSubmit() {
-				console.log(this.actualPrice,this.mmc,this.userInfo.overMoney)
-				console.log(this.actualPrice>this.mmc*1+this.userInfo.overMoney*1)
-				if(this.actualPrice>this.mmc*1+this.userInfo.overMoney*1){
-					Dialog.alert({
-						title:"失败",
-						message:"余额不足，请充值!"+(this.actualPrice-this.mmc-this.userInfo.overMoney),
-					})
-					return;
-				}
-				var count = this.orderIds.length
-				payMoney({
-					orderId: this.orderIds,
-					checkOut: this.checkOut,
-					}).then(res=>{
-					console.log(res)
-					this.$router.push({path:'/payResult',query:{message:res.message}});
-				}) 
-					
-				
+				getMerberInfo().then(e=>{
+					localStorage.setItem("userInfo",JSON.stringify(e.result))
+					var userInfo = localStorage.getItem("userInfo")
+					this.userInfo = JSON.parse(userInfo);
+					if(this.actualPrice>this.mmc*1+this.userInfo.overMoney*1){
+						Dialog.alert({
+							title:"失败",
+							message:"余额不足，请充值!"+(this.actualPrice-this.mmc-this.userInfo.overMoney),
+						})
+						return;
+					}
+					var count = this.orderIds.length
+					payMoney({
+						orderId: this.orderIds,
+						checkOut: this.checkOut,
+						}).then(res=>{
+						console.log(res)
+						this.$router.push({path:'/payResult',query:{message:res.message}});
+					}) 
+				});
 			},			
 			formatPrice(price) {
 				return price.toFixed(2);

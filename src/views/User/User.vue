@@ -34,12 +34,17 @@
 				</van-row>
 			</van-col>
 		</van-row>
-		<van-swipe :autoplay="3000" indicator-color="white">
-			<div v-for="(newss,key) in userInfo.news" :key="key">
-				<div @click="goNews"><van-swipe-item>{{newss.title}}</van-swipe-item></div>
-			</div>
-		</van-swipe>
-		<van-cell-group class="user-group"><van-cell title="全部订单" icon="bookmark-o"  /></van-cell-group>
+		
+		<van-cell>
+		  <van-icon slot="icon" name="chat-o" size="25px"/>
+			<van-swipe :autoplay="3000" indicator-color="white">
+				<div v-for="(newss,key) in userInfo.news" :key="key">
+					<van-swipe-item>{{newss.title}}</van-swipe-item>
+				</div>
+			</van-swipe>  
+			 
+		</van-cell>
+		<van-cell-group class="user-group"><van-cell title="全部订单"> <van-icon slot="icon" name="bookmark-o" size="25px" color="red"/></van-cell>
 		<van-row class="user-link">
 			<div @click="goList1()">
 				<van-col span="6">
@@ -66,23 +71,25 @@
 				</van-col>
 			</div>
 		</van-row>
-		
+		</van-cell-group> 
 		<van-cell-group>
-			<van-cell title="我的资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney"  />
-			<van-cell title="余额     ----可提现" icon="gold-coin-o"  :value="userInfo.overMoney" is-link to="/lastMoney"  />
-			<van-cell title="MMC      ---可使用" icon="gem-o" :value="userInfo.overProfit" is-link to="/mmc"  />
-			<van-cell title="积分     ----不可使用" icon="stop-circle-o" :value="userInfo.points" is-link to="/totalAssets"  />
-			<van-cell title="充值" icon="bill-o" is-link to="/recharge"/>
-			<van-cell title="提现" icon="refund-o" is-link to="/withdrawal"/>
-			<van-cell title="账单" icon="balance-list-o" is-link to="/bill" />
+	
+			<van-cell title="我的资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney" ><van-icon slot="icon" name="balance-o" size="22px"/></van-cell>
+			<van-cell title="余额     ----可提现"  :value="userInfo.overMoney" is-link to="/lastMoney"  ><van-icon slot="icon" name="gold-coin-o" size="22px"/></van-cell>
+			<van-cell title="MMC      ---可使用"  :value="userInfo.overProfit" is-link to="/mmc"  ><van-icon slot="icon" name="gem-o" size="22px"/></van-cell>
+			<van-cell title="积分     ----不可使用"   :value="userInfo.points" is-link to="/totalAssets"  ><van-icon slot="icon" name="stop-circle-o" size="22px"/></van-cell>
+			<van-cell title="充值"   is-link to="/recharge"><van-icon slot="icon" name="bill-o" size="22px"/></van-cell>
+			<van-cell title="提现"  is-link to="/withdrawal"><van-icon slot="icon" name="refund-o" size="22px"/></van-cell>
+			<van-cell title="账单" is-link to="/bill" ><van-icon slot="icon" name="balance-list-o" size="22px"/></van-cell>
 		</van-cell-group>
 		<van-cell-group>
-			<div v-if="userInfo.memberType===4"><van-cell title="我的销售" icon="gift" is-link to="/mySale" /></div>
-			<div v-if="userInfo.memberType!==3"><van-cell title="我的关注" icon="like-o" is-link to="/myFollow" /></div> 
-			<div v-if="userInfo.memberType===3"><van-cell title="关注我的" icon="like-o" is-link to="/fllowMe" /> </div>
-			<div v-if="userInfo.memberType!==3"><van-cell title="我的提问" icon="comment-circle-o" is-link to="/myAnswered" /></div>
-			<div v-if="userInfo.memberType===3"><van-cell title="提问我的" icon="comment-circle-o" is-link to="/docAnswered" /></div>
-			<van-cell title="投诉建议" icon="notes-o" is-link to="/suggestion" />
+	
+			<div v-if="userInfo.memberType===4"><van-cell title="我的销售"  is-link to="/mySale" ><van-icon slot="icon" name="gift" size="22px"/></van-cell></div>
+			<div v-if="userInfo.memberType!==3"><van-cell title="我的关注"   is-link to="/myFollow" ><van-icon slot="icon" name="like-o" size="22px"/></van-cell></div> 
+			<div v-if="userInfo.memberType===3"><van-cell title="关注我的"   is-link to="/fllowMe"> <van-icon slot="icon" name="like-o" size="22px"/></van-cell></div>
+			<div v-if="userInfo.memberType!==3"><van-cell title="我的提问"  is-link to="/myAnswered" ><van-icon slot="icon" name="comment-circle-o" size="22px"/></van-cell></div>
+			<div v-if="userInfo.memberType===3"><van-cell title="提问我的"  is-link to="/docAnswered" ><van-icon slot="icon" name="comment-circle-o" size="22px"/></van-cell></div>
+			<van-cell title="投诉建议" is-link to="/suggestion" ><van-icon slot="icon" name="notes-o" size="22px"/></van-cell>
 		</van-cell-group>
 	</div>
 </template>
@@ -155,7 +162,8 @@ export default {
 						});
 					}
 					return
-				}           */             
+				}           */   
+				localStorage.setItem("userInfo",JSON.stringify(e.result))
 				_this.userInfo = e.result;
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)
@@ -209,6 +217,9 @@ export default {
 	.nav-m{
 		text-align:center;
 		color:#666666;
-		font-size:24px;
+		font-size:16px; 
+	}
+	van-icon{
+		margin:0 3px; 
 	}
 </style>
