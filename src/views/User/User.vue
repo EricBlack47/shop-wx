@@ -50,25 +50,25 @@
 		<van-row class="user-link">
 			<div @click="goList1()">
 				<van-col span="6">
-					<van-icon name="pending-payment"><div v-if="orderCount.waitPay!=0" class="van-info van-badge__info">{{orderCount.waitPay}}</div></van-icon>				
+					<van-icon name="pending-payment"><div v-if="this.orderCount.waitPay!=0" class="van-info van-badge__info">{{orderCount.waitPay}}</div></van-icon>				
 					待付款
 				</van-col>
 			</div>
 			<div @click="goList2()">
 				<van-col span="6">
-					<van-icon name="gift-card-o"><div v-if="orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
+					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
 					待收货
 				</van-col>
 			</div>
 			<div @click="goList3()">
 				<van-col span="6">				
-					<van-icon name="logistics"><div v-if="orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
+					<van-icon name="logistics"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
 					待发货
 				</van-col>
 			</div>
 			<div @click="goList4()">
 				<van-col span="6">
-					<van-icon name="bookmark-o"><div v-if="orderCount.waitJudge!=0" class="van-info van-badge__info">{{orderCount.waitJudge}}</div></van-icon>
+					<van-icon name="bookmark-o"><div v-if="this.orderCount.waitJudge!=0" class="van-info van-badge__info">{{orderCount.waitJudge}}</div></van-icon>
 					全部订单
 				</van-col>
 			</div>
@@ -100,13 +100,13 @@ import { getMerberInfo } from '@/api/api.js';
 export default {
 	data() {
 		return {
-			userInfo: {
-				orderCount: {
-					waitPay: 0,
-					waitReceive: 0,
-					waitSend: 0,
-					waitJudge:0
-				},
+			orderCount: {
+				waitPay: 0,
+				waitReceive: 0,
+				waitSend: 0,
+				waitJudge:0
+			},
+			userInfo: {		
 				overMoney: 0,
 				overPoints: 0,
 				total: 0
