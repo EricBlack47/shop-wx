@@ -1,6 +1,5 @@
 <template>
-	<div style="padding-bottom: 50px;margin-left: 15upx;">
-		<img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png" alt="用户" />
+	<div style="padding-bottom: 50px;margin-left: 15upx;"> 
 		<van-row>
 			<van-col span="5"><img  @click="goPerson" style="margin-left: 20upx; height: 80px;width: 80px;border-radius: 50%;" :src="userInfo.image" alt="用户" /></van-col>
 			<van-col span="10">
@@ -73,8 +72,6 @@
 		</van-row>
 		</van-cell-group> 
 		<van-cell-group>
-	
-			<van-cell title="我的资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney" ><van-icon slot="icon" name="balance-o" size="22px"/></van-cell>
 			<van-cell title="余额     ----可提现"  :value="userInfo.overMoney" is-link to="/lastMoney"  ><van-icon slot="icon" name="gold-coin-o" size="22px"/></van-cell>
 			<van-cell title="MMC      ---可使用"  :value="userInfo.overProfit" is-link to="/mmc"  ><van-icon slot="icon" name="gem-o" size="22px"/></van-cell>
 			<van-cell title="积分     ----不可使用"   :value="userInfo.points" is-link to="/totalAssets"  ><van-icon slot="icon" name="stop-circle-o" size="22px"/></van-cell>
@@ -186,8 +183,10 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
-
+<style lang="stylus" scoped> 
+.van-cell .van-icon 
+    margin-right 10px 
+		 
 .user-poster
   width 100%
   height auto
@@ -201,7 +200,7 @@ export default {
 
   .van-icon
     display block
-    margin-bottom 4px
+    margin-bottom 4px 
     font-size 24px
 
 .user-group
@@ -212,13 +211,9 @@ export default {
 		height: 136upx;
 		border-radius: 50%;
 	}
-	
 	.nav-m{
 		text-align:center;
 		color:#666666;
 		font-size:16px; 
-	}
-	van-icon{
-		margin:0 3px; 
-	}
+	} 
 </style>
