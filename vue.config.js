@@ -11,7 +11,8 @@ module.exports = {
     proxy: {
         '/api': {
              //target: 'http://mtlyn.cn',
-						 target:'http://192.168.101.81:8080',
+            //  target:'http://192.168.101.81:8080',
+            target:'http://lsc.mynatapp.cc',
             changeOrigin: true,
             ws: false,
             pathRewrite: {
