@@ -30,9 +30,7 @@
 			this.status=true;
 		},
 
-		computed: {
-
-		},
+	
 		methods: {
 			goBack() {
 				this.$router.go(-1);

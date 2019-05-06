@@ -27,13 +27,13 @@
 				<div class="item">
 					<div >
 						<div>默认优先使用MMC结算，MMC不重复积分,若MMC不足，余额抵扣！</div>
-						<div>需付金额：{{money}}</div>
-						<div>MMC已抵扣：{{mmc}}</div>
-						<div>可获得积分：{{points}}</div>
+						<div>需付金额：{{money.toFixed(2)}}</div>
+						<div>MMC已抵扣：{{mmc.toFixed(2)}}</div>
+						<div>可获得积分：{{points.toFixed(2)}}</div>
 					</div>
 				</div>
 			</div>
-			<van-submit-bar :price="actualPrice*100" button-text="付款" @submit="onSubmit" />
+			<van-submit-bar :price="money*100" button-text="付款" @submit="onSubmit" />
 		</div>
 	</transition>
 </template>

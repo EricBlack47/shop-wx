@@ -80,6 +80,7 @@ export const sectionDet = params => authPost('doctor/getListBySectionName',param
 export const getdrugStorelist = params => post('drugStore/search',params)//获取药店列表
 export const drugStoreDet = params => authPost('drugStore/getOne',params);//获取药店详情
 export const drugStoreNews = params => authPost('news/DrugStoreNews',params);//获取药店广告
+export const drugStoreBanner = () =>get('content/list/5');
 export const gettitleGoods = params => post('content/list',params)//获取海外好货
 export const getDocDetail = params => authPost('doctor/getOneById',params);//获取医生详情
 export const getNewsList = params => authPost('news/list',params);//获取新闻列表

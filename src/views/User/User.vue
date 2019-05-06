@@ -162,7 +162,7 @@ export default {
 					}
 					return
 				}           */   
-				localStorage.setItem("userInfo",JSON.stringify(e.result))
+				localStorage.getItem("userInfo",JSON.stringify(e.result))
 				_this.userInfo = e.result;
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)
