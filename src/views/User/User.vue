@@ -33,6 +33,7 @@
 				</van-row>
 			</van-col>
 		</van-row>
+		
 		<van-cell>
 		  <van-icon slot="icon" name="chat-o" size="25px"/>
 			<van-swipe :autoplay="3000" indicator-color="white">
@@ -71,7 +72,6 @@
 		</van-row>
 		</van-cell-group> 
 		<van-cell-group>
-			<van-cell title="我的资产" icon="balance-o" :value="userInfo.total" is-link to="/myMoney" ><van-icon slot="icon" name="balance-o" size="22px" style="margin-right:6px"/></van-cell>
 			<van-cell title="余额     ----可提现"  :value="userInfo.overMoney" is-link to="/lastMoney"  ><van-icon slot="icon" name="gold-coin-o" size="22px"/></van-cell>
 			<van-cell title="MMC      ---可使用"  :value="userInfo.overProfit" is-link to="/mmc"  ><van-icon slot="icon" name="gem-o" size="22px"/></van-cell>
 			<van-cell title="积分     ----不可使用"   :value="userInfo.points" is-link to="/totalAssets"  ><van-icon slot="icon" name="stop-circle-o" size="22px"/></van-cell>
@@ -80,6 +80,7 @@
 			<van-cell title="账单" is-link to="/bill" ><van-icon slot="icon" name="balance-list-o" size="22px"/></van-cell>
 		</van-cell-group>
 		<van-cell-group>
+	
 			<div v-if="userInfo.memberType===4"><van-cell title="我的销售"  is-link to="/mySale" ><van-icon slot="icon" name="gift" size="22px"/></van-cell></div>
 			<div v-if="userInfo.memberType!==3"><van-cell title="我的关注"   is-link to="/myFollow" ><van-icon slot="icon" name="like-o" size="22px"/></van-cell></div> 
 			<div v-if="userInfo.memberType===3"><van-cell title="关注我的"   is-link to="/fllowMe"> <van-icon slot="icon" name="like-o" size="22px"/></van-cell></div>
@@ -114,7 +115,6 @@ export default {
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
 	},
 	mounted() {
-		
 		if (!this.userInfo) {
 			this.$router.push('/Login');
 			Dialog.alert({
@@ -127,6 +127,9 @@ export default {
 		this.getMerBerInfo();
 	},
 	methods: {
+		goNews(id){
+			this.$router.push({path:'/newsList',query:{type:0}});
+		},
 		goList1(){
 			this.$router.push({path:'/OrderList',query:{type:0}});
 		},
@@ -155,7 +158,8 @@ export default {
 						});
 					}
 					return
-				}           */             
+				}           */   
+				localStorage.setItem("userInfo",JSON.stringify(e.result))
 				_this.userInfo = e.result;
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)
