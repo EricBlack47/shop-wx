@@ -13,7 +13,7 @@
       <div>购物车空空的，快去购物吧~</div>
       <van-button type="primary"
         class="btn"
-        @click="goHome">去首页</van-button>
+        @click="goHome">去购物</van-button>
     </div>
 		<div style="padding-top: 48px;">
 		<van-panel v-for="(cart,index) in cartList" :title="cart.memberGoldname" :key="index">
@@ -180,7 +180,7 @@ export default {
       this.update(item.productId,item.productNum,item.checked)
     },
     goHome() {
-      this.$router.push('/');
+      this.$router.push('/GoodList');
     },
     formatPrice(price) {
       return price

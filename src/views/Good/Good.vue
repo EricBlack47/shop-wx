@@ -85,7 +85,6 @@
 				var query = {memberGoldId:this.goods.memberGoldId};
 				buyNow(query).then(res => {
      			this.$router.push({path:'/confOrder', query:{productId:this.goods.productId}});
-					console.log(this.goods.productId)
 				})				
 			},
 			goMerchant(goods){

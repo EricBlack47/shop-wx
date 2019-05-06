@@ -1,12 +1,17 @@
 <template>
 	<div style="padding-bottom: 50px;margin-left: 15upx;"> 
 		<van-row>
-			<van-col span="5"><img  @click="goPerson" style="margin-left: 20upx; height: 80px;width: 80px;border-radius: 50%;" :src="userInfo.image" alt="用户" /></van-col>
+			<van-col span="5">
+				<img v-if="userInfo.image == null"  @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" src="../../../public/user.png"/>				
+			</van-col>
+			<van-col span="5">
+				<img v-if="userInfo.image != null"  @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>					
+			</van-col>
 			<van-col span="10">
-				<span v-if="userInfo.memberType == 0" style=" line-height: 100px;text-align: center;color: chartreuse;font-size: 22px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 22px;">{{ userInfo.username }}</span>
 			</van-col>
 			<van-col span="6">
-				<span v-if="userInfo.memberType == 0" style="line-height: 100px;text-align: center;color: chartreuse;font-size: 18px;text-decoration:underline">普通会员</span>
+				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 18px;text-decoration:underline">普通会员</span>
 				<span v-if="userInfo.memberType == 3">医生</span>
 				<span v-if="userInfo.memberType == 2">医院</span>
 				<span v-if="userInfo.memberType == 1">院长</span>
@@ -32,40 +37,38 @@
 					<div class="nav-m">{{ userInfo.todayProfit }}</div>
 				</van-row>
 			</van-col>
-		</van-row>
-		
+		</van-row>	
 		<van-cell>
 		  <van-icon slot="icon" name="chat-o" size="25px"/>
 			<van-swipe :autoplay="3000" indicator-color="white">
 				<div v-for="(newss,key) in userInfo.news" :key="key">
 					<van-swipe-item>{{newss.title}}</van-swipe-item>
 				</div>
-			</van-swipe>  
-			 
+			</van-swipe>  		 
 		</van-cell>
 		<van-cell-group class="user-group"><van-cell title="全部订单"> <van-icon slot="icon" name="bookmark-o" size="25px" color="red"/></van-cell>
 		<van-row class="user-link">
 			<div @click="goList1()">
 				<van-col span="6">
-					<van-icon name="pending-payment"></van-icon>
+					<van-icon name="pending-payment"><div v-if="orderCount.waitPay!=0" class="van-info van-badge__info">{{orderCount.waitPay}}</div></van-icon>				
 					待付款
 				</van-col>
 			</div>
 			<div @click="goList2()">
 				<van-col span="6">
-					<van-icon name="gift-card-o"></van-icon>
+					<van-icon name="gift-card-o"><div v-if="orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
 					待收货
 				</van-col>
 			</div>
 			<div @click="goList3()">
-				<van-col span="6">
-					<van-icon name="logistics"></van-icon>
+				<van-col span="6">				
+					<van-icon name="logistics"><div v-if="orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
 					待发货
 				</van-col>
 			</div>
 			<div @click="goList4()">
 				<van-col span="6">
-					<van-icon name="bookmark-o"></van-icon>
+					<van-icon name="bookmark-o"><div v-if="orderCount.waitJudge!=0" class="van-info van-badge__info">{{orderCount.waitJudge}}</div></van-icon>
 					全部订单
 				</van-col>
 			</div>
@@ -101,12 +104,14 @@ export default {
 				orderCount: {
 					waitPay: 0,
 					waitReceive: 0,
-					waitSend: 0
+					waitSend: 0,
+					waitJudge:0
 				},
 				overMoney: 0,
 				overPoints: 0,
 				total: 0
 			},
+			activeKey: 0,
 			eqMoney: 0,
 			name: 'User'
 		};
@@ -146,7 +151,7 @@ export default {
 			this.$router.push('/settings');
 		},
 		getMerBerInfo() {
-			var _this=this;
+			// var _this=this;
 			getMerberInfo().then(e => {
 				/* if (e.code == 500||e.code == 401) {
 					if (!this.userInfo) {
@@ -160,25 +165,29 @@ export default {
 					return
 				}           */   
 				localStorage.getItem("userInfo",JSON.stringify(e.result))
-				_this.userInfo = e.result;
+				this.userInfo = e.result;
 				if (e.result.overPoints == null) e.result.overPoints = 0;
-				_this.userInfo.overMoney = e.result.overMoney.toFixed(4)
-				_this.userInfo.points = e.result.points.toFixed(4)
-				_this.userInfo.overProfit = e.result.overProfit.toFixed(4)
-				_this.eqMoney = (e.result.overProfit - 0).toFixed(4)
-				_this.userInfo.total = (_this.userInfo.overMoney - 0 + (_this.eqMoney - 0)).toFixed(4)
-				_this.userInfo.pendingProfit = e.result.pendingProfit.toFixed(4)
-				_this.userInfo.rebate = e.result.rebate.toFixed(4)
+				this.orderCount = e.result.orderCount
+				this.userInfo.overMoney = e.result.overMoney.toFixed(4)
+				this.userInfo.points = e.result.points.toFixed(4)
+				this.userInfo.overProfit = e.result.overProfit.toFixed(4)
+				this.eqMoney = (e.result.overProfit - 0).toFixed(4)
+				this.userInfo.total = (this.userInfo.overMoney - 0 + (this.eqMoney - 0)).toFixed(4)
+				this.userInfo.pendingProfit = e.result.pendingProfit.toFixed(4)
+				this.userInfo.rebate = e.result.rebate.toFixed(4)
 				if (e.result.todayProfit != null)
-					_this.userInfo.todayProfit = e.result.todayProfit.toFixed(4)
+					this.userInfo.todayProfit = e.result.todayProfit.toFixed(4)
 				else
-					_this.userInfo.todayProfit = "0.0000"
-				if (!_this.userInfo.image)
-					_this.userInfo.image = "/static/user.png"
-				_this.userInfo.image = _this.userInfo.image.split(",")[0]
-				localStorage.setItem("news",JSON.stringify(_this.userInfo.news))
+					this.userInfo.todayProfit = "0.0000"
+				if (!this.userInfo.image)
+					this.userInfo.image = "/static/user.png"
+				this.userInfo.image = this.userInfo.image.split(",")[0]
+				localStorage.setItem("news",JSON.stringify(this.userInfo.news))
 			});
-		}
+		},
+		onChange(key) {
+			this.activeKey = key;
+		},
 	}
 };
 </script>
@@ -216,4 +225,6 @@ export default {
 		color:#666666;
 		font-size:16px; 
 	} 
+.van-info
+	margin-right 25px
 </style>
