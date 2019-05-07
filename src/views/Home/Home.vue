@@ -78,7 +78,7 @@
 		<div style="margin-bottom: 0.375rem"></div>
 		<good-item title="医互头条" describe="">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
-				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goDetail(item)">
+				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goNews()">
 					<span style="height: 100px;text-align: center;">{{ item.title }}</span>
 				</van-swipe-item>
 			</van-swipe>
@@ -215,6 +215,9 @@ export default {
 		}
 	},
 	methods: {
+		goNews(id){
+			this.$router.push({path:'/newsList',query:{type:0}});
+		},
 		goContentList(panelId, title) {
 			 this.$router.push({path:'/goodsStore',query:{panelId:panelId,title:title}});
 		},

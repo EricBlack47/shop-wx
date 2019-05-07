@@ -2,17 +2,22 @@
 	<div>
 		<div><van-nav-bar left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
 		<div style="padding-top: 48px;">
-			<div class="descrption" v-html="DoctorDetail.major"></div>
+			<div class="descrption" v-html="article.descript.replace(/alt/g,'width=100%')"></div>
+		</div>
+		<div class="article-meta">
+			<text class="article-text">发表于</text>
+			<text class="article-time">{{article.updated}}</text>
 		</div>
 	</div>
 </template>
 
 <script>
 import { Row, Col } from 'vant';
-import { getDocDetail } from '@/api/api.js';
+import { getNewsDetal } from '@/api/api.js';
 export default {
 	data() {
 		return {
+			article:{}
 		};
 	},
 	mounted() {
@@ -21,18 +26,13 @@ export default {
 		this.getNewsDetal(id);
 	},
 	methods: {
-		getGoodByCid(cid) {
-			var query = {
-				id:cid
-			};
-			getDocDetail(query).then(res => {
+		getNewsDetal(id) {
+			
+			getNewsDetal(id).then(res => {
 				console.log(res)
 				if (res.result!=null||res.result!="") {
-					this.DoctorDetail = res.result;
-					this.hospitalDescrption = res.result.descript.replace(/<img/gi, "<img width='100%'").replace(/style=\"(.*)\"/gi, "style='width:100%;'")
-					.replace(/width=\"(.*)\"/gi,"style='width:100%;'");
-					this.DoctorID=res.result.id;
-					/* this.showAsk(); */
+					this.article=res.result;
+					console.log(this.article);
 				}
 			});
 		},

@@ -41,7 +41,7 @@
 		<van-cell>
 		  <van-icon slot="icon" name="chat-o" size="25px"/>
 			<van-swipe :autoplay="3000" indicator-color="white">
-				<div v-for="(newss,key) in userInfo.news" :key="key">
+				<div v-for="(newss,key) in userInfo.news" :key="key" @click="goNews()">
 					<van-swipe-item>{{newss.title}}</van-swipe-item>
 				</div>
 			</van-swipe>  		 
