@@ -66,6 +66,7 @@
 			</van-swipe>
 		</good-item>
 		<good-item title="会员医院" describe="名医问诊" moreRoute="/memberHospital">
+
 			<van-swipe  class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goHosDet(item)">
 					<div v-for="(item, index) in doctor" style="display: inline-block;width: 175px;margin-right: 4px;margin-left: 2px;" class="swipe-item" :key="index" @click="goHosDet(item)">
@@ -77,11 +78,13 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<good-item title="医互头条" describe="">
+
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
-				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goDetail(item)">
+				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goNews()">
 					<span style="height: 100px;text-align: center;">{{ item.title }}</span>
 				</van-swipe-item>
 			</van-swipe>
+
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(item, index) in imgUrls2" class="swipe-item" :key="index" @click="goDetail(item)">
 					<img style="width: 375px;height: 100px;" :src="item.picUrl" />
@@ -92,9 +95,11 @@
 		<div v-if="contentList.length > 0" style="margin-bottom: 0.375rem;background-color: #FFFFFF;">
 			<van-row>
 				<div @click ="goContentList(item.items[0].panelId,item.name)" v-for="(item, index) in contentList" :key="index">
+
 					<van-col span="11">
 						<span>{{ item.name }}</span>
 						<van-row>
+
 							<van-col span="11"><van-icon name="arrow"/><span style="font-size: 14px;color: red;">点击进入</span></van-col>
 							<van-col span="5"><img style="width: 100px;height: 80px;padding-right: 10px;" :src="item.items[0].picUrl" /></van-col>
 						</van-row>
@@ -108,6 +113,7 @@
 				<span style="display: inline-block;">{{ articleTitle }}</span>
 			</good-item>
 		</div>
+		
 		<div  style="height: 480px;">
 			<div v-for="(item, i) in contentNow" :key="i" v-if="contentNow.length > 0">
 				<good-item :title="item.name" >
@@ -118,6 +124,7 @@
 							<span style="display: inline-block;text-align: center;font-size: 14px;color: red;">售价:${{ product.salePrice }}</span>
 						</div>
 					</div>
+					
 				</good-item>
 			</div>
 		</div>
@@ -201,6 +208,9 @@ export default {
 	},
 	
 	methods: {
+		goNews(id){
+			this.$router.push({path:'/newsList',query:{type:0}});
+		},
 		goContentList(panelId, title) {
 			 this.$router.push({path:'/goodsStore',query:{panelId:panelId,title:title}});
 		},
@@ -225,6 +235,7 @@ export default {
 					this.imgUrls2 = goosSwiper[0].items;
 					this.contentList = res.result.filter(item => item.remark == 'list');
 					this.contentArticle = res.result.filter(item => item.remark == 'article');
+
 					this.articleTitle = this.contentArticle[0].items[0].articleTitle.split('~')[0];				
 					this.contentNow = res.result.filter(item => item.remark != 'article' && item.remark != 'list' && item.type != 0);
 				}

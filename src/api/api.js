@@ -84,3 +84,4 @@ export const drugStoreBanner = () =>get('content/list/5');
 export const gettitleGoods = params => post('content/list',params)//获取海外好货
 export const getDocDetail = params => authPost('doctor/getOneById',params);//获取医生详情
 export const getNewsList = params => authPost('news/list',params);//获取新闻列表
+export const getNewsDetal = params => authPost('news/Info',params);//获取新闻列表
