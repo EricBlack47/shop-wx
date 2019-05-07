@@ -175,6 +175,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.van-swipe
+ height 300px
 .home
   background-color #eee
   margin-bottom 50px

@@ -26,26 +26,18 @@
 						<span class="van-cell-text">进入店铺</span>
 					</template>
 				</van-cell>
-				<van-cell title="线下门店" icon="location" is-link />
+				<!-- <van-cell title="线下门店" icon="location" is-link /> -->
 			</van-cell-group>
 			<div class="detail" ref="detail" v-html="descript.replace(/alt/g,'width=100%')">
 			</div>
 			<van-goods-action>
-				<van-goods-action-mini-btn icon="chat" text="客服" />
+				<!-- <van-goods-action-mini-btn icon="chat" text="客服" /> -->
 				<van-goods-action-mini-btn icon="cart" text="购物车" to="/Cart" />
 				<van-goods-action-mini-btn icon="shop" text="店铺" @click="goMerchant"/>
 				<van-goods-action-big-btn text="加入购物车" @click="addCart" />
 
 				<van-goods-action-big-btn text="立即购买" primary @click="goBuy" />
 			</van-goods-action>
-			<!-- <van-sku v-model="showBase"
-        :sku="sku"
-        :goods="goods"
-        :goods-id="goodsId"
-        @buy-clicked="onBuyClicked"
-        @add-cart="onAddCartClicked"
-        @stepper-change="getCount" />
-    </div> -->
 		</div>
 	</transition>
 </template>
@@ -82,27 +74,46 @@
 		},
 		methods: {
 			goBuy(goods){
-				var query = {memberGoldId:this.goods.memberGoldId};
-				buyNow(query).then(res => {
-     			this.$router.push({path:'/confOrder', query:{productId:this.goods.productId}});
-				})				
+				var userInfo=JSON.parse(localStorage.getItem('userInfo'));
+				if (!userInfo) {
+					Dialog.alert({
+						message: '请先登陆'
+					}).then(() => {
+						this.$router.push('/Login');
+					});
+				}else{
+					var query = {memberGoldId:this.goods.memberGoldId};
+					buyNow(query).then(res => {
+					this.$router.push({path:'/confOrder', query:{productId:this.goods.productId}});
+					})	
+				}				
 			},
 			goMerchant(goods){
 				this.$router.push({path:'/Merchant',query:{memberGoldId:this.goods.memberGoldId}});
 			},
 			
 			addCart() {
-				var query = {
-					productId: this.goods.productId,
-					productNum: 1,
-					memberGoldId: this.goods.memberGoldId
-				}
-				addCar(query).then(res => {					
+				var userInfo=JSON.parse(localStorage.getItem('userInfo'));
+				if (!userInfo) {
 					Dialog.alert({
-					  message: '已加入购物车'
-                        })
+						message: '请先登陆'
+					}).then(() => {
+						this.$router.push('/Login');
+					});
+				}else{
+					var query = {
+						productId: this.goods.productId,
+						productNum: 1,
+						memberGoldId: this.goods.memberGoldId
+					}
+					addCar(query).then(res => {					
+						Dialog.alert({
+						  message: '已加入购物车'
+					        })
+					
+					})
+				}
 				
-				})
 			},
 			getGoodsDetByid(productId) {
 				var query = {

@@ -6,7 +6,7 @@ export const indexList=()=>get("content/list/0");
 export const test = () => get('/');
 export const userLogin = params=>post('member/login',params);
 export const login = params => post('login', params);
-export const reg = params => post('reg', params);
+export const reg = params => post('member/register', params);
 export const hotSale = () => post('hotsale');
 export const saleGroup = () => post('salegroup');
 export const discover = () => post('discover');

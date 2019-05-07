@@ -93,14 +93,23 @@ export default {
     this.init();
   },
   methods: {
-    init() {		
-      getCarList().then(result => {
-          this.cartList = result.result;
-          this.setCartTotal()
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    init() {
+			var userInfo=JSON.parse(localStorage.getItem('userInfo'));
+			if (!userInfo) {
+				Dialog.alert({
+					message: '请先登陆'
+				}).then(() => {
+					this.$router.push('/Login');
+				});
+			}else{
+				getCarList().then(result => {
+				    this.cartList = result.result;
+				    this.setCartTotal()
+				  })
+				  .catch(error => {
+				    console.log(error);
+				  });
+			}
     },
 		goBack() {
 			this.$router.go(-1);

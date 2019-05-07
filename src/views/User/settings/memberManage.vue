@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><van-nav-bar title="会员管理" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
-		<div style="padding-top: 46px;">
+		<div style="padding-top: 46px;text-align: center;">
 			<van-row>
 				<van-col span="8">会员昵称</van-col>
 				<van-col span="8">手机号</van-col>
@@ -9,7 +9,7 @@
 			</van-row>
 		</div>
 		<van-list>
-			<div style="border-bottom: #999999 solid 1px;" v-for="(value,key) in member" :key="key">
+			<div style="border-bottom: #999999 solid 1px;text-align: center;" v-for="(value,key) in member" :key="key">
 				<van-row>
 					<van-col span="8">{{value.name}}</van-col>
 					<van-col span="8">{{value.phone}}</van-col>

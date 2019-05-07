@@ -2,11 +2,8 @@
 	<div style="padding-bottom: 50px;margin-left: 15upx;"> 
 		<van-row>
 			<van-col span="5">
-				<img v-if="userInfo.image == null"  @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" src="../../../public/user.png"/>				
-			</van-col>
-			<van-col span="5">
-				<img v-if="userInfo.image != null"  @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>					
-			</van-col>
+				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
+			</van-col>	
 			<van-col span="10">
 				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 22px;">{{ userInfo.username }}</span>
 			</van-col>
@@ -18,26 +15,32 @@
 				<span v-if="userInfo.memberType == 4">商家</span>
 			</van-col>
 		</van-row>
-		<van-row>
-			<van-col span="8">
-				<van-row>
-					<div class="nav-m">总积分</div>
-					<div class="nav-m">{{ userInfo.points }}</div>
-				</van-row>
-			</van-col>
-			<van-col span="8">
-				<van-row>
-					<div class="nav-m">总返利</div>
-					<div class="nav-m">{{ userInfo.pendingProfit }}</div>
-				</van-row>
-			</van-col>
-			<van-col span="8">
-				<van-row>
-					<div class="nav-m">今日返利</div>
-					<div class="nav-m">{{ userInfo.todayProfit }}</div>
-				</van-row>
-			</van-col>
-		</van-row>	
+		<div v-if="userInfo.state==1">
+			<van-row>
+				<van-col span="8">
+					<van-row>
+						<div class="nav-m">总积分</div>
+						<div class="nav-m">{{ userInfo.points }}</div>
+					</van-row>
+				</van-col>
+				<van-col span="8">
+					<van-row>
+						<div class="nav-m">总返利</div>
+						<div class="nav-m">{{ userInfo.pendingProfit }}</div>
+					</van-row>
+				</van-col>
+				<van-col span="8">
+					<van-row>
+						<div class="nav-m">今日返利</div>
+						<div class="nav-m">{{ userInfo.todayProfit }}</div>
+					</van-row>
+				</van-col>
+			</van-row>	
+		</div>
+		<div v-if="userInfo.state!=1" style="text-align: center;">
+			<div @click="goRealName" style="color: red;font-size: 16px;">请先实名认证(点击认证)</div>
+			<div style="font-size: 14px;">实名认证后方可解锁所有功能(提现，获得积分返利等)</div>
+		</div>
 		<van-cell>
 		  <van-icon slot="icon" name="chat-o" size="25px"/>
 			<van-swipe :autoplay="3000" indicator-color="white">
@@ -113,7 +116,8 @@ export default {
 			},
 			activeKey: 0,
 			eqMoney: 0,
-			name: 'User'
+			name: 'User',
+			headmage:'http://assets.mtlyn.com/FoB3u6AwfhaJ5akMAjCNMuimSsof'
 		};
 	},
 	created(){
@@ -123,7 +127,7 @@ export default {
 		if (!this.userInfo) {
 			this.$router.push('/Login');
 			Dialog.alert({
-				message: '未登录或登陆过期，请重新登陆'
+				message: '请先登陆'
 			}).then(() => {
 				this.$router.push('/Login');
 			});
@@ -151,43 +155,44 @@ export default {
 			this.$router.push('/settings');
 		},
 		getMerBerInfo() {
-			// var _this=this;
-			getMerberInfo().then(e => {
-				/* if (e.code == 500||e.code == 401) {
-					if (!this.userInfo) {
-						this.$router.push('/Login');
-						Dialog.alert({
-							message: '未登录或登陆过期，请重新登陆'
-						}).then(() => {
-							this.$router.push('/Login');
-						});
-					}
-					return
-				}           */   
-				localStorage.getItem("userInfo",JSON.stringify(e.result))
-				this.userInfo = e.result;
-				if (e.result.overPoints == null) e.result.overPoints = 0;
-				this.orderCount = e.result.orderCount
-				this.userInfo.overMoney = e.result.overMoney.toFixed(4)
-				this.userInfo.points = e.result.points.toFixed(4)
-				this.userInfo.overProfit = e.result.overProfit.toFixed(4)
-				this.eqMoney = (e.result.overProfit - 0).toFixed(4)
-				this.userInfo.total = (this.userInfo.overMoney - 0 + (this.eqMoney - 0)).toFixed(4)
-				this.userInfo.pendingProfit = e.result.pendingProfit.toFixed(4)
-				this.userInfo.rebate = e.result.rebate.toFixed(4)
-				if (e.result.todayProfit != null)
-					this.userInfo.todayProfit = e.result.todayProfit.toFixed(4)
-				else
-					this.userInfo.todayProfit = "0.0000"
-				if (!this.userInfo.image)
-					this.userInfo.image = "/static/user.png"
-				this.userInfo.image = this.userInfo.image.split(",")[0]
-				localStorage.setItem("news",JSON.stringify(this.userInfo.news))
-			});
-		},
+			var userInfo=JSON.parse(localStorage.getItem('userInfo'));
+			if (!userInfo) {
+				Dialog.alert({
+					message: '请先登陆'
+				}).then(() => {
+					this.$router.push('/Login');
+				});
+			}else{
+				getMerberInfo().then(e => { 
+						localStorage.getItem("userInfo",JSON.stringify(e.result))
+						this.userInfo = e.result;
+						if (e.result.overPoints == null) e.result.overPoints = 0;
+						this.orderCount = e.result.orderCount
+						this.userInfo.overMoney = e.result.overMoney.toFixed(4)
+						this.userInfo.points = e.result.points.toFixed(4)
+						this.userInfo.overProfit = e.result.overProfit.toFixed(4)
+						this.eqMoney = (e.result.overProfit - 0).toFixed(4)
+						this.userInfo.total = (this.userInfo.overMoney - 0 + (this.eqMoney - 0)).toFixed(4)
+						this.userInfo.pendingProfit = e.result.pendingProfit.toFixed(4)
+						this.userInfo.rebate = e.result.rebate.toFixed(4)
+						if (e.result.todayProfit != null)
+							this.userInfo.todayProfit = e.result.todayProfit.toFixed(4)
+						else
+							this.userInfo.todayProfit = "0.0000"
+						if (!this.userInfo.image){
+							this.userInfo.image = this.headmage
+						}	
+						this.userInfo.image = this.userInfo.image.split(",")[0]
+						localStorage.setItem("news",JSON.stringify(this.userInfo.news))
+					});
+				}
+			},	
 		onChange(key) {
 			this.activeKey = key;
 		},
+		goRealName(){
+			this.$router.push({path:'/realName'});
+		}
 	}
 };
 </script>

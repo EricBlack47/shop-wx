@@ -12,7 +12,7 @@
 				<van-field value="确认密码" disabled />
 				<van-field v-model="rpassword" placeholder="请输入新密码" />
 			</van-cell-group>
-			<van-button size="large" @click="check">保存</van-button>
+			<van-button type="primary" size="large" @click="check">保存</van-button>
 		</div>
 	</div>
 </template>
@@ -39,8 +39,14 @@
 				this.$router.go(-1);
 			},
 			check() {
-				modiPassword(this.opassword).then(res => {				
-						if (this.npassword == "" || this.rpassword == "") {
+				modiPassword(this.opassword).then(res => {	
+					    if(res.result==false){
+							Dialog.alert({
+								title: "错误",
+								message: "原始密码错误"
+							})
+						}
+						else if (this.npassword == "" || this.rpassword == "") {
 							Dialog.alert({
 								title: "错误",
 								message: "密码不能为空"
@@ -57,7 +63,12 @@
 							updataPassword(query).then(res =>{
 								localStorage.removeItem("userInfo")
 								localStorage.removeItem("token")
-								this.$router.push('/User');															
+								Dialog.alert({
+									title: "修改成功",
+									message: "即将返回登陆页面",
+								}).then(()=>{
+									this.$router.push('/Login');			
+								})												
 							})								
 						}
 				})
@@ -71,7 +82,6 @@
 	.van-button--large 
 		bottom: 0px;
 		position: absolute;
-		background: orange;
 		color: white
 	
 </style>
