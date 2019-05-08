@@ -7,14 +7,14 @@
 			<h1>医互链点</h1>
 			<van-cell-group class="login-from">
 				<van-field v-model="userName" clearable border label="手机" placeholder="请输入号码" :error-message="userNameErr" />
-				<van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" />
+				<!-- <van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" /> -->
 				<van-cell>
 					<van-row>
 						<van-col span="12" class="btn">
 							<van-button type="primary" size="small" @click="login" :loading="loading">登陆</van-button>
 						</van-col>
 						<van-col span="12" class="btn">
-							<van-button type="default" size="small" @click="reg">注册</van-button>
+							<van-button type="default" size="small" @click="reg">去首页</van-button>
 						</van-col>
 					</van-row>
 				</van-cell>
@@ -75,29 +75,29 @@
 					return;
 				}
 			  else
-						userLogin({
-							userName: this.userName,
-							userPwd: this.password,
-							"type": 1
-						})
-						.then(res => {
-							if (res.result.id == null) {
-								Dialog.alert({
-									message: '用户名或密码错误',
-								});		
-								this.loading = false;
-							} 
-							else{
-								this.loading = false;
-								var userInfo = JSON.stringify(res.result);
-								localStorage.setItem("userInfo", userInfo);
-								localStorage.setItem("token", res.result.token)
-								this.$router.push('/');
-							}	
-						})
+				userLogin({
+					userName: this.userName,
+					userPwd: this.password,
+					"type": 1
+				})
+				.then(res => {
+					if (res.result.id == null) {
+						Dialog.alert({
+							message: '用户名或密码错误',
+						});		
+						this.loading = false;
+					} 
+					else{
+						this.loading = false;
+						var userInfo = JSON.stringify(res.result);
+						localStorage.setItem("userInfo", userInfo);
+						localStorage.setItem("token", res.result.token)
+						this.$router.push('/');
+					}	
+				})
 			},
 			reg() {
-				this.$router.push('/Reg');
+				this.$router.push('/');
 			},
 			goBack() {
 				this.$router.push('/');

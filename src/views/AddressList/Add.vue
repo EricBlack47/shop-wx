@@ -29,7 +29,12 @@
 		data() {
 			return {
 				areaList: AreaList,
+				checked:0
 			}
+		},
+		created(){
+			var num = this.$route.query.checked
+			this.checked =num
 		},
 
 		methods: {
@@ -53,7 +58,7 @@
 						  title: '成功',
 						  message: '已新增地址！'
 						}).then(() => {
-						   this.$router.push('/AddressList');
+						this.$router.push({path:'/AddressList',query:{checked:this.checked}});
 						});
 					
 					

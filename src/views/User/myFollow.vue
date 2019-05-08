@@ -53,22 +53,19 @@ export default {
 			this.$router.go(-1);
 		},
 		getlistMec() {
-			var _this = this;
 			var query = {
 				"memberId": this.userInfo.id
 			};
 			getflowMecList(query).then(res => {
 				if (res.result!=null&&res.result!="") {
-					_this.listMec = res.result;
-					for(var i= 0;i<_this.listMec.length;i++){
-						_this.listMec[i].image=_this.listMec[i].image.split(",")[0];
+					this.listMec = res.result;
+					for(var i= 0;i<this.listMec.length;i++){
+						this.listMec[i].image=this.listMec[i].image.split(",")[0];
 					}
 				}
 			});
 		},
 		getlistDoc() {
-			var _this = this;
-			console.log(this.userInfo.id)
 			var query = {
 				"memberId": this.userInfo.id,
 				"page": 1,
@@ -76,9 +73,9 @@ export default {
 				"memberType":this.userInfo.memberType
 			};
 			getflowDocList(query).then(res => {
-				_this.listDoc = res.result.list;
+				this.listDoc = res.result.list;
 				if (res.statusCode == 200) {
-					_this.listDoc.descript = res.result.list.descript.replace(/<img/gi, "<img width='100%'").replace(
+					this.listDoc.descript = res.result.list.descript.replace(/<img/gi, "<img width='100%'").replace(
 							/style=\"(.*)\"/gi, "style='width:100%;'")
 						.replace(/width=\"(.*)\"/gi, "style='width:100%;'");
 				}
