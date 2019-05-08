@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Toast } from 'vant';
 import router from '@/router';
 
-let token=localStorage.getItem("token")
+//let token=localStorage.getItem("token")
 
 // 环境的切换
 if (process.env.NODE_ENV == 'development') {
@@ -18,7 +18,16 @@ axios.defaults.withCredentials = true;
 // 响应拦截
 axios.interceptors.response.use(
   response => {
+		console.log(response)
     if (response.status === 200) {
+			if(response.data.code==401){
+				router.replace({
+				  path: '/login',
+				  query: {
+				    redirect: router.currentRoute.fullPath
+				  }
+				});
+			}
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
@@ -26,16 +35,9 @@ axios.interceptors.response.use(
   },
   // 服务器状态码不是200的情况
   error => {
+		console.log("-----",error)
     if (error.response.status) {
       switch (error.response.status) {
-        case 401:
-          router.replace({
-            path: '/login',
-            query: {
-              redirect: router.currentRoute.fullPath
-            }
-          });
-          break;
         case 404:
           Toast({
             message: '网络请求不存在',
@@ -85,6 +87,7 @@ export function post(url, params) {
 
 
 export function authPost(url,params){
+	var token=localStorage.getItem("token")
 	return new Promise((resolve, reject) => {
 	  axios
 	    .post(url, params,{
@@ -104,6 +107,7 @@ export function authPost(url,params){
 
 
 export function upload(url,file){
+	var token=localStorage.getItem("token")
 	let param = new FormData(); //创建form对象
   param.append('images',file.file,file.file.name);//通过append向form对象添加数据
   param.append('chunk','0');//添加form表单中其他数据
