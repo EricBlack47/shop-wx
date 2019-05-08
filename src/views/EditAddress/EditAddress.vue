@@ -32,10 +32,13 @@
 					name:'',
 					tel:'',
 					isDefault:false
-				}
+				},
+				checked:0
 			};
 		},
 		created() {
+			var num = this.$route.query.checked
+			this.checked = num
 			var adres =JSON.parse(this.$route.query.address) 
 			this.addAddressInfo = adres
 		},
@@ -58,19 +61,13 @@
 					streetName: JSON.stringify(addrInfo),
 					isDefault:address.isDefault
 				}
-				updateAddress(query).then(res => {
-					if(res.code ==200){
+				updateAddress(query).then(res => {				
 						Dialog.alert({
 						  title: '成功',
 						  message: '已更新地址！'
 						}).then(() => {
-						   this.$router.push('/AddressList');
+							this.$router.push({path:'/AddressList',query:{checked:this.checked}});
 						});
-					}
-					Dialog.alert({
-					  title: '失败',
-					  message: '更新地址失败！'
-					})
 				})
 			},
 			onDelete(address){

@@ -9,7 +9,7 @@
 				<div class="address-item">
 					<div address="address-top">
 						<van-icon name="location" />
-						<span class="user-info">{{hasDefaultAddress?defaultAddress.userName:'添加收货地址'}}</span>
+						<span class="user-info">{{hasDefaultAddress?defaultAddress.name:'添加收货地址'}}</span>
 						<span class="phonenum" v-if="hasDefaultAddress">{{defaultAddress.tel}}</span>
 					</div>
 					<div class="address-bottom" v-if="hasDefaultAddress">
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+	import { Dialog } from 'vant';
 	import {
 		getAddressList,
 		createOrder,
@@ -68,11 +69,12 @@
 				.then(result => {
 					this.addressList = result.result;
 						result.result.forEach(item => {
-							if (item.Isdefault === 1) {
-								this.defaultAddress = item;
+							var adrr = localStorage.getItem("address")
+							if (adrr!=null) {
+								this.defaultAddress = JSON.parse(adrr);
 								this.hasDefaultAddress = true;
 								var addr=JSON.parse(item.streetName)
-								this.hasDefaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
+								this.defaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
 								return;
 							}
 						});
@@ -81,6 +83,7 @@
 							this.hasDefaultAddress = true;
 							var addr=JSON.parse(this.defaultAddress.streetName)
 							this.defaultAddress.address=addr.province+addr.city+addr.county+addr.addressDetail
+							return
 						}
 				})
 				.catch(error => {
@@ -88,8 +91,7 @@
 				});
 				
 		},
-		methods: {
-			
+		methods: {		
 			//获取订单列表
 			getOrderDetail(productId = null) {
 				if (productId) {
@@ -113,10 +115,10 @@
 				}
 			},
 			onSubmit() {
-				if (this.defaultAddress.addressId <= 0) {
+				if (this.hasDefaultAddress == false) {
 					Dialog.alert({
 					  title: '错误',
-					  message: '请添加收货地址'
+					  message: '请先添加收货地址'
 					})
 					return;
 				}

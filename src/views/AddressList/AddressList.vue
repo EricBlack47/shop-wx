@@ -37,6 +37,7 @@
 						obj.id = item.addressId;
 						obj.name = item.userName;
 						obj.tel = item.tel;
+						obj.isDefault = item.isDefault;
 						var addr=JSON.parse(item.streetName)
 						obj.address =addr.province+addr.city+addr.county+addr.addressDetail;
 						obj.province=addr.province;
@@ -50,21 +51,24 @@
 				})
 			},
 			onAdd() {
-				this.$router.push('/Add');
+				this.$router.push({path:'/Add',query:{checked:this.checked}});
 			},
 			onEdit(item) {		
 				var adrr = item;	
 				this.$router.push({
 					path: '/EditAddress',
-					query: { address: JSON.stringify(adrr) }
+					query: { address: JSON.stringify(adrr),checked:this.checked }
 				});					
 			},
 		
 			onSelect(item) {
 				this.setAddressId(this.chosenAddressId)
-				var adrr = item;
+				var adrr = JSON.stringify(item)	
+				var addr = JSON.parse(adrr)
+				addr.isDefault = true;
+				adrr = JSON.stringify(addr)
 				if(this.checked==1){
-					localStorage.setItem("address",JSON.stringify(adrr))
+					localStorage.setItem("address",adrr)
 					this.$router.go(-1);
 					return;
 				}	
@@ -72,9 +76,9 @@
 			setAddressId() {
 				this.AddressId = this.address.addressId
 			},
-			getDefaultId() {
-				let id = '';
-				for (let i = 0; i < this.addressList.length; i++) {
+			getItem() {
+				var item = {};
+				for (var i = 0; i < this.addressList.length; i++) {
 					if (this.addressList[i].isDefault === 1) {
 						id = this.addressList[i].addressId;
 						break;

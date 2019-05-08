@@ -168,10 +168,8 @@ export default {
 	},
 	created() {
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-		console.log(this.userInfo);
 	},
 	mounted() {
-		console.log(this.userInfo);
 		if (!this.userInfo) {
 			this.$router.push('/Login');
 			Dialog.alert({
@@ -295,9 +293,6 @@ export default {
 					return;
 				}
 				_this.userInfo = e.result;
-				/* localStorage.setItem("userInfo",e.result);
-				localStorage.setItem("token",e.result.token) */
-				console.log(_this.userInfo);
 				if (e.result.overPoints == null) e.result.overPoints = 0;
 				_this.userInfo.overMoney = e.result.overMoney.toFixed(4);
 				_this.userInfo.points = e.result.points.toFixed(4);

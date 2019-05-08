@@ -95,12 +95,12 @@ export default {
 			this.seconds = 60;
 			this.codeText = this.seconds + "s后重新获取";
 			var timer = setInterval(function() {
-				_this.seconds--;
-				_this.codeText = _this.seconds + "s后重新获取";
-				if (_this.seconds <= 0) {
+				this.seconds--;
+				this.codeText = this.seconds + "s后重新获取";
+				if (this.seconds <= 0) {
 					clearInterval(timer)
-					_this.disabled = false
-					_this.codeText = '重新获取'
+					this.disabled = false
+					this.codeText = '重新获取'
 				}
 			}, 1000)
 			uni.request({
@@ -111,8 +111,8 @@ export default {
 				method: 'POST',
 				success: function(res) {
 					if (res.data.code != 0) {
-						_this.disabled = false
-						_this.codeText = '重新获取'
+						this.disabled = false
+						this.codeText = '重新获取'
 					}
 				}
 			});
