@@ -56,6 +56,7 @@ export default {
 		},
 		// 点击“去付款”
 		payOrder(orderId) {
+			console.log(orderId)
 			this.$router.push({path:'/OrderList',query:{orderIds:orderId}});
 		},
 		/* 确认收货 */
@@ -98,7 +99,7 @@ export default {
 		},
 		goBuy(id){
 			console.log(id)
-			this.$router.push({path:'/payMoney',query:{orderIds:id}});				
+			this.$router.push({path:'/payMoney',query:{orderIds:[id]}});				
 		},
 	}
 };

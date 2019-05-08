@@ -59,6 +59,7 @@ const sectionList = () => import('@/views/Home/Sections/sectionList');//科室�
 const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//海外好货
 const goodsList = () => import('@/views/Home/goodsList');//商品列表
 const payResult = () => import('@/views/Order/payResult')//支付结果
+const smsLogin = () => import('@/views/Login/smsLogin')//支付结果
 
 
 
@@ -239,6 +240,14 @@ export default new Router({
         fullScreen: true
       }
     },
+		 {
+		  path: '/smsLogin',
+		  name: 'smsLogin',
+		  component: smsLogin,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
     {
       path: '/Reg',
       name: 'Reg',

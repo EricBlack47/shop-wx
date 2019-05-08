@@ -79,7 +79,7 @@
 					Dialog.alert({
 						message: '请先登陆'
 					}).then(() => {
-						this.$router.push('/Login');
+						this.$router.push('/smsLogin');
 					});
 				}else{
 					var query = {memberGoldId:this.goods.memberGoldId};

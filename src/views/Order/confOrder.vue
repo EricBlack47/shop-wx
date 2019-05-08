@@ -129,8 +129,13 @@
 					streetName: this.defaultAddress.streetName,
 					goodsList: this.orderGoodList
 				}
-				addOrder(orderInfo)
-					.then(result => {
+				addOrder(orderInfo).then(result => {
+						if(result.code==500){
+							Dialog.alert({
+								message:"您提交的太频繁了，请稍后再试！",
+							})
+							return;
+						}
 						var orderId = result.result
 						this.$router.push({path:'/payMoney',query:{orderIds:orderId}});
 					})

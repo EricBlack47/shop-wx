@@ -4,7 +4,7 @@
 			<div class="back-btn" @click="goBack">
 				<van-icon name="arrow-left" />
 			</div>
-      <h1>用户注册</h1>
+      <h1>用户登陆</h1>
       <van-cell-group class="reg-from">
         <van-field v-model="regData.userName" clearable border label="手机号" placeholder="请输入手机号" :error-message="userNameErr" />
         <van-field v-model="regData.regCode" center clearable label="短信验证码" placeholder="请输入短信验证码">
@@ -16,7 +16,7 @@
 							<van-button type="primary" size="small" @click="login" :loading="loading">登陆</van-button>
 						</van-col> -->
             <van-col span="24" class="btn">
-              <van-button type="primary" size="small" @click="reg" :loading="loading">注册</van-button>
+              <van-button type="primary" size="small" @click="reg" :loading="loading">登陆</van-button>
             </van-col>			
           </van-row>
         </van-cell>
@@ -28,7 +28,7 @@
 <script>
 import MD5 from 'crypto-js/md5';
 import { emailCheck, pwdCheck } from '@/util/util';
-import { reg,smsCode } from '@/api/api';
+import { reg,smsCode,msgLogin } from '@/api/api';
 import { Toast,	Dialog } from 'vant';
 
 export default {
@@ -59,19 +59,6 @@ export default {
 			userInfo: null,
 			disabled: false,
 			seconds: 0,
-			items: [{
-					value: '1',
-					name: '普通会员'
-				},
-				{
-					value: '2',
-					name: '钻石会员'
-				},
-				{
-					value: '3',
-					name: 'VIP会员'
-				},
-			],
 			 current: 0
 		}
   },
@@ -99,7 +86,7 @@ export default {
 				}
 			}, 1000)
 			smsCode({phone:this.regData.userName}).then(res =>{
-				console.log(res)
+				
 			})
 		},
     reg() {
@@ -107,33 +94,26 @@ export default {
       this.loading = true;
 			var query ={
 				userName: this.regData.userName,
-			  userPwd: this.regData.userPwd,
 				code: this.regData.regCode,
-				catId:1
 			}
-      reg(query)
+      msgLogin(query)
         .then(res => {
-          if (res.message === "success") {
-						localStorage.setItem("userInfo",this.userInfo)
-            this.loading = false;
-            Toast.success('跳转主页');
-            setTimeout(() => {
-              Toast.clear();
-              this.$router.push('/');
-            }, 1000);
-          } else {
-            this.loading = false;
-            Toast.fail(res.msg);
-          }
+					console.log(res)
+						this.loading = false;
+						var userInfo = JSON.stringify(res.result);
+						localStorage.setItem("userInfo", userInfo);
+						localStorage.setItem("token", res.result.token)
+						Dialog.alert({
+							message: '登陆成功！即将返回首页',
+						}).then(()=>{
+								this.$router.push('/');
+					})
         })
         .catch(error => {
           Toast.fail(error);
           this.loading = false;
         });
     },
-		// login(){
-		// 	 this.$router.push('/login');
-		// },
 		goBack() {
 			this.$router.push('/');
 		},

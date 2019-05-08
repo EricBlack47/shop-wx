@@ -7,14 +7,14 @@
 			<h1>医互链点</h1>
 			<van-cell-group class="login-from">
 				<van-field v-model="userName" clearable border label="手机" placeholder="请输入号码" :error-message="userNameErr" />
-				<!-- <van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" /> -->
+				<van-field v-model="password" clearable border type="password" label="密码" placeholder="请输入密码" :error-message="passwordErr" />
 				<van-cell>
 					<van-row>
 						<van-col span="12" class="btn">
 							<van-button type="primary" size="small" @click="login" :loading="loading">登陆</van-button>
 						</van-col>
 						<van-col span="12" class="btn">
-							<van-button type="default" size="small" @click="reg">去首页</van-button>
+							<van-button type="default" size="small" @click="reg">注册</van-button>
 						</van-col>
 					</van-row>
 				</van-cell>
@@ -97,7 +97,7 @@
 				})
 			},
 			reg() {
-				this.$router.push('/');
+				this.$router.push('/Reg');
 			},
 			goBack() {
 				this.$router.push('/');

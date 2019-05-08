@@ -85,3 +85,6 @@ export const gettitleGoods = params => post('content/list',params)//获取海外
 export const getDocDetail = params => authPost('doctor/getOneById',params);//获取医生详情
 export const getNewsList = params => authPost('news/list',params);//获取新闻列表
 export const getNewsDetal = params => authPost('news/Info',params);//获取新闻列表
+export const getMySale = params => authPost('memberIncome/getTrade',params);//获取我的销售
+export const smsCode = params =>post('sms',params);//短信验证码
+export const msgLogin = params =>post('member/msgLogin',params);//短信登陆

@@ -67,8 +67,11 @@
 <style lang="stylus" scoped>
  .swipe img
 	 width 100% 
-	 height 250px
+	 height 200px
 	 
+.van-card__thumb img
+	 width 75px
+	 height 75px
 
 
 </style>

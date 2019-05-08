@@ -39,7 +39,7 @@ export default {
 			  title: '退出',
 			  message: '已退出登陆'
 			}).then(() => {
-			   this.$router.push('/Login');
+			   this.$router.push('/smsLogin');
 			});
 		},
 		goBack() {

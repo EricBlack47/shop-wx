@@ -125,11 +125,11 @@ export default {
 	},
 	mounted() {
 		if (!this.userInfo) {
-			this.$router.push('/Login');
+			this.$router.push('/smsLogin');
 			Dialog.alert({
 				message: '请先登陆'
 			}).then(() => {
-				this.$router.push('/Login');
+				this.$router.push('/smsLogin');
 			});
 		}
 		//获取会员信息
@@ -160,7 +160,7 @@ export default {
 				Dialog.alert({
 					message: '请先登陆'
 				}).then(() => {
-					this.$router.push('/Login');
+					this.$router.push('/smsLogin');
 				});
 			}else{
 				getMerberInfo().then(e => { 
