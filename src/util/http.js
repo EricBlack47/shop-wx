@@ -18,7 +18,6 @@ axios.defaults.withCredentials = true;
 // 响应拦截
 axios.interceptors.response.use(
   response => {
-		console.log(response)
     if (response.status === 200) {
 			if(response.data.code==401){
 				router.replace({

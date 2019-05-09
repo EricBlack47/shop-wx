@@ -1,5 +1,5 @@
 <template>
-	<div style="padding-bottom: 50px;margin-left: 15upx;"> 
+	<div style="padding-bottom: 50px;margin-left: 15upx; color:dimgrey"> 
 		<van-row>
 			<van-col span="5">
 				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
@@ -57,21 +57,33 @@
 					待付款
 				</van-col>
 			</div>
-			<div @click="goList2()">
+			<div @click="goList2()" v-if="userInfo.memberType!=4">
 				<van-col span="6">
 					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
-					待收货
+					<div>待收货</div>
 				</van-col>
 			</div>
-			<div @click="goList3()">
+			<div @click="goList2()"  v-if="userInfo.memberType ==4">
+				<van-col span="6">
+					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
+					<div>待发货</div>
+				</van-col>
+			</div>
+			<div @click="goList3()" v-if="userInfo.memberType!=4">
 				<van-col span="6">				
 					<van-icon name="logistics"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
-					待发货
+					<div v-if="userInfo.memberType!=4">待发货</div>
+				</van-col>
+			</div>
+			<div @click="goList3()" v-if="userInfo.memberType==4">
+				<van-col span="6">				
+					<van-icon name="logistics"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
+					<div v-if="userInfo.memberType==4">待收货</div>
 				</van-col>
 			</div>
 			<div @click="goList4()">
 				<van-col span="6">
-					<van-icon name="bookmark-o"><div v-if="this.orderCount.waitJudge!=0" class="van-info van-badge__info">{{orderCount.waitJudge}}</div></van-icon>
+					<van-icon name="bookmark-o"></van-icon>
 					全部订单
 				</van-col>
 			</div>
@@ -86,7 +98,6 @@
 			<van-cell title="账单" is-link to="/bill" ><van-icon slot="icon" name="balance-list-o" size="22px"/></van-cell>
 		</van-cell-group>
 		<van-cell-group>
-	
 			<div v-if="userInfo.memberType===4"><van-cell title="我的销售"  is-link to="/mySale" ><van-icon slot="icon" name="gift" size="22px"/></van-cell></div>
 			<div v-if="userInfo.memberType!==3"><van-cell title="我的关注"   is-link to="/myFollow" ><van-icon slot="icon" name="like-o" size="22px"/></van-cell></div> 
 			<div v-if="userInfo.memberType===3"><van-cell title="关注我的"   is-link to="/fllowMe"> <van-icon slot="icon" name="like-o" size="22px"/></van-cell></div>
