@@ -20,7 +20,7 @@
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listAll" :key="index">
 					<van-row>
 						
-						<van-col span="6">
+						<van-col span="4">
 							{{
 								list.kind == '支出'
 									? list.type == 0
@@ -47,11 +47,11 @@
 									: '其他'
 							}}
 						</van-col>
-						<van-col span="6">{{list.kind}}</van-col>
-						<van-col span="6">
+						<van-col span="4">{{list.kind}}</van-col>
+						<van-col span="8">
 							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
-						<van-col span="6">{{list.created}}</van-col>
+						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list>
@@ -60,7 +60,7 @@
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listget" :key="index">
 					<van-row>
 						
-						<van-col span="6">
+						<van-col span="4">
 							{{
 								list.kind == '支出'
 									? list.type == 0
@@ -87,11 +87,11 @@
 									: '其他'
 							}}
 						</van-col>
-						<van-col span="6">{{list.kind}}</van-col>
-						<van-col span="6">
+						<van-col span="4">{{list.kind}}</van-col>
+						<van-col span="8">
 							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
-						<van-col span="6">{{list.created}}</van-col>
+						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list></van-tab>
@@ -99,7 +99,7 @@
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listuse" :key="index">
 					<van-row>
 						
-						<van-col span="6">
+						<van-col span="4">
 							{{
 								list.kind == '支出'
 									? list.type == 0
@@ -126,11 +126,11 @@
 									: '其他'
 							}}
 						</van-col>
-						<van-col span="6">{{list.kind}}</van-col>
-						<van-col span="6">
+						<van-col span="4">{{list.kind}}</van-col>
+						<van-col span="8">
 							<span>{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
 						</van-col>
-						<van-col span="6">{{list.created}}</van-col>
+						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list></van-tab>
