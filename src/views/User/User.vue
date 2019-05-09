@@ -4,15 +4,19 @@
 			<van-col span="5">
 				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
 			</van-col>	
-			<van-col span="10">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 22px;">{{ userInfo.username }}</span>
+			<van-col span="12">
+				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 			</van-col>
 			<van-col span="6">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 18px;text-decoration:underline">普通会员</span>
-				<span v-if="userInfo.memberType == 3">医生</span>
-				<span v-if="userInfo.memberType == 2">医院</span>
-				<span v-if="userInfo.memberType == 1">院长</span>
-				<span v-if="userInfo.memberType == 4">商家</span>
+				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">普通会员</span>
+				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医生</span>
+				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医院</span>
+				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">院长</span>
+				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">商家</span>
 			</van-col>
 		</van-row>
 		<div v-if="userInfo.state==1">
