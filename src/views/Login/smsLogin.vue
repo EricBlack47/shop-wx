@@ -76,13 +76,14 @@ export default {
 			this.disabled = true;
 			this.seconds = 60;
 			this.codeText = this.seconds + "s后重新获取";
+			var _this=this;
 			var timer = setInterval(function() {
-				this.seconds--;
-				this.codeText = this.seconds + "s后重新获取";
-				if (this.seconds <= 0) {
+				_this.seconds--;
+				_this.codeText = _this.seconds + "s后重新获取";
+				if (_this.seconds <= 0) {
 					clearInterval(timer)
-					this.disabled = false
-					this.codeText = '重新获取'
+					_this.disabled = false
+					_this.codeText = '重新获取'
 				}
 			}, 1000)
 			smsCode({phone:this.regData.userName}).then(res =>{

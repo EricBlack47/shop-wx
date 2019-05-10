@@ -1,9 +1,6 @@
 <template>
   <div class="cart">
     <van-nav-bar title="购物车"
-		  left-text="返回"
-		  left-arrow
-	  	@click-left="goBack"
       :right-text="rightText"
       @click-right="editCart"
       :z-index="10"
@@ -111,9 +108,7 @@ export default {
 				  });
 			}
     },
-		goBack() {
-			this.$router.go(-1);
-		},	
+	
 		setCartTotal(){
 			this.checkedGoods = [];
 			this.totalPrice=0

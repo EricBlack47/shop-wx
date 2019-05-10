@@ -91,6 +91,7 @@ export default {
 			this.codeText = this.seconds + "s后重新获取";
 			var timer = setInterval().then(()=>{
 				this.seconds--;
+				console.log(this.seconds)
 				this.codeText = this.seconds + "s后重新获取";
 				console.log(this.codeText)
 				if (this.seconds <= 0) {
