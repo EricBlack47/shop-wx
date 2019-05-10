@@ -8,14 +8,14 @@
 			<div style="margin: 5%;color: skyblue;">充值方式</div>
 			<van-radio-group v-model="radio">
 				<van-cell-group>
-					<van-cell title="支付宝支付"  @click="radio = '1'"><van-radio name="1" /></van-cell>
-					<van-cell title="微信支付"  @click="radio = '2'"><van-radio name="2" /></van-cell>
+					<van-cell title="微信支付"  @click="radio = '1'"><van-radio name="1" /></van-cell>
+					<van-cell title="支付宝支付"  @click="radio = '2'"><van-radio name="2" /></van-cell>
 				</van-cell-group>
 			</van-radio-group>
 		</div>
 		<div style="margin-top: 5%;text-align: center;">
 			<van-checkbox v-model="check">
-				<span @click="goAggrement" style="text-underline: 1px initial;color: red;">我已仔细阅读《充值协议》</span>
+				<span @click="goAggrement" style="text-underline: 1px initial;color: red;text-decoration: underline;">我已仔细阅读《充值协议》</span>
 			</van-checkbox>
 		</div>
 		<div @click="goCharge" style="position: fixed;width: 100%;bottom: 0px;"><van-button size="large" type="danger">充值</van-button></div>
