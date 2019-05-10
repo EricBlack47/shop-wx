@@ -58,33 +58,33 @@
 			<div @click="goList1()">
 				<van-col span="6">
 					<van-icon name="pending-payment"><div v-if="this.orderCount.waitPay!=0" class="van-info van-badge__info">{{orderCount.waitPay}}</div></van-icon>				
-					待付款
+					<div>待付款</div>
 				</van-col>
 			</div>
-			<div @click="goList2()" v-if="userInfo.memberType!=4">
+			<div @click="goList3()" >
 				<van-col span="6">
 					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
 					<div>待收货</div>
 				</van-col>
 			</div>
-			<div @click="goList2()"  v-if="userInfo.memberType ==4">
+			<div @click="goList2()" >
 				<van-col span="6">
 					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
 					<div>待发货</div>
 				</van-col>
 			</div>
-			<div @click="goList3()" v-if="userInfo.memberType!=4">
+			<!-- <div @click="goList3()" v-if="userInfo.memberType==4">
 				<van-col span="6">				
 					<van-icon name="logistics"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
 					<div v-if="userInfo.memberType!=4">待发货</div>
 				</van-col>
 			</div>
-			<div @click="goList3()" v-if="userInfo.memberType==4">
+			<div @click="goList3()" v-if="userInfo.memberType!=4">
 				<van-col span="6">				
 					<van-icon name="logistics"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
 					<div v-if="userInfo.memberType==4">待收货</div>
 				</van-col>
-			</div>
+			</div> -->
 			<div @click="goList4()">
 				<van-col span="6">
 					<van-icon name="bookmark-o"></van-icon>
