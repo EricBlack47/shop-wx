@@ -4,13 +4,27 @@
 			<van-nav-bar title="支付完成" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
 			<div style="padding-top: 48px;"  v-if="status == true">
 				<h2 class="ok">付款成功</h2>
-				<div class="btn1"><van-button type="primary" @click="goOrder">查看订单</van-button></div>
-				<div class="btn2"><van-button type="primary" @click="goGoods">继续逛</van-button></div>
+				<div style="width: 100%; text-align: center;left: 32%;z-index:1;">
+						<div style="padding-right: 20px;float: left;margin-left: 25%;">
+							<van-button  @click="goOrder"  type="primary">查看订单</van-button>
+						</div>	
+					</van-uploader>	
+					<div style="margin-right: 20%;">
+						<van-button @click="goGoods" type="primary" class="tijiao">继续逛</van-button>	
+					</div>	
+				</div>
 			</div>	
 			<div style="padding-top: 48px;"  v-if="status != true">
 				<h2 class="ok" style="text-align center;margin-top 50px" >付款失败</h2>
-				<div><van-button type="primary"  @click="goOrder">查看订单</van-button></div>
-				<div><van-button type="primary">充值</van-button></div>
+				<div style="width: 100%; text-align: center;left: 32%;z-index:1;margin-top: 20%;">
+					<div style="padding-right: 20px;float: left;margin-left: 25%;">
+						<van-button  @click="goOrder" plain hairline type="primary">查看订单</van-button>
+					</div>	
+					</van-uploader>	
+					<div style="margin-right: 20%;">
+						<van-button plain hairline type="primary" class="tijiao">充值</van-button>	
+					</div>
+				</div>	
 			</div>	
 		</div>
 	</div>
