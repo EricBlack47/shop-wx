@@ -1,6 +1,6 @@
 <template>
 	<div class="home" style="padding-bottom: 60px;">
-		<van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search>
+		<!-- <van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search> -->
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goMainDet(item)"><img :src="item.picUrl" /></van-swipe-item>
@@ -58,8 +58,8 @@
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
 			<van-swipe class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
-					<div v-for="(item, index) in doctor" style="display: inline-block;" class="swipe-item" :key="index" @click="goDocDet(item)">
-						<div><img :src="item.image" style="width: 118px;height: 120px;margin-right: 2px;" /></div>
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 30%;margin-left: 5px;" class="swipe-item" :key="index" @click="goDocDet(item)">
+						<div><img :src="item.image" style="width: 110px;height: 110px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.name }}工作室</span>
 					</div>
 				</van-swipe-item>
@@ -68,8 +68,8 @@
 		<good-item title="会员医院" describe="名医问诊" moreRoute="/memberHospital">
 			<van-swipe  class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goHosDet(item)">
-					<div v-for="(item, index) in doctor" style="display: inline-block;width: 175px;margin-right: 4px;margin-left: 2px;" class="swipe-item" :key="index" @click="goHosDet(item)">
-						<div><img :src="item.image" style="width: 170px;height: 120px;" /></div>
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 165px;margin-right: 4px;" class="swipe-item" :key="index" @click="goHosDet(item)">
+						<div><img :src="item.image" style="width: 130px;height: 100px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.hospitalName }}</span>
 					</div>
 				</van-swipe-item>

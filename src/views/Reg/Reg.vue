@@ -89,9 +89,10 @@ export default {
 			this.disabled = true;
 			this.seconds = 60;
 			this.codeText = this.seconds + "s后重新获取";
-			var timer = setInterval(function() {
+			var timer = setInterval().then(()=>{
 				this.seconds--;
 				this.codeText = this.seconds + "s后重新获取";
+				console.log(this.codeText)
 				if (this.seconds <= 0) {
 					clearInterval(timer)
 					this.disabled = false

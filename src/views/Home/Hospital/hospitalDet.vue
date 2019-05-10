@@ -105,7 +105,7 @@ export default {
 			});
 		},
 		goDet(item) {
-			this.$router.push({ path: '/hospitalDet', query: { hospitalId: item.id } });
+			this.$router.push({ path: '/doctorDet', query: { doctorId: item.id } });
 			console.log(item.id);
 		}
 	}

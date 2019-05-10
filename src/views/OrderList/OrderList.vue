@@ -98,7 +98,6 @@ export default {
 			return price.toFixed(2);
 		},
 		goBuy(id){
-			console.log(id)
 			this.$router.push({path:'/payMoney',query:{orderIds:[id]}});				
 		},
 	}
