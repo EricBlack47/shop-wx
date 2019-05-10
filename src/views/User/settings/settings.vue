@@ -4,7 +4,7 @@
 		<van-cell title="个人信息" icon="manager-o" value="" is-link to="/userInfo"/>
 		<van-cell title="实名认证" icon="manager-o" value="" @click="goRealName"/>
 		<van-cell title="安全设置" icon="setting-o" value="" is-link to="/safeSetting"/>
-		<van-cell title="收获地址" icon="location-o" value="" is-link to="/AddressList"/>
+		<van-cell title="收货地址" icon="location-o" value="" is-link to="/AddressList"/>
 		<van-cell title="会员管理" icon="manager-o" value="" is-link to="/memberManage"/>
 		<van-cell title="关于我们" icon="friends-o" value="" is-link to="/aboutUs"/>
 		<van-cell title="用户须知" icon="description" value="" is-link to="/userRead"/>

@@ -4,14 +4,14 @@
 			<van-col span="5">
 				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
 			</van-col>	
-			<van-col span="12">
+			<van-col span="11">
 				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
 			</van-col>
-			<van-col span="6">
+			<van-col span="7">
 				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">普通会员</span>
 				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医生</span>
 				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医院</span>
@@ -69,7 +69,7 @@
 			</div>
 			<div @click="goList2()"  v-if="userInfo.memberType ==4">
 				<van-col span="6">
-					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
+					<van-icon name="gift-card-o"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
 					<div>待发货</div>
 				</van-col>
 			</div>
@@ -81,7 +81,7 @@
 			</div>
 			<div @click="goList3()" v-if="userInfo.memberType==4">
 				<van-col span="6">				
-					<van-icon name="logistics"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
+					<van-icon name="logistics"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
 					<div v-if="userInfo.memberType==4">待收货</div>
 				</van-col>
 			</div>

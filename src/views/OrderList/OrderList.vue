@@ -14,7 +14,7 @@
 						<div  class="l" style="float: left;">实付：￥{{item.orderTotal}}</div>
 						<div @click="cancelOrderList(item.orderId)" style="margin-right: 20px;float: right;" v-if="item.orderStatus==0&&item.memberGoldId!=userId"><van-button size="mini">取消订单</van-button></div>
 						<div @click="goBuy(item.orderId)" style="margin-right: 20px;float: right;" v-if="item.orderStatus==0&&item.memberGoldId!=userId"><van-button size="mini">去付款</van-button></div>
-						<div style="margin-right: 20px;float: right;" v-if="item.orderStatus==2&&item.memberGoldId==userId" ><van-button size="mini">发货</van-button></div>
+						<div style="margin-right: 20px;float: right;" v-if="item.orderStatus==2&&item.memberGoldId==userId" ><van-button size="mini" >发货</van-button></div>
 						<div style="margin-right: 20px;float: right;" v-if="item.orderStatus>2" ><van-button size="mini">查物流</van-button></div>
 						<div style="margin-right: 20px;float: right;" v-if="item.orderStatus==3&&item.memberGoldId!=userId"><van-button size="mini">确认收货</van-button></div>
 					</div>	
@@ -98,7 +98,6 @@ export default {
 			return price.toFixed(2);
 		},
 		goBuy(id){
-			console.log(id)
 			this.$router.push({path:'/payMoney',query:{orderIds:[id]}});				
 		},
 	}
