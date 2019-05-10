@@ -5,16 +5,15 @@
 			<van-cell-group>
 				<van-field value="输入金额" label="充值金额" left-icon="contact" v-model="money" />
 			</van-cell-group>
-			<van-cell value="充值方式" />
+			<div>充值方式</div>
 			<van-radio-group v-model="radio">
 				<van-cell-group>
 					<van-cell title="支付宝支付"  @click="radio = '1'"><van-radio name="1" /></van-cell>
 					<van-cell title="微信支付"  @click="radio = '2'"><van-radio name="2" /></van-cell>
 				</van-cell-group>
 			</van-radio-group>
-			<div style="position: fixed;right: 20px;"><van-button type="danger">充值</van-button></div>
-			
 		</div>
+		<div style="position: fixed;width: 100%;bottom: 0px;"><van-button size="large" type="danger">充值</van-button></div>
 	</div>
 </template>
 
