@@ -42,17 +42,23 @@ export default {
 	},
 	mounted() {
 		this.orderList=[];
-		var type = this.$route.query.type-0
-		this.getOrder(type);
+		if(this.$route.query.type==null){
+			var type = this.$route.query.type
+			this.getOrder(type);
+		}else{
+			var type = this.$route.query.type-0
+			this.getOrder(type);
+		}
+		
   },
 	methods: {
 		//发货
 		orderShip(orderId) {
-			this.$router.push({path:'/OrderList',query:{orderId:orderId}});
+			this.$router.push({path:'/orderShip',query:{orderId:orderId}});
 		},
 		/* 查物流 */
 		seeLogistics(shippingName,shippingCode) {
-			this.$router.push({path:'/seeLogistics',query:{orderId:orderId}});
+			this.$router.push({path:'/seeLogistics',query:{shippingName:shippingName,shippingCode:shippingCode}});
 		},
 		// 点击“去付款”
 		payOrder(orderId) {

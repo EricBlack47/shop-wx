@@ -60,7 +60,8 @@ const titleGoods = () => import('@/views/Home/TitleGoods/titleGoods');//海外�
 const goodsList = () => import('@/views/Home/goodsList');//商品列表
 const payResult = () => import('@/views/Order/payResult')//支付结果
 const smsLogin = () => import('@/views/Login/smsLogin')//支付结果
-
+const orderShip = () => import('@/views/OrderList/orderShip')//发货
+const seeLogistics = () => import('@/views/OrderList/seeLogistics')//查物流
 
 
 Vue.use(Router);
@@ -552,6 +553,22 @@ export default new Router({
 			path: '/newsDet',
 			name: 'newsDet',
 			component: newsDet,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/seeLogistics',
+			name: 'seeLogistics',
+			component: seeLogistics,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+		{
+			path: '/orderShip',
+			name: 'orderShip',
+			component: orderShip,
 			 meta: {
 			  fullScreen: true
 			}
