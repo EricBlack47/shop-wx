@@ -58,7 +58,7 @@
 						  title: '成功',
 						  message: '已新增地址！'
 						}).then(() => {
-						this.$router.push({path:'/AddressList',query:{checked:this.checked}});
+						this.$router.go(-1);
 						});
 					
 					
@@ -66,7 +66,7 @@
 			},
 
 			goBack() {
-				this.$router.push('/AddressList');
+				this.$router.go(-1);
 			},
 		}
 	}

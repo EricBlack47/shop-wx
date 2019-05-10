@@ -132,7 +132,7 @@
 				this.count = value;
 			},
 			goBack() {
-				this.$router.go(-1);
+				this.$router.push('/GoodList');
 			},
 
 		}
