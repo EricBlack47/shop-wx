@@ -45,6 +45,7 @@
 	export default {
 		data() {
 			return {
+				productId:'',
 				orders: [],
 				orderGoodList: [],
 				totalMoney: 0,
@@ -61,6 +62,7 @@
 		},
 		created() {
 			var productId = this.$route.query.productId
+			this.productId = productId
 			this.getOrderDetail(productId)
 			
 		},
@@ -148,10 +150,14 @@
 				return price.toFixed(2);
 			},
 			goAddressList() {
-				this.$router.push({path:'/AddressList',query:{checked:1}});
+				this.$router.push({path:'/AddressList',query:{checked:1,productId:this.productId}});
 			},
 			goBack() {
-				this.$router.go(-1);
+				if(this.productId!=undefined){
+					this.$router.push({path:'/Good',query:{productId:this.productId}});
+				}else{
+					this.$router.push({path:'/Cart'});
+				}
 			},
 		}
 	};

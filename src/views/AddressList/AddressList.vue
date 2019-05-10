@@ -21,11 +21,13 @@
 				chosenAddressId: '',
 				AddressId:'',
 				checked:0,
+				productId:''
 			};
 		},
 		created() {
 			var num = this.$route.query.checked
 			this.checked = num
+			console.log(this.checked)
 			this.getAddressList()
 		},
 		methods: {
@@ -69,7 +71,7 @@
 				adrr = JSON.stringify(addr)
 				if(this.checked==1){
 					localStorage.setItem("address",adrr)
-					this.$router.go(-1);
+					this.$router.push('/confOrder');
 					return;
 				}	
 			},
@@ -87,7 +89,11 @@
 				this.chosenAddressId = id;
 			},
 			goBack() {
-				this.$router.push('/settings');
+				if(this.checked == 1){
+					this.$router.go(-1)
+				}else{
+					this.$router.push('/settings');
+				}
 			},
 		}
 	};

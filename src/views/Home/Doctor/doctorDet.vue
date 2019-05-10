@@ -24,7 +24,7 @@
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>背景介绍</span>
 			</div>
-			<div class="descrption" style=" border: 1px gray solid;width: 95%;margin-left: 2.5%;background: lightgoldenrodyellow;" v-html="DoctorDetail.descript.length>100?DoctorDetail.descript.slice(0,100)+'...':DoctorDetail.descript "></div>
+			<div class="descrption" style=" border: 1px gray solid;width: 95%;margin-left: 2.5%;background: lightgoldenrodyellow;" v-html="DoctorDetail.descript"></div>
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>医生回复</span>
