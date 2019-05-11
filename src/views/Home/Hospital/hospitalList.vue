@@ -59,7 +59,6 @@
 			},
 			goDet(item){
 			 this.$router.push({path:'/hospitalDet',query:{hospitalId:item.id}});
-			 console.log(item.id)
 			}
 		}
 	};
@@ -71,7 +70,7 @@
 	 height 200px
 	 
 .van-card__thumb img
-	 width 75px
+	 width 90px
 	 height 75px
 
 </style>

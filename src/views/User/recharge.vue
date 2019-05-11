@@ -38,7 +38,7 @@ export default {
 			radio: '1'
 		};
 	},
-	onLoad(option) {
+	created(option) {
 		this.param.type = option.type;
 		if (this.param.type == '2') {
 			this.disabled = true;

@@ -88,6 +88,7 @@ export const getNewsDetal = params => authPost('news/Info',params);//获取新�
 export const getMySale = params => authPost('memberIncome/getTrade',params);//获取我的销售
 export const smsCode = params =>post('sms',params);//短信验证码
 export const wxCharge = params =>authPost('wxpay/charge',params);//微信充值
-export const msgLogin = params =>post('member/msgLogin',params);//短信登陆export const getAreaList = params => authPost('express/list',params);//获取快递列表
+export const msgLogin = params =>post('member/msgLogin',params);//短信登陆
+export const getAreaList = params => authPost('express/list',params);//获取快递列表
 export const orderShip = params => authPost('order/deliver',params);//发货
 export const getLogisticList = params => authPost('order/expressPostOrder',params);//发货

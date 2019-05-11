@@ -63,6 +63,8 @@ const smsLogin = () => import('@/views/Login/smsLogin')//短信登陆
 const starCharge = () =>import('@/views/User/starCharge')
 const orderShip = () => import('@/views/OrderList/orderShip')//发货
 const seeLogistics = () => import('@/views/OrderList/seeLogistics')//查物流
+const search = () => import('@/views/Home/Search/search')//搜索
+const searchMore = () => import('@/views/Home/Search/searchMore')//更多搜索
 
 
 Vue.use(Router);
@@ -81,6 +83,7 @@ export default new Router({
 			  fullScreen: true
 			}
     },
+		
 		{
 		  path: '/doctorList',
 		  name: 'doctorList',
@@ -582,6 +585,22 @@ export default new Router({
 			  fullScreen: true
 			}
 		}, 
+		{
+		  path: '/search',
+		  name: 'search',
+		  component: search,
+			 meta: {
+			  fullScreen: true
+			}
+		},
+		{
+		  path: '/searchMore',
+		  name: 'searchMore',
+		  component: searchMore,
+			 meta: {
+			  fullScreen: true
+			}
+		},
     {
       path: '*',
       name: 'Notfound',
