@@ -27,7 +27,7 @@
 				this.$router.push({path:'/aggrement',query:{type:2}});
 			},
 			goAggrement3(type){
-				this.$router.push({path:'/aggrement',query:{type:3}});
+				this.$router.push({path:'/aggrement',query:{type:3,}});
 			},
 			goAggrement4(type){
 				this.$router.push({path:'/aggrement',query:{type:4}});

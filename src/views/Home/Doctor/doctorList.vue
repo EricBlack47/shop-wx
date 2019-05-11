@@ -58,7 +58,6 @@
 			},
 			goDet(doctors){
 				 this.$router.push({path:'/doctorDet',query:{doctorId:doctors.id}});
-				 console.log(doctors.id)
 			}
 		}
 	};

@@ -70,7 +70,6 @@ export default {
 			this.$router.go(-1);
 		},
 		getHospitalDet(id) {
-			console.log("han",id)
 			var query = {
 				id: id
 			};

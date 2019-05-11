@@ -52,7 +52,6 @@
 			},
 			goDet(item){
 			 this.$router.push({path:'/sectionDet',query:{sectionsId:item.name}});
-			 console.log(item.id)
 			}
 		}
 	};
@@ -61,7 +60,7 @@
 <style lang="stylus" scoped>
  .swipe img
 	 width 100% 
-	 height 250px
+	 height 200px
 	 
 
 

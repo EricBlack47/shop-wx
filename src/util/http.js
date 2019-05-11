@@ -21,7 +21,7 @@ axios.interceptors.response.use(
     if (response.status === 200) {
 			if(response.data.code==401){
 				router.replace({
-				  path: '/login',
+				  path: '/smsLogin',
 				  query: {
 				    redirect: router.currentRoute.fullPath
 				  }

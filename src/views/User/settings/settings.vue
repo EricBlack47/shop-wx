@@ -34,7 +34,8 @@ export default {
 		quit(){
 			localStorage.removeItem("token");
 			localStorage.removeItem("userInfo"); 
-			localStorage.removeItem("news")
+			localStorage.removeItem("news");
+			localStorage.removeItem("address")
 			Dialog.alert({
 			  title: '退出',
 			  message: '已退出登陆'

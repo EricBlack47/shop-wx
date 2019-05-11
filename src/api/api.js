@@ -1,5 +1,4 @@
 
-
 import { get, post, authPost,upload} from '@/util/http';
 
 export const indexList=()=>get("content/list/0");
@@ -20,7 +19,7 @@ export const getOrder = () => post('getOrder');
 export const createOrder = params => post('createOrder', params);
 export const getGoodById = params => post('getGoodById', params);
 export const getGoodsList = () =>get('goods/allGoods');
-
+export const sectionDetBanner = () =>get('content/list/4')
 export const goodsBanner = () =>get("content/list/8");
 export const MerchantBanner = () =>get("content/list/7");
 export const getAllGoodsByMerchant =params =>post('item/list',params);//获取商家详情
@@ -48,12 +47,12 @@ export const updateAddress = params => authPost('member/updateAddress',params)//
 export const delAddress = params => authPost('member/delAddress',params)//删除地址
 export const getBillList = params =>authPost('member/memberIncomeAndExpend',params);//账单
 export const getOrderList = params =>authPost('member/orderList',params);//订单
-
 export const uploadImage = file =>upload('member/imgaeUpload1',file);//上传图片
 export const cancelOrder = params =>authPost('member/cancelOrder',params);//取消订单
 export const confirm = params =>authPost('member/confirmOrder',params);//确认收货
 export const addCar = params =>authPost('member/addCart',params);//加入购物车
-
+export const merchantList = params => post('memberGold/list',params);//商家
+export const merchantKind = params => post('kind/list',params);//商家分类
 export const getCartProduct = params =>authPost('member/getCartProduct',params);//获取购物车数据
 export const getCheckedCartList = params =>authPost('member/checkedCartList',params);//获取选中的购物车数据
 export const addOrder =params =>authPost('member/addOrder',params);//添加订单
@@ -62,7 +61,6 @@ export const realName = params =>authPost('member/updateMine',params);//实名�
 export const buyNow = params =>authPost('member/buyNowIntr',params);//商品详情页-立即购买
 export const orderDetail = params =>authPost('member/orderDetail',params);//获取订单详情
 export const payMoney = params => authPost('memberPay/pay',params)//购买
-
 export const hospitalBanner=()=>get("content/list/1");//医院轮播
 export const beautyBanner = () =>get('content/list/2');//美容医院轮播
 export const mouthBanner = () =>get('content/list/3');//口腔医院轮播
@@ -92,3 +90,4 @@ export const msgLogin = params =>post('member/msgLogin',params);//短信登陆
 export const getAreaList = params => authPost('express/list',params);//获取快递列表
 export const orderShip = params => authPost('order/deliver',params);//发货
 export const getLogisticList = params => authPost('order/expressPostOrder',params);//发货
+export const searchList = params => post('index/getall',params)//搜索列表
