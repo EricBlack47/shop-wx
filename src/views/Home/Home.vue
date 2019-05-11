@@ -1,5 +1,5 @@
 <template>
-	<div class="home" style="padding-bottom: 60px;">
+	<div class="home">
 		<!-- <van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search> -->
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">

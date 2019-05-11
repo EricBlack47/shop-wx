@@ -97,7 +97,7 @@
 			<van-cell title="余额     ----可提现"  :value="userInfo.overMoney" is-link to="/lastMoney"  ><van-icon slot="icon" name="gold-coin-o" size="22px"/></van-cell>
 			<van-cell title="MMC      ---可使用"  :value="userInfo.overProfit" is-link to="/mmc"  ><van-icon slot="icon" name="gem-o" size="22px"/></van-cell>
 			<van-cell title="积分     ----不可使用"   :value="userInfo.points" is-link to="/totalAssets"  ><van-icon slot="icon" name="stop-circle-o" size="22px"/></van-cell>
-			<van-cell title="充值"   is-link to="/recharge"><van-icon slot="icon" name="bill-o" size="22px"/></van-cell>
+			<van-cell title="充值" @click="goCharge"W><van-icon slot="icon" name="bill-o" size="22px"/></van-cell>
 			<van-cell title="提现"  is-link to="/withdrawal"><van-icon slot="icon" name="refund-o" size="22px"/></van-cell>
 			<van-cell title="账单" is-link to="/bill" ><van-icon slot="icon" name="balance-list-o" size="22px"/></van-cell>
 		</van-cell-group>
@@ -114,7 +114,7 @@
 
 <script>
 import { Dialog } from 'vant';
-import { getMerberInfo } from '@/api/api.js';
+import { getMerberInfo,wxAuth } from '@/api/api.js';
 export default {
 	data() {
 		return {
@@ -151,6 +151,24 @@ export default {
 		this.getMerBerInfo();
 	},
 	methods: {
+		is_weixin() {
+		  var ua = navigator.userAgent.toLowerCase();
+		  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		    return true;
+		  } else {
+		    return false;
+		  }
+		},
+		goCharge(){
+			if(this.is_weixin()){
+				wxAuth().then(res=>{
+					location.href=res.result;
+				})
+			}
+			else{
+				this.$router.push({path:'/recharge'})
+			}
+		},
 		goNews(id){
 			this.$router.push({path:'/newsList',query:{type:0}});
 		},

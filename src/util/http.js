@@ -84,6 +84,25 @@ export function post(url, params) {
   });
 }
 
+export function authGet(url, params) {
+	var token=localStorage.getItem("token")
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, {
+        params: params,
+				headers:{
+					'token': token,
+					'Content-Type':"application/json"
+				}
+      })
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data);
+      });
+  });
+}
 
 export function authPost(url,params){
 	var token=localStorage.getItem("token")
