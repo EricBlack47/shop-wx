@@ -1,7 +1,6 @@
 <template>
 	<div class="home">
-		<van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search>
-		<div class="home-swipe">
+			<div @click="onSearch"><van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action><div slot="action">搜索</div></van-search></div><div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index">
 					<img :src="item.picUrl">
@@ -80,7 +79,7 @@
 			},
 				
 			  onSearch() {
-			    
+			  	this.$router.push('/search');
 			  },
 			  changeSwipe(index) {
 			    this.indexPage = index;
