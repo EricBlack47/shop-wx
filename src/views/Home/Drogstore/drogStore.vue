@@ -37,10 +37,6 @@ export default {
 	mounted() {
 		drugStoreBanner().then(res => {
 			this.banners = res.data;
-			console.log(this.banner,"han")
-			/* for(var i= 0;i<this.banner.length;i++){
-				picUrl
-			} */
 		});
 	},
 	created() {
@@ -68,7 +64,6 @@ export default {
 		},
 		goDet(item) {
 			this.$router.push({ path: '/hospitalDet', query: { hospitalId: item.id } });
-			console.log(item.id);
 		}
 	}
 };

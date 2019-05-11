@@ -99,7 +99,6 @@ export default {
 			}
       msgLogin(query)
         .then(res => {
-					console.log(res)
 						this.loading = false;
 						var userInfo = JSON.stringify(res.result);
 						localStorage.setItem("userInfo", userInfo);

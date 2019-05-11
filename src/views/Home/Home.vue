@@ -1,6 +1,6 @@
 <template>
-	<div class="home">
-		<!-- <van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action @search="onSearch"><div slot="action" @click="onSearch">搜索</div></van-search> -->
+	<div class="home" style="width: 100%;">
+		<div @click="onSearch"><van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action><div slot="action">搜索</div></van-search></div>
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index" @click="goMainDet(item)"><img :src="item.picUrl" /></van-swipe-item>
@@ -58,8 +58,8 @@
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
 			<van-swipe class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
-					<div v-for="(item, index) in doctor" style="display: inline-block;width: 30%;margin-left: 5px;" class="swipe-item" :key="index" @click="goDocDet(item)">
-						<div><img :src="item.image" style="width: 110px;height: 110px;" /></div>
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 33%;" class="swipe-item" :key="index" @click="goDocDet(item)">
+						<div><img :src="item.image" style="width: 100px;height: 100px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.name }}工作室</span>
 					</div>
 				</van-swipe-item>
@@ -68,7 +68,7 @@
 		<good-item title="会员医院" describe="名医问诊" moreRoute="/memberHospital">
 			<van-swipe  class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goHosDet(item)">
-					<div v-for="(item, index) in doctor" style="display: inline-block;width: 165px;margin-right: 4px;" class="swipe-item" :key="index" @click="goHosDet(item)">
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 50%;" class="swipe-item" :key="index" @click="goHosDet(item)">
 						<div><img :src="item.image" style="width: 130px;height: 100px;" /></div>
 						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.hospitalName }}</span>
 					</div>
@@ -104,7 +104,7 @@
 		</div>
 		<div v-if="contentArticle.length > 0">
 			<good-item :title="contentArticle[0].name" describe="养生" moreRoute="/healthyList">
-				<div><img style="width: 375px;height: 140px;" :src="contentArticle[0].items[0].picUrl" /></div>
+				<div><img style="height: 140px;width: 99%;" :src="contentArticle[0].items[0].picUrl" /></div>
 				<span style="display: inline-block;">{{ articleTitle }}</span>
 			</good-item>
 		</div>		
@@ -311,7 +311,7 @@ export default {
 			this.$router.push({ path: '/Good', query: { productId: item.productId } });
 		},
 		onSearch() {
-			console.log('onSearch');
+			this.$router.push('/search');
 		},
 		changeSwipe(index) {
 			this.indexPage = index;

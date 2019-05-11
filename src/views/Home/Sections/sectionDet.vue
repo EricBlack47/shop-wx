@@ -24,10 +24,11 @@
 </template>
 
 <script>
-import { hospitalBanner, hospitalList, sectionDet } from '@/api/api';
+import { hospitalBanner, hospitalList, sectionDet,sectionDetBanner } from '@/api/api';
 export default {
 	data() {
 		return {
+			banners: [],
 			categoryList: [],
 			subCategoryList: [],
 			height: 0,
@@ -40,6 +41,9 @@ export default {
 		};
 	},
 	mounted() {
+		sectionDetBanner().then(res=>{
+			this.banners = res.data
+		})
 		var id = this.$route.query.sectionsId;
 		this.sectionName = this.$route.query.sectionsId;
 		this.getSectionDet(id);
@@ -50,7 +54,6 @@ export default {
 			this.$router.go(-1);
 		},
 		getSectionDet(id) {
-			console.log("han",id)
 			var query = {
 				page: 1,
 				size: 50,
@@ -65,7 +68,6 @@ export default {
 		},
 		goDet(item) {
 			this.$router.push({ path: '/hospitalDet', query: { hospitalId: item.id } });
-			console.log(item.id);
 		}
 	}
 };
@@ -74,6 +76,6 @@ export default {
 <style lang="stylus" scoped>
 .swipe img
  width 100%
- height 250px
- 
+ height 200px
+
 </style>

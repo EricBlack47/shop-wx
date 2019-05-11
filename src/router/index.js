@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 const GoodList = () => import('@/views/Good/GoodList');
 const Merchant = () => import('@/views/Merchant/Merchant');
+const MerchantList = () => import('@/views/Merchant/MerchantList')
 const Home = () => import(/* webpackChunkName: "Home" */ '@/views/Home/Home');
 const Cart = () => import(/* webpackChunkName: "Cart" */ '@/views/Cart/Cart');
 const User = () => import(/* webpackChunkName: "User" */ '@/views/User/User');
@@ -14,7 +15,6 @@ const AddressList = () => import(/* webpackChunkName: "AddressList" */ '@/views/
 const EditAddress = () => import(/* webpackChunkName: "EditAddress" */ '@/views/EditAddress/EditAddress');
 const OrderList = () => import(/* webpackChunkName: "OrderList" */ '@/views/OrderList/OrderList');
 const settings = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/settings/settings');
-
 const bill = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/bill');
 const docAnswered = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/docAnswered');
 const fllowMe = () => import(/* webpackChunkName: "OrderList" */ '@/views/User/fllowMe');
@@ -65,7 +65,6 @@ const orderShip = () => import('@/views/OrderList/orderShip')//发货
 const seeLogistics = () => import('@/views/OrderList/seeLogistics')//查物流
 const search = () => import('@/views/Home/Search/search')//搜索
 const searchMore = () => import('@/views/Home/Search/searchMore')//更多搜索
-
 
 Vue.use(Router);
 export default new Router({
@@ -265,6 +264,14 @@ export default new Router({
 		  path: '/Merchant',
 		  name: 'Merchant',
 		  component: Merchant,
+		  meta: {
+		    fullScreen: true
+		  }
+		},
+		 {
+		  path: '/MerchantList',
+		  name: 'MerchantList',
+		  component: MerchantList,
 		  meta: {
 		    fullScreen: true
 		  }
