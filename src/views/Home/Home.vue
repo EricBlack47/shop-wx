@@ -77,28 +77,28 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<van-row type="flex" title="" describe="" style="padding-left: 4px;margin-bottom: 10px;">
-			<van-col span="7"><span style="padding: 5px;border-left:3px solid red;font-weight: bold;">医互头条<span style="margin-left: 10px;"><van-icon name="volume-o"/></span></span></van-col>
-			<van-col span="17">
+			<van-col span="8"><span style="padding: 4px;border-left:3px solid red;font-weight: bold;">医互头条<span style="margin-left: 10px;"><van-icon name="volume-o"/></span></span></van-col>
+			<van-col span="16">
 			<van-swipe style="text-align: left;" :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goNews()">
-					<span style="display: block;width: 100%;text-align: left;">{{ item.title }}</span>
+					<span style="display: block;width: 90%;text-align: left;">{{ item.title }}</span>
 				</van-swipe-item>
 			</van-swipe>
 			</van-col>
 		</van-row>
-		<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
+		<van-swipe style="width: 99%;" :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
 			<van-swipe-item v-for="(item, index) in imgUrls2" class="swipe-item" :key="index" @click="goDetail(item)">
-				<img style="width: 375px;height: 100px;" :src="item.picUrl" />
+				<img style="width: 365px;height: 100px;" :src="item.picUrl" />
 			</van-swipe-item>
 		</van-swipe>
 		<!-- 更多好店 -->
 		<div v-if="contentList.length > 0" style="margin-bottom: 0.375rem;background-color: #fff;">
-			<van-row gutter="20">
+			<van-row>
 				<div @click ="goContentList(item.items[0].panelId,item.name)" v-for="(item, index) in contentList" :key="index">
 					<van-col span="12" style="border-right: 3px solid #f0f0f0;">
 						<span style="padding-left: 10px;">{{ item.name }}<span style="float: right;padding-top: 2px;"><van-icon name="arrow"/></span></span>
 						<van-row>
-							<van-col span="12"><img style="width: 100px;height: 80px;padding-right: 10px;margin-left: 35px;margin-top: 10px;" :src="item.items[0].picUrl" /></van-col>
+							<van-col span="12"><img style="width: 100px;height: 80px;margin-left: 35px;margin-top: 10px;" :src="item.items[0].picUrl" /></van-col>
 						</van-row>
 					</van-col>
 				</div>

@@ -5,7 +5,7 @@
 		</div>
 		<div>
 			<div style="width: 90%;margin-left: 5%;border-left: red 3px solid;font-size: 18px;margin-top: 2%;margin-bottom: 2%;"><span style="padding-left: 5px;">普通会员</span></div>
-			<div style="border: 2px solid gray;border-radius: 15px; width: 95%;font-size: 16px;margin-left: 2.5%;">
+			<div style="border: 1px solid #f0f0f0;border-radius: 15px; width: 88%;font-size: 12px;margin-left: 2.5%;padding: 9px;">
 				<p class="textP">1.普通会员可以捡红包，红包可以在mmc查看。</p>
 				<p class="textP">2.充值消费产生积分，积分每天返利千分之一，返利可在mmc查看。</p>
 				<p class="textP">3.mmc可以消费，消费不产生积分。</p>
@@ -13,7 +13,7 @@
 		</div>
 		<div>
 			<div style="width: 90%;margin-left: 5%;border-left: red 3px solid;font-size: 18px;margin-top: 2%;margin-bottom: 2%;"><span style="padding-left: 5px;">钻石会员</span></div>
-			<div style="margin-left: 2.5%;border: 2px solid gray;border-radius: 15px; width: 95%;font-size: 16px;">
+			<div style="border: 1px solid #f0f0f0;border-radius: 15px; width: 88%;font-size: 12px;margin-left: 2.5%;padding: 9px;">
 				<p class="textP">1.钻石会员年费1680元。</p>
 				<p class="textP">2.钻石会员可以捡红包，红包可以在mmc查看。</p>
 				<p class="textP">3.充值消费产生积分，积分每天返利千分之五，返利可在mmc查看。</p>
@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<div style="width: 90%;margin-left: 5%;border-left: red 3px solid;font-size: 18px;margin-top: 2%;margin-bottom: 2%;"><span style="padding-left: 5px;">VIP会员</span></div>
-			<div style="margin-left: 2.5%;border: 2px solid gray;border-radius: 15px; width: 95%;font-size: 16px;">
+			<div style="border: 1px solid #f0f0f0;border-radius: 15px; width: 88%;font-size: 12px;margin-left: 2.5%;padding: 9px;">
 				<p class="textP">1.VIP会员年费16800元。</p>
 				<p class="textP">2.VIP会员可以捡红包，红包可以在mmc查看。</p>
 				<p class="textP">3.充值消费产生积分，积分每天返利百分之一，返利可在mmc查看。</p>
