@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div style="width: 100%;margin-top: 5%;padding-bottom: 100px;" >
-			<van-radio-group  @change="change" v-model="checked" >
+			<van-radio-group  v-model="type" >
 				<van-radio v-for="item in items" :key="item.name" :name="item.value">{{ item.name }}</van-radio>
 			</van-radio-group>
 		</div>
@@ -44,6 +44,7 @@
 
 <script>
 	import { Dialog } from 'vant';
+	import { wxAuth } from '@/api/api.js';
 	export default {
 		data() {
 			return {
@@ -57,7 +58,7 @@
 						name: 'VIP会员'
 					},
 				],
-				checked:[],
+				checked:2,
 				type:2,
 				userInfo:{},
 				current:0,
@@ -69,21 +70,29 @@
 		},
 
 		methods: {
+			is_weixin() {
+			  var ua = navigator.userAgent.toLowerCase();
+			  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			    return true;
+			  } else {
+			    return false;
+			  }
+			},
+			goCharge(type){
+				if(this.is_weixin()){
+					wxAuth({type:this.type}).then(res=>{
+						location.href=res.result;
+					})
+				}
+				else{
+					this.$router.push({path:'/recharge',query:{type:this.type}})
+				}
+			},
 			goBack() {
 				this.$router.go(-1);
 			},
-			change(a){
-				this.type = a
-				this.current = 1
-			},
 			rqReg(){
-				if(this.current != 1){
-					console.log(this.current)
-					Dialog.alert({
-						message: '请选择升级会员类型'
-					})
-					return;
-				}
+				console.log(this.type)
 				if(this.userInfo.catId>=this.type){
 					var title="您只能升级为VIP会员！";
 					if(this.userInfo.catId==3){
@@ -94,7 +103,7 @@
 					})
 					return;
 				}else{
-					this.$router.push({path:'/recharge',query:{type:this.type}})
+					this.goCharge()
 				}
 				
 			},
