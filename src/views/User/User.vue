@@ -17,7 +17,7 @@
 				<span v-if="userInfo.memberType == 2" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医院</span>
 				<span v-if="userInfo.memberType == 1" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">院长</span>
 				<span v-if="userInfo.memberType == 4" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">商家</span>
-				<div @click="goUpdate" style="text-align: center;font-size: 14px;color: cadetblue;">(点击升级等级)</div>
+				<div @click="goUpdate" style="text-align: center;font-size: 14px;color: cadetblue;">(点击查看等级)</div>
 			</van-col>
 		</van-row>
 		<div v-if="userInfo.state==1">
