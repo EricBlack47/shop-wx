@@ -54,20 +54,19 @@
 				disabled: false,
 				checked: true,
 				check: false,
-				radio: '1',
-				moneyType:0,
+				radio: '1'
 			};
 		},
 		created() {
 			if (this.$route.query.type)
-				this.moneyType = this.$route.query.type;
+				this.param.type = this.$route.query.type;
 			if(this.$route.query.openId){
 				this.param.openId=this.$route.query.openId
 			}
-			if (this.moneyType == '2') {
+			if (this.param.type == '2') {
 				this.disabled = true;
 				this.param.money = '1680';
-			} else if (this.moneyType == '3') {
+			} else if (this.param.type == '3') {
 				this.disabled = true;
 				this.param.money = '16800';
 			}
@@ -87,6 +86,7 @@
 			},
 			is_weixin() {
 			  var ua = navigator.userAgent.toLowerCase();
+			  console.log('---', ua)
 			  if (ua.match(/MicroMessenger/i) == "micromessenger") {
 			    return true;
 			  } else {
@@ -103,6 +103,8 @@
 				if (this.check === false) {
 					Dialog.alert({
 						message: "请仔细阅读协议后并勾选同意协议",
+					}).then(res => {
+						return;
 					})
 					return;
 				}
