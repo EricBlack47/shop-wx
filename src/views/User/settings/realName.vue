@@ -120,5 +120,9 @@
 	}
 </script>
 
-<style>
+
+<style lang="stylus" scoped>
+.van-cell
+ color gray
+ font-size 16px
 </style>

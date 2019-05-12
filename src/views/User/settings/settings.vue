@@ -1,5 +1,5 @@
 <template>
-	<div class="page">
+	<div class="page" style="color: gray;">
 		<div> <van-nav-bar title="我的设置" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
 		<van-cell title="个人信息" icon="manager-o" value="" is-link to="/userInfo"/>
 		<van-cell title="实名认证" icon="manager-o" value="" @click="goRealName"/>
@@ -60,8 +60,8 @@ export default {
 }
 </script>
 
-<style>
-.page {
-	background-color: #ffffff;
-}
+<style lang="stylus" scoped>
+.van-cell
+ color gray
+ font-size 16px
 </style>

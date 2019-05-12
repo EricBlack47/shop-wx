@@ -9,13 +9,13 @@
 					<van-field value="输入金额" label="充值金额" v-model="param.money" disabled="disabled"/>
 				</div>
 			</van-cell-group>
-			<div style="margin: 5%;color: skyblue;">充值方式</div>
+			<div style="margin: 5%;color: skyblue;">提现方式</div>
 			<van-radio-group v-model="radio">
 				<van-cell-group>
-					<van-cell title="微信支付" @click="radio = '1'">
+					<van-cell title="转入微信" @click="radio = '1'">
 						<van-radio name="1" />
 					</van-cell>
-					<van-cell title="支付宝支付" @click="radio = '2'">
+					<van-cell title="转入支付宝" @click="radio = '2'">
 						<van-radio name="2" />
 					</van-cell>
 				</van-cell-group>

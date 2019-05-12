@@ -58,9 +58,9 @@
 		<good-item title="名医工作室" describe="名医问诊" moreRoute="/famousDoctor">
 			<van-swipe class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(doctor, index) in docList" class="swipe-item" :key="index">
-					<div v-for="(item, index) in doctor" style="display: inline-block;width: 33%;" class="swipe-item" :key="index" @click="goDocDet(item)">
-						<div><img :src="item.image" style="width: 100px;height: 100px;" /></div>
-						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.name }}工作室</span>
+					<div v-for="(item, index) in doctor" style="display: inline-block;width: 31%;margin: 1%;" class="swipe-item" :key="index" @click="goDocDet(item)">
+						<div><img :src="item.image" style="width: 95px;height: 100px;" /></div>
+						<span style="display: inline-block;text-align: center;margin: 0 auto;font-size: 14px;">{{ item.name }}工作室</span>
 					</div>
 				</van-swipe-item>
 			</van-swipe>
@@ -70,7 +70,7 @@
 				<van-swipe-item v-for="(doctor, index) in ss" class="swipe-item" :key="index" @click="goHosDet(item)">
 					<div v-for="(item, index) in doctor" style="display: inline-block;width: 50%;" class="swipe-item" :key="index" @click="goHosDet(item)">
 						<div><img :src="item.image" style="width: 130px;height: 100px;" /></div>
-						<span style="display: inline-block;text-align: center;margin: 0 auto;">{{ item.hospitalName }}</span>
+						<span style="display: inline-block;text-align: center;margin: 0 auto;font-size: 14px;">{{ item.hospitalName }}</span>
 					</div>
 				</van-swipe-item>
 			</van-swipe>
@@ -92,10 +92,10 @@
 		<div v-if="contentList.length > 0" style="margin-bottom: 0.375rem;background-color: #FFFFFF;">
 			<van-row>
 				<div @click ="goContentList(item.items[0].panelId,item.name)" v-for="(item, index) in contentList" :key="index">
-					<van-col span="11">
+					<van-col span="10">
 						<span>{{ item.name }}</span>
 						<van-row>
-							<van-col span="11"><van-icon name="arrow"/><span style="font-size: 14px;color: red;">点击进入</span></van-col>
+							<van-col span="12"><van-icon name="arrow"/><span style="font-size: 14px;color: red;">点击进入</span></van-col>
 							<van-col span="5"><img style="width: 100px;height: 80px;padding-right: 10px;" :src="item.items[0].picUrl" /></van-col>
 						</van-row>
 					</van-col>
@@ -325,8 +325,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.van-swipe-item
+ text-align center
 .text
- font-size 13px
+ font-size 12px
 .home
   background-color #eee
   margin-bottom 50px
