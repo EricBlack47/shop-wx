@@ -77,8 +77,8 @@
 		</good-item>
 		<div style="margin-bottom: 0.375rem"></div>
 		<van-row type="flex" title="" describe="" style="padding-left: 4px;margin-bottom: 10px;">
-			<van-col span="6"><span style="padding: 5px;border-left:3px solid red;font-weight: bold;">医互头条</span></van-col>
-			<van-col span="18">
+			<van-col span="7"><span style="padding: 5px;border-left:3px solid red;font-weight: bold;">医互头条<span style="margin-left: 10px;"><van-icon name="volume-o"/></span></span></van-col>
+			<van-col span="17">
 			<van-swipe style="text-align: left;" :autoplay="3000" class="swipe" @change="changeSwipe" :show-indicators=false>
 				<van-swipe-item v-for="(item, index) in news" class="swipe-item" :key="index" @click="goNews()">
 					<span style="display: block;width: 100%;text-align: left;">{{ item.title }}</span>
