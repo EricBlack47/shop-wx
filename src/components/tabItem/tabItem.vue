@@ -3,7 +3,7 @@
     <div class="item" v-for="item in data" :key="item.productId" @click="showGood(item)">
       <div class="item-detail">
         <img v-lazy="item.productImageBig" alt="">
-        <div class="desc">{{item.productName}}</div>
+        <div class="desc" style="color:gray;">{{item.productName}}</div>
         <div class="price">
           <span class="new-price">￥{{item.salePrice}}</span>
           <span class="old-price">
@@ -60,7 +60,6 @@ export default {
         height 180px
 
       .desc
-        height 36px
         padding 4px
         font-size 14px
         display -webkit-box
