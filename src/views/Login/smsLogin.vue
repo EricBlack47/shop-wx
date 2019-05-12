@@ -169,5 +169,10 @@ export default {
       font-weight 700
       margin-left -2px
       margin-top 4px
-
+			
+.van-cell
+ padding-top 10px
+ padding-bottom 10px
+ padding-left 0px
+ padding-right 0px
 </style>

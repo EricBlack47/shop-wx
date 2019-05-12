@@ -65,6 +65,7 @@ const orderShip = () => import('@/views/OrderList/orderShip')//发货
 const seeLogistics = () => import('@/views/OrderList/seeLogistics')//查物流
 const search = () => import('@/views/Home/Search/search')//搜索
 const searchMore = () => import('@/views/Home/Search/searchMore')//更多搜索
+const memberUpdate = () => import('@/views/User/memberUpdate')//会员升级
 
 Vue.use(Router);
 export default new Router({
@@ -445,6 +446,14 @@ export default new Router({
 			path: '/recharge',
 			name: 'recharge',
 			component: recharge,
+			 meta: {
+			  fullScreen: true
+			}
+		}, 
+				{
+			path: '/memberUpdate',
+			name: 'memberUpdate',
+			component: memberUpdate,
 			 meta: {
 			  fullScreen: true
 			}

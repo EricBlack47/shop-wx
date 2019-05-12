@@ -27,7 +27,6 @@
 		created() {
 			var num = this.$route.query.checked
 			this.checked = num
-			console.log(this.checked)
 			this.getAddressList()
 		},
 		methods: {

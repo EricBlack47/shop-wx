@@ -1,5 +1,5 @@
 <template>
-	<div class="home">
+	<div class="home" style="	color gray;">
 			<div @click="onSearch"><van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action><div slot="action">搜索</div></van-search></div><div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
 				<van-swipe-item v-for="(item,index) in banners" class="swipe-item" :key="index">
@@ -187,5 +187,7 @@
     height 1px
     margin 0 8px
     background-color #000
+		
+
 </style>
 

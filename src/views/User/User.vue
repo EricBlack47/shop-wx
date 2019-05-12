@@ -1,22 +1,23 @@
 <template>
-	<div style="padding-bottom: 50px;margin-left: 15upx; color:dimgrey"> 
+	<div style="padding-bottom: 50px;margin-left: 15upx; color:gray"> 
 		<van-row>
 			<van-col span="5">
 				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
 			</van-col>	
 			<van-col span="11">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 14px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 0" style="margin-left: 21px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
 			</van-col>
 			<van-col span="7">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">普通会员</span>
-				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医生</span>
-				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">医院</span>
-				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">院长</span>
-				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: chartreuse;font-size: 16px;text-decoration:underline">商家</span>
+				<span v-if="userInfo.memberType == 0" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">普通会员</span>
+				<span v-if="userInfo.memberType == 3" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医生</span>
+				<span v-if="userInfo.memberType == 2" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医院</span>
+				<span v-if="userInfo.memberType == 1" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">院长</span>
+				<span v-if="userInfo.memberType == 4" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">商家</span>
+				<div @click="goUpdate" style="text-align: center;font-size: 14px;color: cadetblue;">(点击升级等级)</div>
 			</van-col>
 		</van-row>
 		<div v-if="userInfo.state==1">
@@ -73,18 +74,6 @@
 					<div>待发货</div>
 				</van-col>
 			</div>
-			<!-- <div @click="goList3()" v-if="userInfo.memberType==4">
-				<van-col span="6">				
-					<van-icon name="logistics"><div v-if="this.orderCount.waitSend!=0" class="van-info van-badge__info">{{orderCount.waitSend}}</div></van-icon>
-					<div v-if="userInfo.memberType!=4">待发货</div>
-				</van-col>
-			</div>
-			<div @click="goList3()" v-if="userInfo.memberType!=4">
-				<van-col span="6">				
-					<van-icon name="logistics"><div v-if="this.orderCount.waitReceive!=0" class="van-info van-badge__info">{{orderCount.waitReceive}}</div></van-icon>
-					<div v-if="userInfo.memberType==4">待收货</div>
-				</van-col>
-			</div> -->
 			<div @click="goList4()">
 				<van-col span="6">
 					<van-icon name="bookmark-o"></van-icon>
@@ -97,7 +86,7 @@
 			<van-cell title="余额     ----可提现"  :value="userInfo.overMoney" is-link to="/lastMoney"  ><van-icon slot="icon" name="gold-coin-o" size="22px"/></van-cell>
 			<van-cell title="MMC      ---可使用"  :value="userInfo.overProfit" is-link to="/mmc"  ><van-icon slot="icon" name="gem-o" size="22px"/></van-cell>
 			<van-cell title="积分     ----不可使用"   :value="userInfo.points" is-link to="/totalAssets"  ><van-icon slot="icon" name="stop-circle-o" size="22px"/></van-cell>
-			<van-cell title="充值" @click="goCharge"W><van-icon slot="icon" name="bill-o" size="22px"/></van-cell>
+			<van-cell title="充值" @click="goCharge"><van-icon slot="icon" name="bill-o" size="22px"/></van-cell>
 			<van-cell title="提现"  is-link to="/withdrawal"><van-icon slot="icon" name="refund-o" size="22px"/></van-cell>
 			<van-cell title="账单" is-link to="/bill" ><van-icon slot="icon" name="balance-list-o" size="22px"/></van-cell>
 		</van-cell-group>
@@ -225,12 +214,17 @@ export default {
 		},
 		goRealName(){
 			this.$router.push({path:'/realName'});
+		},
+		goUpdate(){
+			this.$router.push({path:'/memberUpdate'});
 		}
 	}
 };
 </script>
 
 <style lang="stylus" scoped> 
+.van-cell
+ color #8383a0
 .van-cell .van-icon 
     margin-right 10px 
 		 
@@ -265,4 +259,6 @@ export default {
 	} 
 .van-info
 	margin-right 25px
+.van-col--7
+	margin-top 10%
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="home" style="width: 100%;">
+	<div class="home" style="width: 100%;color: gray;">
 		<div @click="onSearch"><van-search v-model="searchValue" placeholder="请输入搜索关键词" show-action><div slot="action">搜索</div></van-search></div>
 		<div class="home-swipe">
 			<van-swipe :autoplay="3000" class="swipe" @change="changeSwipe">
@@ -115,7 +115,7 @@
 						<div style="margin-bottom: 10px;margin-left: 10px;">
 							<img :src="product.picUrl" style="width: 100px;height: 100px;margin-right: 5px;" />
 							<span style="display: inline-block;overflow: hidden;height: 40px;font-size: 14px;">{{ product.articleTitle.length>5?product.articleTitle.slice(0,15)+'...':product.articleTitle }}</span>
-							<span style="display: inline-block;text-align: center;font-size: 14px;color: red;">售价:${{ product.salePrice }}</span>
+							<span style="display: inline-block;text-align: center;font-size: 14px;color: red;">售价:￥{{ product.salePrice }}</span>
 						</div>
 					</div>			
 				</good-item>
@@ -325,6 +325,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.text
+ font-size 13px
 .home
   background-color #eee
   margin-bottom 50px

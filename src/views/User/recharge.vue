@@ -6,7 +6,7 @@
 		<div style="padding-top: 46px;">
 			<van-cell-group>
 				<div style="font-size: 18px;">
-					<van-field value="输入金额" label="充值金额" v-model="param.money" />
+					<van-field value="输入金额" label="充值金额" v-model="param.money" disabled="disabled"/>
 				</div>
 			</van-cell-group>
 			<div style="margin: 5%;color: skyblue;">充值方式</div>
@@ -54,19 +54,20 @@
 				disabled: false,
 				checked: true,
 				check: false,
-				radio: '1'
+				radio: '1',
+				moneyType:0,
 			};
 		},
 		created() {
 			if (this.$route.query.type)
-				this.param.type = this.$route.query.type;
+				this.moneyType = this.$route.query.type;
 			if(this.$route.query.openId){
 				this.param.openId=this.$route.query.openId
 			}
-			if (this.param.type == '2') {
+			if (this.moneyType == '2') {
 				this.disabled = true;
 				this.param.money = '1680';
-			} else if (this.param.type == '3') {
+			} else if (this.moneyType == '3') {
 				this.disabled = true;
 				this.param.money = '16800';
 			}
@@ -86,7 +87,6 @@
 			},
 			is_weixin() {
 			  var ua = navigator.userAgent.toLowerCase();
-			  console.log('---', ua)
 			  if (ua.match(/MicroMessenger/i) == "micromessenger") {
 			    return true;
 			  } else {
@@ -103,8 +103,6 @@
 				if (this.check === false) {
 					Dialog.alert({
 						message: "请仔细阅读协议后并勾选同意协议",
-					}).then(res => {
-						return;
 					})
 					return;
 				}
