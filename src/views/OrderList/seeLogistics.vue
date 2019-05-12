@@ -1,6 +1,7 @@
 <template>
 	<!-- 物流信息 -->
 	<div class="">
+		<div><van-nav-bar title="订单" left-text="返回" left-arrow @click-left="goBack"/></div>
 		<div class="uni-timeline" style="padding: 30px 20px;background-color: #fff;">
 			<van-steps direction="vertical" :active="0">
 				<div v-for="(value, key) in listData" :key="key">
@@ -43,7 +44,10 @@ export default {
 					_this.listData = res.result.data;
 				}
 			});
-		}
+		},
+		goBack() {
+			this.$router.go(-1);
+		},
 	}
 };
 </script>

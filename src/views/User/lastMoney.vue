@@ -200,13 +200,14 @@ export default {
 				getBillList(query).then(res => {
 					if (res.result != '' && res.result != null) {
 						this.listAll = res.result.list;
-						for (var i = 0; i < res.result.length; i++) {
+						for (var i = 0; i < res.result.list.length; i++) {
 							this.listAll[i].points = (res.result.list[i].points * this.userInfo.beanRate).toFixed(4);
 							this.listAll[i].money = res.result.list[i].money.toFixed(4);
 							/* for(var i = 0;i<_this.listAll.length;i++){
 								_this.allMoney=(_this.listAll[i].money+_this.listAll[i].charge).toFixed(4);
 							} */
 						}
+						console.log(this.listAll)
 					} else this.listAll = [];
 				});
 			});

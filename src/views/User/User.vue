@@ -4,19 +4,19 @@
 			<van-col span="5">
 				<img @click="goPerson" style="margin:10px; height: 75px;width: 75px;border-radius: 50%;" :src="userInfo.image"/>	
 			</van-col>	
-			<van-col span="11">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 21px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 3" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 2" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 1" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
-				<span v-if="userInfo.memberType == 4" style="margin-left: 20px; line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+			<van-col span="12">
+				<span v-if="userInfo.memberType == 0" style="line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 3" style="line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 2" style="line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 1" style="line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
+				<span v-if="userInfo.memberType == 4" style="line-height: 100px;text-align: center;color: #83a3e0;font-size: 15px;">{{ userInfo.username }}</span>
 			</van-col>
 			<van-col span="7">
-				<span v-if="userInfo.memberType == 0" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">普通会员</span>
-				<span v-if="userInfo.memberType == 3" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医生</span>
-				<span v-if="userInfo.memberType == 2" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医院</span>
-				<span v-if="userInfo.memberType == 1" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">院长</span>
-				<span v-if="userInfo.memberType == 4" style="margin-left: 21%; text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">商家</span>
+				<span v-if="userInfo.memberType == 0" style=" text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">普通会员</span>
+				<span v-if="userInfo.memberType == 3" style="text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医生</span>
+				<span v-if="userInfo.memberType == 2" style="text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">医院</span>
+				<span v-if="userInfo.memberType == 1" style="text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">院长</span>
+				<span v-if="userInfo.memberType == 4" style="text-align: center;color: #83a3e0;font-size: 16px;text-decoration:underline">商家</span>
 				<div @click="goUpdate" style="text-align: center;font-size: 14px;color: cadetblue;">(点击查看等级)</div>
 			</van-col>
 		</van-row>
@@ -223,6 +223,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped> 
+.van-col
+ text-align center
+ 
 .van-cell
  color #8383a0
 .van-cell .van-icon 

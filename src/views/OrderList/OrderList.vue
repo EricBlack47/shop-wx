@@ -2,7 +2,7 @@
 	<div>
 		<div><van-nav-bar title="订单" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
 		<div style="padding-top: 46px;">
-			<div class="order" style="height: 130px; padding:15px 5px;border-bottom: 1px gainsboro solid;" v-for="(item, index) of orderList" :key="item.id" :data-index="index">
+			<div class="order" style="font-size: 14px;color: gray; height: 130px; padding:15px 5px;border-bottom: 1px gainsboro solid;" v-for="(item, index) of orderList" :key="item.id" :data-index="index">
 				<div style="display: inline-block;width: 100%;" class="l">
 					<span style="float: left;">订单编号：{{ item.orderId }}</span>					
 					<span style="color: red;float: right;margin-right: 20px;" class="r">{{ item.orderStatus == 0 ? '未付款' : item.orderStatus == 2 ? '待发货' : item.orderStatus == 3 ? '待收货' : '交易完成' }}</span>
