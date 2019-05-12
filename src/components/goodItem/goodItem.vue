@@ -48,9 +48,8 @@ export default {
 
     .more
       float right
-      color #000
+      color #ddd
       border-radius 10px
       font-size 12px
-      border 1px solid #000
       padding 0 6px
 </style>

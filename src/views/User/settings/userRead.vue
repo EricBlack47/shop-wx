@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<van-nav-bar title="关于我们" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
+			<van-nav-bar title="用户须知" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed />
 		</div>
 		<div style="padding-top: 46px;">
 			<van-cell title="充值协议"  @click="goAggrement1()"  />
@@ -42,5 +42,8 @@
 	}
 </script>
 
-<style>
+<style lang="stylus" scoped>
+.van-cell
+ color gray
+ font-size 16px
 </style>

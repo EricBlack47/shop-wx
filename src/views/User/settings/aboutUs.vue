@@ -8,14 +8,14 @@
 		  fixed /></div>
 		 <div style="padding-top: 46px;">
 			<div class="content" >
-				<img  style="width: 250px;margin: auto auto;" v-for="img in imageList" v-lazy="img" >
-				<div class="qrcode" >
-					<span class="tip">扫码体验医互链点</span>
-				</div>
-				<div class="desc">
-					医互链点是提供医疗教育与商城服务的综合APP，使你的生活更加有条不紊。
-				</div>
-				<div class="source">
+				<img  style="width: 250px;margin-left: 16%;" v-for="img in imageList" v-lazy="img" />
+				<div class="source" style="margin-right: 2%;font-size: 18px;color: gray;">
+					<div class="qrcode" >
+						<span class="tip">扫码体验医互链点</span>
+					</div>
+					<div class="desc">
+						医互链点是提供医疗教育与商城服务的综合APP，使你的生活更加有条不紊。
+					</div>
 					<div class="title">我们提供：</div>
 					<div class="source-list">
 						<div class="source-cell">

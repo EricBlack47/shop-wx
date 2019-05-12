@@ -188,6 +188,7 @@
     margin 0 8px
     background-color #000
 		
-
+.tab-item .item .item-detail .desc[data-v-6b270721]
+ color gary
 </style>
 

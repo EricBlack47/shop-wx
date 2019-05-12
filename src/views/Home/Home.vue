@@ -439,4 +439,8 @@ export default {
 	
 .good-item[data-v-3106e062]
 	margin-bottom 0
+	
+.good-item .head .more[data-v-3106e062]
+ color #ddd
+ border 0px
 </style>
