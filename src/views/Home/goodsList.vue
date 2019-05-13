@@ -8,7 +8,7 @@
 			  <div class="item" v-for="item in AllGoods" :key="item.productId" @click="showGood(item)">
 			    <div class="item-detail">
 			      <img v-lazy="item.productImageBig" alt="">
-			      <div class="desc">{{item.productName}}</div>
+			      <div class="desc" style="color: gray;">{{item.productName}}</div>
 			      <div class="price">
 			        <span class="new-price">￥{{item.salePrice}}</span>
 			        <span class="old-price">

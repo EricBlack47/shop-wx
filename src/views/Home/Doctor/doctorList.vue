@@ -72,5 +72,11 @@
 	 width 75px
 	 height 75px
 
-
+.van-card__title
+ font-size 14px
+ padding 10px
+ 
+.van-card__desc
+ font-size 12px
+ padding 10px
 </style>

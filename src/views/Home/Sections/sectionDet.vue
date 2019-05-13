@@ -1,19 +1,19 @@
 <template>
 	<div>
 		<div><van-nav-bar left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
-		<div style="padding-top: 48px;">
+		<div style="padding-top: 48px;line-height: 40px;">
 			<van-swipe :autoplay="3000" class="swipe">
 				<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index"><img :src="item.picUrl" /></van-swipe-item>
 			</van-swipe>
-			<div class="bean-text">
-				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
+			<div class="bean-text" style="padding: 5px;">
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
 				<span>科室分类</span>
 			</div>
-			<span >
+			<span style="border: 1px solid #CCCCCC;border-radius: 10px;padding: 5px;margin-left: 5%;font-size: 14px;">
 				{{sectionName}}
 			</span>
-			<div class="bean-text">
-				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
+			<div class="bean-text" style="padding: 5px;">
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
 				<span>科室医生</span>
 			</div>
 			<div v-for="doctors in subCategoryList" :key="doctors.id">
@@ -78,4 +78,14 @@ export default {
  width 100%
  height 200px
 
+.van-card__thumb
+ margin-right 10px
+ 
+.van-card__title
+ font-size 14px
+ padding 5px
+ 
+.van-card__desc
+ font-size 12px
+ padding 5px
 </style>

@@ -94,7 +94,7 @@
 			<div v-if="userInfo.memberType===4"><van-cell title="我的销售"  is-link to="/mySale" ><van-icon slot="icon" name="gift" size="22px"/></van-cell></div>
 			<div v-if="userInfo.memberType!==3"><van-cell title="我的关注"   is-link to="/myFollow" ><van-icon slot="icon" name="like-o" size="22px"/></van-cell></div> 
 			<div v-if="userInfo.memberType===3"><van-cell title="关注我的"   is-link to="/fllowMe"> <van-icon slot="icon" name="like-o" size="22px"/></van-cell></div>
-			<div v-if="userInfo.memberType!==3"><van-cell title="我的提问"  is-link to="/myAnswered" ><van-icon slot="icon" name="comment-circle-o" size="22px"/></van-cell></div>
+			<!-- <div v-if="userInfo.memberType!==3"><van-cell title="我的提问"  is-link to="/myAnswered" ><van-icon slot="icon" name="comment-circle-o" size="22px"/></van-cell></div> -->
 			<div v-if="userInfo.memberType===3"><van-cell title="提问我的"  is-link to="/docAnswered" ><van-icon slot="icon" name="comment-circle-o" size="22px"/></van-cell></div>
 			<van-cell title="投诉建议" is-link to="/suggestion" ><van-icon slot="icon" name="notes-o" size="22px"/></van-cell>
 		</van-cell-group>

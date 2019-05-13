@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><van-nav-bar left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
-		<div style="padding-top: 48px;">
+		<div style="padding-top: 48px;color: gray;">
 			<div style="width: 95%;margin-left: 2.5%;">
 				<van-row>
 					<van-col span="8">
@@ -19,13 +19,13 @@
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>擅长</span>
 			</div>
-			<div class="descrption" style=" border: 1px gray solid;width: 95%;margin-left: 2.5%;background: lightgoldenrodyellow;" v-html="DoctorDetail.major"></div>
+			<div class="descrption" style=" border: 1px gray solid;width: 90%;margin-left: 3%;padding: 5px;" v-html="DoctorDetail.major"></div>
 			<div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>背景介绍</span>
 			</div>
-			<div class="descrption" style=" border: 1px gray solid;width: 95%;margin-left: 2.5%;background: lightgoldenrodyellow;" v-html="DoctorDetail.descript"></div>
-			<div class="bean-text">
+			<div class="descrption" style=" border: 1px gray solid;width: 90%;margin-left: 3%;padding: 5px;" v-html="DoctorDetail.descript"></div>
+			<!-- <div class="bean-text">
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>医生回复</span>
 			</div>
@@ -34,7 +34,7 @@
 				<span style="font-size: 32px; font-weight: 900;color: #FF3333;">|</span>
 				<span>用户提问</span>
 			</div>
-			<div class="descrption" style="width: 95%;margin-left: 2.5%;;height: 100px;width: 95%;"></div>
+			<div class="descrption" style="width: 95%;margin-left: 2.5%;;height: 100px;width: 95%;"></div> -->
 		</div>
 	</div>
 </template>

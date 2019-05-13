@@ -107,7 +107,7 @@
 		<div v-if="contentArticle.length > 0">
 			<good-item :title="contentArticle[0].name" describe="养生" moreRoute="/healthyList">
 				<div><img style="height: 140px;width: 99%;" :src="contentArticle[0].items[0].picUrl" /></div>
-				<span style="display: inline-block;">{{ articleTitle }}</span>
+				<span style="display:block;text-align: center;">{{ articleTitle }}</span>
 			</good-item>
 		</div>		
 		<div  style="height: 480px;">

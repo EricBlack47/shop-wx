@@ -7,9 +7,9 @@
 					<van-swipe-item v-for="(item, index) in banners" class="swipe-item" :key="index"><img :src="item.picUrl" /></van-swipe-item>
 				</van-swipe>
 			</div>
-			<div v-for="(item, index) in items"  :key="index" style="width: 33%; height: 125px;float: left;margin-top: 10px;">
-				<img  @click="goDet(item)"  :src="item.image" style="width: 80%;height: 80%; background: yellow;margin-left: 10%;"/>
-				<div style="text-align: center;" >{{item.name}}</div>
+			<div v-for="(item, index) in items"  :key="index" style="width: 33%;height: 120px; float: left;margin-top: 10px;text-align: center;">
+				<img  @click="goDet(item)"  :src="item.image" style="width: 70%;height: 70%; background: greenyellow;"/>
+				<div style="text-align: center;font-size: 12px;color: gray;" >{{item.name}}</div>
 			</div>
 		</div>
 	</div>

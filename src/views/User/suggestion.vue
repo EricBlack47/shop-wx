@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><van-nav-bar title="投诉建议" left-text="返回" left-arrow @click-left="goBack" :z-index="10" fixed /></div>
-		<div style="padding-top: 46px;">
+		<div style="padding-top: 46px; color: gray;line-height: 50px;">
 			<image style="padding-top: 70px;display: block;margin: 0 auto;width: 180px;height: 180px;" src="../../../static/logo.png"></image>
 			<text style="display: block;text-align: center;color: #e22426;font-size: 35px;padding-bottom: 77px;">医互链点</text>
 			<!-- 用户提问 -->
@@ -26,7 +26,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="button2"><button type="warn" @click="getSugges()">投诉建议</button></div>
+			<div style="position: fixed;bottom: 0px;width: 95%;padding: 10px;"><van-button type="primary" size="large" @click="getSugges">投诉建议</van-button></div>
 		</div>
 	</div>
 </template>

@@ -8,8 +8,8 @@
 		</div> -->
 		<div v-if="listHospital.length>0">
 			<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-				<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-				<span style="font-size: 20px;">医院</span>
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+				<span style="font-size: 14px;">医院</span>
 			</div>
 			<div class="hospitals" v-for="(value,key) in listHospital" :key="key" @click="goHospitalDet(value)">
 				<van-card :desc="value.introduction" :title="value.hospitalName" :thumb="value.image" />
@@ -17,8 +17,8 @@
 		</div>
 		<div v-if="listDoctor.length>0">
 		<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-			<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-			<span style="font-size: 20px;">医生</span>
+			<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+			<span style="font-size: 14px;">医生</span>
 		</div>
 		<div>
 			<div v-for="(value,key) in listDoctor" :key="key" @click="goDoctorDetail(value)">
@@ -28,8 +28,8 @@
 		</div>
 		<div v-if="listPharmacy.length>0">
 			<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-				<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-				<span style="font-size: 20px;">药店</span>
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+				<span style="font-size: 14px;">药店</span>
 			</div>
 			<div>
 				<div v-for="(value,key) in listPharmacy" :key="key" @click="goPharmacyDetail(value)">
@@ -39,8 +39,8 @@
 		</div>
 		<div v-if="listSection.length>0">
 			<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-				<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-				<span style="font-size: 20px;">科室</span>
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+				<span style="font-size: 14px;">科室</span>
 			</div>
 			<div>
 				<div v-for="(value,key) in listSection" :key="key" @click="goDpartmentDetail(value)">
@@ -50,8 +50,8 @@
 		</div>
 		<div v-if="listItem.length>0">
 			<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-				<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-				<span style="font-size: 20px;">商品</span>
+			<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+			<span style="font-size: 14px;">商品</span>
 			</div>
 			<div>
 				<div v-for="(value,key) in listItem" :key="key" @click="goItemDetail(value)">
@@ -61,8 +61,8 @@
 		</div>
 		<div v-if="listGlod.length>0">
 			<div class="bean-text" style="border-top: #BBBBBB 1px solid;border-bottom: #BBBBBB 1px solid;">
-				<span style="font-size: 30px; font-weight: 900;color: #FF3333;">|</span>
-				<span style="font-size: 20px;">商家</span>
+				<span style="font-size: 20px; font-weight: 900;color: #FF3333;">|</span>
+				<span style="font-size: 14px;">商家</span>
 			</div>
 			<div>
 				<div v-for="(value,key) in listGlod" :key="key" @click="goMerchantsDetail(value)">

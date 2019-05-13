@@ -13,117 +13,121 @@
 			<van-list>
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listAll" :key="index">
 					<van-row>	
-						<van-col span="8">
-							{{
-								list.kind == '支出'
-									? list.type == 0
-										? '线上消费'
+						<van-col span="10" >
+							<span style="font-size: 13px; color: black;padding: 5px;">
+								{{
+									list.kind == '支出'
+										? list.type == 0
+											? '线上消费'
+											: list.type == 1
+											? '线下消费'
+											: list.type == 2
+											? '提现'
+											: '会费'
 										: list.type == 1
-										? '线下消费'
+										? '线上销售'
 										: list.type == 2
-										? '提现'
-										: '会费'
-									: list.type == 1
-									? '线上销售'
-									: list.type == 2
-									? '线下销售'
-									: list.type == 3
-									? '推荐'
-									: list.type == 5 || list.type == 6
-									? '充值'
-									: list.type == 0
-									? '红包'
-									: list.type == 4
-									? '返利'
-									: list.type == 7
-									? '会费'
-									: '其他'
-							}}
+										? '线下销售'
+										: list.type == 3
+										? '推荐'
+										: list.type == 5 || list.type == 6
+										? '充值'
+										: list.type == 0
+										? '红包'
+										: list.type == 4
+										? '返利'
+										: list.type == 7
+										? '会费'
+										: '其他'
+								}}
+							</span>
+							<div style="padding: 5px;">{{list.created}}</div>
 						</van-col>
-						<!-- <van-col span="4"></van-col> -->
-						<van-col span="8">
-							<span>{{list.kind}}:{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+						<van-col span="14" style="padding-left: 25%;">
+							<span style="font-size: 13px;padding: 5px;">{{list.kind}}：</span><span style="color: red;">{{ list.money }}</span>
+							<div style="padding: 5px;">{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : ''}}</div>
 						</van-col>
-						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list>
 		</van-tab>
 		<van-tab title="收入信息"><van-list>
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listget" :key="index">
-					<van-row>
-						
-						<van-col span="8">
-							{{
-								list.kind == '支出'
-									? list.type == 0
-										? '线上消费'
+						<van-row>	
+						<van-col span="10" >
+							<span style="font-size: 13px; color: black;padding: 5px;">
+								{{
+									list.kind == '支出'
+										? list.type == 0
+											? '线上消费'
+											: list.type == 1
+											? '线下消费'
+											: list.type == 2
+											? '提现'
+											: '会费'
 										: list.type == 1
-										? '线下消费'
+										? '线上销售'
 										: list.type == 2
-										? '提现'
-										: '会费'
-									: list.type == 1
-									? '线上销售'
-									: list.type == 2
-									? '线下销售'
-									: list.type == 3
-									? '推荐'
-									: list.type == 5 || list.type == 6
-									? '充值'
-									: list.type == 0
-									? '红包'
-									: list.type == 4
-									? '返利'
-									: list.type == 7
-									? '会费'
-									: '其他'
-							}}
+										? '线下销售'
+										: list.type == 3
+										? '推荐'
+										: list.type == 5 || list.type == 6
+										? '充值'
+										: list.type == 0
+										? '红包'
+										: list.type == 4
+										? '返利'
+										: list.type == 7
+										? '会费'
+										: '其他'
+								}}
+							</span>
+							<div style="padding: 5px;">{{list.created}}</div>
 						</van-col>
-						<!-- <van-col span="4">{{list.kind}}</van-col> -->
-						<van-col span="8">
-							<span>{{list.kind}}:{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+						<van-col span="14" style="padding-left: 25%;">
+							<span style="font-size: 13px;padding: 5px;">{{list.kind}}：</span><span style="color: red;">{{ list.money }}</span>
+							<div style="padding: 5px;">{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : ''}}</div>
 						</van-col>
-						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list></van-tab>
 		<van-tab title="支出信息"><van-list>
 				<div style="border-bottom: #999999 solid 1px;" v-for="(list, index) in listuse" :key="index">
-					<van-row>
-						
-						<van-col span="8">
-							{{
-								list.kind == '支出'
-									? list.type == 0
-										? '线上消费'
+						<van-row>	
+						<van-col span="10" >
+							<span style="font-size: 13px; color: black;padding: 5px;">
+								{{
+									list.kind == '支出'
+										? list.type == 0
+											? '线上消费'
+											: list.type == 1
+											? '线下消费'
+											: list.type == 2
+											? '提现'
+											: '会费'
 										: list.type == 1
-										? '线下消费'
+										? '线上销售'
 										: list.type == 2
-										? '提现'
-										: '会费'
-									: list.type == 1
-									? '线上销售'
-									: list.type == 2
-									? '线下销售'
-									: list.type == 3
-									? '推荐'
-									: list.type == 5 || list.type == 6
-									? '充值'
-									: list.type == 0
-									? '红包'
-									: list.type == 4
-									? '返利'
-									: list.type == 7
-									? '会费'
-									: '其他'
-							}}
+										? '线下销售'
+										: list.type == 3
+										? '推荐'
+										: list.type == 5 || list.type == 6
+										? '充值'
+										: list.type == 0
+										? '红包'
+										: list.type == 4
+										? '返利'
+										: list.type == 7
+										? '会费'
+										: '其他'
+								}}
+							</span>
+							<div style="padding: 5px;">{{list.created}}</div>
 						</van-col>
-						<!-- <van-col span="4">{{list.kind}}</van-col> -->
-						<van-col span="8">
-							<span>{{list.kind}}:{{ list.money }}{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : '' }}</span>
+						<van-col span="14" style="padding-left: 25%;">
+							<span style="font-size: 13px;padding: 5px;">{{list.kind}}：</span><span style="color: red;">{{ list.money }}</span>
+							<div style="padding: 5px;">{{ list.charge != null && list.charge != 0 ? '  服务费：' + list.charge : ''}}</div>
 						</van-col>
-						<van-col span="8">{{list.created}}</van-col>
 					</van-row>
 				</div>
 			</van-list></van-tab>
@@ -169,7 +173,6 @@ export default {
 	},
 	created(){
 		this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-		
 	},
 	mounted() {
 	
@@ -203,11 +206,8 @@ export default {
 						for (var i = 0; i < res.result.list.length; i++) {
 							this.listAll[i].points = (res.result.list[i].points * this.userInfo.beanRate).toFixed(4);
 							this.listAll[i].money = res.result.list[i].money.toFixed(4);
-							/* for(var i = 0;i<_this.listAll.length;i++){
-								_this.allMoney=(_this.listAll[i].money+_this.listAll[i].charge).toFixed(4);
-							} */
+							this.listAll[i].charge = res.result.list[i].charge.toFixed(4);
 						}
-						console.log(this.listAll)
 					} else this.listAll = [];
 				});
 			});
@@ -224,9 +224,10 @@ export default {
 				getBillList(query).then(res => {
 					if (res.result != '' && res.result != null) {
 						this.listget = res.result.list;
-						for (var i = 0; i < res.result.length; i++) {
+						for (var i = 0; i < res.result.list.length; i++) {
 							this.listget[i].points = (res.result.list[i].points * this.userInfo.beanRate).toFixed(4);
 							this.listget[i].money = res.result.list[i].money.toFixed(4);
+							this.listget[i].charge = res.result.list[i].charge.toFixed(4);
 						}
 					} else this.listget = [];
 				});
@@ -299,7 +300,7 @@ export default {
 <style lang="stylus" scoped>
 .van-col
  font-size 12px
- line-height 20px
+ line-height 25px
  color gray
- text-align center
+ text-align left
 </style>

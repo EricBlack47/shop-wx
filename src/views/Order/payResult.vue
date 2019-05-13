@@ -22,7 +22,7 @@
 					</div>	
 					</van-uploader>	
 					<div style="margin-right: 20%;">
-						<van-button plain hairline type="primary" class="tijiao">充值</van-button>	
+						<van-button @click="goCharge" plain hairline type="primary" class="tijiao">充值</van-button>	
 					</div>
 				</div>	
 			</div>	
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+	import { getMerberInfo,wxAuth } from '@/api/api.js';
 	export default {
 		data() {
 			return {
@@ -54,6 +55,24 @@
 			},
 			goGoods(){
 			  this.$router.push({path:'/GoodList'});	
+			},
+			is_weixin() {
+			  var ua = navigator.userAgent.toLowerCase();
+			  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			    return true;
+			  } else {
+			    return false;
+			  }
+			},
+			goCharge(){
+				if(this.is_weixin()){
+					wxAuth().then(res=>{
+						location.href=res.result;
+					})
+				}
+				else{
+					this.$router.push({path:'/recharge'})
+				}
 			},
 		}
 	};

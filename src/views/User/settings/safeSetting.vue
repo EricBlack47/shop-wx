@@ -5,12 +5,9 @@
 		</div>
 		<div style="padding-top: 46px;">
 			<van-cell-group>
-				<van-field value="原始密码" disabled />
 				<van-field v-model="opassword" placeholder="请输入原始密码" />
-				<van-field value="新密码" disabled />
 				<van-field v-model="npassword" placeholder="请输入新密码" />
-				<van-field value="确认密码" disabled />
-				<van-field v-model="rpassword" placeholder="请输入新密码" />
+				<van-field v-model="rpassword" placeholder="请确认新密码" />
 			</van-cell-group>
 			<van-button type="primary" size="large" @click="check">保存</van-button>
 		</div>

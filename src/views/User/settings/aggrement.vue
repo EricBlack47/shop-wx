@@ -48,6 +48,7 @@ export default {
 };
 </script>
 
-<style >
-
+<style lang="stylus" scoped>
+.descrption
+ color gray
 </style>
