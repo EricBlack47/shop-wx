@@ -92,7 +92,6 @@
 				this.$router.go(-1);
 			},
 			rqReg(){
-				console.log(this.type)
 				if(this.userInfo.catId>=this.type){
 					var title="您只能升级为VIP会员！";
 					if(this.userInfo.catId==3){

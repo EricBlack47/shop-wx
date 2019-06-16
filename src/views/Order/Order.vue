@@ -108,20 +108,7 @@ export default {
     }
   },
   computed: {
-    // orderGoodList() {
-    //   this.orderGood.forEach(item => {
-    //     item.message = '';
-    //   });
-    //   return this.orderGood;
-    // },
-    // totalMoney() {
-    //   var total = 0;
-    //   this.orderGoodList.forEach(item => {
-    //     total += item.GoodPriceaftersale * item.Cartcount + item.Gooddealprice;
-    //   });
-    //   return total * 100;
-    // },
-    // ...mapGetters(['orderGood', 'addressId'])
+   
   },
   methods: {
     onSubmit() {
@@ -143,17 +130,14 @@ export default {
       };
       createOrder(obj)
         .then(result => {
-          console.log(result);
           this.$toast.success('付款成功~');
           var params = {
             delId: idArr
           };
           delFromCart(params)
             .then(result => {
-              console.log(result);
             })
             .catch(error => {
-              console.log(error);
             });
           setTimeout(() => {
             this.$router.push('/OrderList');
